@@ -1,0 +1,63 @@
+:root {
+  --colorHeader:#6e879a;
+  --colorNavHover: #fb9e00;
+  --colorNavBar: #569dd7;
+  --colorNavActive: #4CAF50;
+}
+header{
+  background-color: var(--colorHeader);
+}
+
+.logoCrux{
+  width:17%;
+}
+.row{
+  margin: 0 0 0 0 !important;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+}
+
+li{
+  float: left;
+  list-style: none;
+}
+
+li a{
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 15px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active){
+  background-color: var(--colorNavHover);
+  text-decoration: none;
+
+}
+
+.active{
+  background-color: var(--colorNavActive);
+  text-decoration: none;
+
+}
+
+/* Mobile Devices */
+@media (min-width: 320px) and (max-width:767px) {
+  .logoCrux{
+    width:100%;
+  }
+}
+
+/* Medium Devices */
+@media (min-width:768px) and (max-width:1023px) {
+  .logoCrux{
+    width:30%;
+  }
+
+}
