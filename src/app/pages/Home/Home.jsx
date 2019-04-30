@@ -7,9 +7,9 @@ import './styleHome.css';
 
  render(){
    return(
-     <section className="homee">
+     <div className="homee">
        <p> p1</p>
-     </section>
+     </div>
    );
  }
 }

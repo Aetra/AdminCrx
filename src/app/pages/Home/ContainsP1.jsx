@@ -10,7 +10,6 @@ import config from './config1.js';
     this.state={
        stats:[],
      };
-
   }
 
   axiosResult(){
