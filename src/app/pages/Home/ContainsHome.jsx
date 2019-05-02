@@ -16,7 +16,6 @@ import {formatHashrate} from '../../helpers/helpers'
    axios.get(config.get("URL")+"/pool/stats")
         .then(response=>{
           if (response.status === 200) {
-            console.log(response);
             this.setState({stats:response.data.data})
           }
           else {
@@ -38,6 +37,8 @@ componentDidMount(){
 
  render(){
    const {stats}=this.state;
+   console.log(stats);
+   //console.log(stats.nodes[""0""].difficulty);
    const hashratev=formatHashrate(stats.hashrate);
    return(
       <div className="cruxServ justify-content-center">

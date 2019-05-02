@@ -10,7 +10,7 @@ import logoCrux from './img/LogoCrux.png';
      <header className="headerStyle container-fluids">
        <div className="row align-items-start">
           <div className="col-3">
-              <img src={logoCrux} alt="Crux" class="logoCrux"/>
+              <img src={logoCrux} alt="Crux" className="logoCrux"/>
           </div>
           <div className="col-9 navBar">
             <ul>

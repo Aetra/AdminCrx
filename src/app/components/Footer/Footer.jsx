@@ -11,11 +11,11 @@ import logoCrux from './img/LogoCrux.png';
        <div className="container-fluid">
          <div className="row">
            <div className="rounded mx-auto">
-             <img src={logoCrux} alt="logoCrux" class="logoCruxF"/>
+             <img src={logoCrux} alt="logoCrux" className="logoCruxF"/>
            </div>
          </div>
          <hr className="hrOne"/>
-         <div clasName="col-lg-12">
+         <div className="col-lg-12">
            <div className="row justify-content-center">
              <p className="text-muted">Cruxpool 2019 - All right Reserved</p>
            </div>
