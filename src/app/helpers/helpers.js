@@ -10,6 +10,6 @@ export function formatHashrate(params/*, hash*/) {
   return hashrate + ' ' + units[i]+'/s';
 }
 
-export function variance(params) {
-
+export function stringToInt(value) {
+	return parseInt(value);
 }

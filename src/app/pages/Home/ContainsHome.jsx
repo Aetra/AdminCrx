@@ -1,7 +1,7 @@
 import React from 'react';
 import './styleHome.css';
 import axios from 'axios';
-import config from './config1.js';
+import config from '../../.././config1.js';
 import {formatHashrate} from '../../helpers/helpers'
 
   class ContainsHome extends React.Component{
@@ -13,7 +13,7 @@ import {formatHashrate} from '../../helpers/helpers'
   }
 
   axiosResult(){
-   axios.get(config.get("URL")+"/pool/stats")
+   axios.get(config.get("URLAPI")+"/pool/stats")
         .then(response=>{
           if (response.status === 200) {
             this.setState({stats:response.data.data})
@@ -37,9 +37,9 @@ componentDidMount(){
 
  render(){
    const {stats}=this.state;
+   const hashratev=formatHashrate(stats.hashrate);
    console.log(stats);
    //console.log(stats.nodes[""0""].difficulty);
-   const hashratev=formatHashrate(stats.hashrate);
    return(
       <div className="cruxServ justify-content-center">
         <h1 className="text-center"> Cruxpool Servers </h1>
