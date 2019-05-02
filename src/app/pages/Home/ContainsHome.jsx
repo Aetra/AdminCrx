@@ -2,9 +2,9 @@ import React from 'react';
 import './styleHome.css';
 import axios from 'axios';
 import config from './config1.js';
+import {formatHashrate} from '../../helpers/helpers'
 
-
-  class ContainsP1 extends React.Component{
+  class ContainsHome extends React.Component{
     constructor(props) {
     super(props);
     this.state={
@@ -13,7 +13,7 @@ import config from './config1.js';
   }
 
   axiosResult(){
-   axios.get(config.get("URL"))
+   axios.get(config.get("URL")+"/pool/stats")
         .then(response=>{
           if (response.status === 200) {
             console.log(response);
@@ -38,16 +38,17 @@ componentDidMount(){
 
  render(){
    const {stats}=this.state;
+   const hashratev=formatHashrate(stats.hashrate);
    return(
-      <div className="cruxServ">
-        <h1> Cruxpool Servers </h1>
+      <div className="cruxServ justify-content-center">
+        <h1 className="text-center"> Cruxpool Servers </h1>
           <hr className=" styleHr"/>
           <div className="row">
             <div className="col-6">
               <p className="text-left"> Pool Hashrate: </p>
             </div>
             <div className="col-6">
-              <p className="text-right"> {stats.hashrate} </p>
+              <p className="text-right"> {hashratev} </p>
             </div>
           </div>
 
@@ -68,8 +69,17 @@ componentDidMount(){
             <p className="text-right">{stats.workersTotal}  </p>
           </div>
         </div>
+
+        <div className="row">
+          <div className="col-6">
+            <p className="text-left"> Variance:</p>
+          </div>
+          <div className="col-6">
+            <p className="text-right">{stats.difficulty}  </p>
+          </div>
+        </div>
     </div>
    );
  }
 }
-export default ContainsP1;
+export default ContainsHome;

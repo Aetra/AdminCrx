@@ -1,5 +1,5 @@
 import React from 'react';
-import ContainsP1 from './ContainsP1';
+import ContainsHome from './ContainsHome';
 import './styleHome.css';
 
 
@@ -8,7 +8,7 @@ import './styleHome.css';
  render(){
    return(
      <div className="homee">
-       <p> p1</p>
+       <ContainsHome/>
      </div>
    );
  }
