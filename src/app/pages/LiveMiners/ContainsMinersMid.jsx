@@ -41,24 +41,24 @@ componentDidMount(){
    const columns = [{
    Header: 'Login',
    headerStyle: { backgroundColor: '#7dcdcb' },
-   accessor:'height',
+   accessor:'login',
    id: 'links',
-   Cell: props => /*<a href={"https://etherscan.io/block/height"}> */ new Intl.NumberFormat('en-GB', {style: 'decimal'}).format(props.value),
    style:{textAlign:"center"},
  }, {
    Header: 'Hashrate',
    headerStyle: { backgroundColor: '#7dcdcb' },
-   accessor: 'timestamp',
+   accessor: 'hashrate',
    style:{textAlign:"center"},
-   Cell: props => formatDate(props.value),
  }, {
    Header:'Workers',
    headerStyle: { backgroundColor: '#7dcdcb' },
-   accessor:('difficulty' / 'shares'),
+   accessor:('workers'),
 },  {
   Header:'LastBeat',
   headerStyle: { backgroundColor: '#7dcdcb' },
-  accessor:('difficulty' / 'shares'),
+  accessor:('lastBeat'),
+/*  Cell: props => formatDate(props.value),*/
+
   }]
 
    return(

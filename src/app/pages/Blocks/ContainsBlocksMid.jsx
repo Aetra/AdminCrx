@@ -47,6 +47,11 @@ componentDidMount(){
 }
 
  render(){
+   const {posts}=this.state;
+   const diff=posts.difficulty;
+   const share=posts.share;
+   const vari=variance(diff,share);
+
    const columns = [{
    Header: 'Height',
    headerStyle: { backgroundColor: '#7dcdcb' },
@@ -63,7 +68,11 @@ componentDidMount(){
  }, {
    Header:'Variance',
    headerStyle: { backgroundColor: '#7dcdcb' },
-   accessor:('difficulty' / 'shares'),
+   id: 'open_rate',
+   accessor: d => Math.round((d.difficulty / d.shares)*1000)/100, //Get the percentage
+   Cell: row => <span>{row.value} %</span>,
+
+
    }]
 
    return(

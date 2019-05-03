@@ -2,7 +2,9 @@ import React from 'react';
 import './styleHome.css';
 import axios from 'axios';
 import config from '../../.././config1.js';
-import {formatHashrate} from '../../helpers/helpers'
+import {formatHashrate} from '../../helpers/helpers';
+import {variance} from '../../helpers/helpers';
+
 
   class ContainsHome extends React.Component{
     constructor(props) {
@@ -39,7 +41,11 @@ componentDidMount(){
    const {stats}=this.state;
    const hashratev=formatHashrate(stats.hashrate);
    console.log(stats);
-   //console.log(stats.nodes[""0""].difficulty);
+
+   //const diff=stats.nodes.difficulty;
+   //const share=stats.shares;
+   //const vari=variance(diff,share);
+
    return(
       <div className="cruxServ justify-content-center">
         <h1 className="text-center"> Cruxpool Servers </h1>
@@ -76,7 +82,7 @@ componentDidMount(){
             <p className="text-left"> Variance:</p>
           </div>
           <div className="col-6">
-            <p className="text-right">{stats.difficulty}  </p>
+            <p className="text-right"> </p>
           </div>
         </div>
     </div>

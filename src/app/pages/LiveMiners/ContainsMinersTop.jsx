@@ -1,30 +1,25 @@
 import React from 'react';
 import axios from 'axios';
 import config from '../../.././config1.js';
-import ReactTable from 'react-table';
 import 'react-table/react-table.css';
-import {formatDate} from '../../helpers/helpers';
-import {variance} from '../../helpers/helpers';
-
+import {formatHashrate} from '../../helpers/helpers'
 
   class ContainsMinersTop extends React.Component{
     constructor(props) {
     super(props);
     this.state={
-       posts:[],
+       stats:[],
      };
   }
   componentDidMount(){
-   axios.get(config.get("URL")+"admin/blocks")
+   axios.get(config.get("URL")+"admin/miners")
         .then(response=>{
           if (response.status === 200) {
-            this.setState({posts:response.data.candidates})
-            console.log(response.data.candidates);
-            const diff=response.data.candidates[0].difficulty;
-            const share=response.data.candidates[0].shares;
-            console.log(variance(diff,share));
-            console.log(response.data.candidates[0].difficulty);
-            console.log(response.data.candidates[0].shares);
+            this.setState({stats:response.data})
+            console.log(response.data.hashrate);
+            console.log(response.data.minersTotal);
+
+
           }
           else {
             throw new Error("Error");
@@ -37,10 +32,13 @@ import {variance} from '../../helpers/helpers';
 }
 
  render(){
+   const {stats}=this.state;
+   const hashratev=formatHashrate(stats.hashrate);
+
    return(
-      <div className="topMiners">
-      <h3 className=""> Total Hashrate: </h3>
-      <h3 className="mt-2"> Total Miners: </h3>
+      <div className="topMiners text-center">
+      <h4 className=""> Total Hashrate: {hashratev} </h4>
+      <h4 className="mt-2"> Total Miners: {stats.minersTotal} </h4>
 
       </div>
    );

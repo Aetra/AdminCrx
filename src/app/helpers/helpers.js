@@ -1,15 +1,15 @@
 import moment from "moment";
 
-export function formatHashrate(params/*, hash*/) {
-  var hashrate=params;
+export function formatHashrate(params, hash) {
+
+  var hashrate=params*1;
   var i = 0;
   var units = ['H', 'KH', 'MH', 'GH', 'TH', 'PH'];
   while (hashrate > 1000) {
     hashrate = hashrate / 1000;
-    hashrate.toFixed(4);
     i++;
   }
-  return hashrate + ' ' + units[i]+'/s';
+  return hashrate.toFixed(4) + ' ' + units[i]+'/s';
 }
 
 export function stringToInt(value) {
@@ -34,4 +34,15 @@ export function variance(params1,params2){
   return percent;
 
 
+}
+export function diffHashrate(params/*, hash*/) {
+  var real = params[0];
+  var reported = params[1];
+  var diff = 0;
+
+  if(reported!=0) {
+      diff = real/reported*100;
+  }
+
+  return diff.toFixed(1) + ' ' + '%';
 }
