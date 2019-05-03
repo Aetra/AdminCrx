@@ -4,7 +4,7 @@ import config from '../../.././config1.js';
 import 'react-table/react-table.css';
 import {formatHashrate} from '../../helpers/helpers'
 
-  class ContainsMinersTop extends React.Component{
+  class ContainsPaymentsTop extends React.Component{
     constructor(props) {
     super(props);
     this.state={
@@ -12,10 +12,11 @@ import {formatHashrate} from '../../helpers/helpers'
      };
   }
   componentDidMount(){
-   axios.get(config.get("URL")+"admin/miners")
+   axios.get(config.get("URL")+"admin/payments")
         .then(response=>{
           if (response.status === 200) {
             this.setState({stats:response.data})
+            console.log(response);
           }
           else {
             throw new Error("Error");
@@ -29,15 +30,14 @@ import {formatHashrate} from '../../helpers/helpers'
 
  render(){
    const {stats}=this.state;
-   const hashratev=formatHashrate(stats.hashrate);
+   const totalPayments=stats.paymentsTotal;
 
    return(
       <div className="topMiners text-center">
-      <h4 className=""> Total Hashrate: {hashratev} </h4>
-      <h4 className="mt-2"> Total Miners: {stats.minersTotal} </h4>
+      <h4 className=""> Total Payments sent: {totalPayments} </h4>
 
       </div>
    );
  }
 }
-export default ContainsMinersTop;
+export default ContainsPaymentsTop;

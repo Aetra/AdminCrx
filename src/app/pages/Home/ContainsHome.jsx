@@ -3,7 +3,6 @@ import './styleHome.css';
 import axios from 'axios';
 import config from '../../.././config1.js';
 import {formatHashrate} from '../../helpers/helpers';
-import {variance} from '../../helpers/helpers';
 
 
   class ContainsHome extends React.Component{
@@ -41,10 +40,6 @@ componentDidMount(){
    const {stats}=this.state;
    const hashratev=formatHashrate(stats.hashrate);
    console.log(stats);
-
-   //const diff=stats.nodes.difficulty;
-   //const share=stats.shares;
-   //const vari=variance(diff,share);
 
    return(
       <div className="cruxServ justify-content-center">

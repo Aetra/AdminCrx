@@ -30,19 +30,5 @@ export function variance(params1,params2){
   var difficulty=params1;
   var shares=params2;
   var percent= (difficulty/shares)*100
-
   return percent;
-
-
-}
-export function diffHashrate(params/*, hash*/) {
-  var real = params[0];
-  var reported = params[1];
-  var diff = 0;
-
-  if(reported!=0) {
-      diff = real/reported*100;
-  }
-
-  return diff.toFixed(1) + ' ' + '%';
 }

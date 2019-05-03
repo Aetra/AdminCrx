@@ -5,8 +5,10 @@ import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import {formatDate} from '../../helpers/helpers';
 import {variance} from '../../helpers/helpers';
+import {formatNumber} from '../../helpers/helpers';
 
-  class ContainsBlocksMid extends React.Component{
+
+  class ContainsPaymentsMid extends React.Component{
     constructor(props) {
     super(props);
     this.state={
@@ -15,16 +17,11 @@ import {variance} from '../../helpers/helpers';
   }
 
   axiosResult(){
-   axios.get(config.get("URL")+"admin/blocks")
+   axios.get(config.get("URL")+"admin/payments")
         .then(response=>{
           if (response.status === 200) {
-            this.setState({posts:response.data.candidates})
-            console.log(response.data.candidates);
-            const diff=response.data.candidates[0].difficulty;
-            const share=response.data.candidates[0].shares;
-            console.log(variance(diff,share));
-            console.log(response.data.candidates[0].difficulty);
-            console.log(response.data.candidates[0].shares);
+            this.setState({posts:response.data.payments})
+
           }
           else {
             throw new Error("Error");
@@ -43,32 +40,36 @@ componentDidMount(){
 }
 
  render(){
-
    const columns = [{
-   Header: 'Height',
+   Header: 'Time',
    headerStyle: { backgroundColor: '#7dcdcb' },
-   accessor: d =>  new Intl.NumberFormat('en-GB', {style:'decimal'}).format(d.height),
-   id: 'links',
-   Cell: props =><a href={"https://etherscan.io/block/height"} class="hash" rel="nofollow" target="_blank"> {props.value}</a>,
-   style:{textAlign:"center"},
- }, {
-   Header: 'Time Found',
-   headerStyle: { backgroundColor: '#7dcdcb' },
-   accessor: 'timestamp',
-   style:{textAlign:"center"},
+   accessor:'timestamp' ,
    Cell: props => formatDate(props.value),
- }, {
-   Header:'Variance',
-   headerStyle: { backgroundColor: '#7dcdcb' },
-   id: 'open_rate',
-   accessor: d => variance(d.shares, d.difficulty).toFixed(0),
-   Cell: row => <span>{row.value} %</span>,
+   id: 'links',
    style:{textAlign:"center"},
- }]
+ }, {
+   Header: 'Amount',
+   headerStyle: { backgroundColor: '#7dcdcb' },
+   accessor: 'amount',
+   Cell: props => (parseInt(props.value)*0.000000001).toFixed(3),
+   style:{textAlign:"center"},
+ }, {
+   Header:'Address',
+   headerStyle: { backgroundColor: '#7dcdcb' },
+   accessor: 'address',
+   Cell: props =><a href={"https://etherscan.io/address/{props.value}"}  class="hash" rel="nofollow" target="_blank"> {props.value}</a>,
+   style:{textAlign:"center"},
+ },{
+ Header:'Tx ID',
+ headerStyle: { backgroundColor: '#7dcdcb' },
+ accessor: 'tx',
+ Cell: props =><a href={"https://etherscan.io/tx/{props.value}"}  class="hash" rel="nofollow" target="_blank"> {props.value}</a>,
+ style:{textAlign:"center"},
+}]
 
    return(
       <div className="midBlocks">
-      <h3 className="mt-5"> Recently Found Blocks </h3>
+      <h3 className="mt-5"> Latest Payouts </h3>
       <ReactTable
         data={this.state.posts}
         columns={columns}
@@ -77,4 +78,4 @@ componentDidMount(){
    );
  }
 }
-export default ContainsBlocksMid;
+export default ContainsPaymentsMid;
