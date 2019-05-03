@@ -3,6 +3,10 @@ import axios from 'axios';
 import config from '../../.././config1.js';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
+import {formatDate} from '../../helpers/helpers';
+import {formatNumber} from '../../helpers/helpers';
+
+
 
 
   class ContainsBlocksMid extends React.Component{
@@ -19,6 +23,11 @@ import 'react-table/react-table.css';
           if (response.status === 200) {
             this.setState({posts:response.data.candidates})
             console.log(response.data.candidates);
+            console.log(new Intl.NumberFormat('en-IN', { minimumFractionDigits: 0 }).format(response.data.candidates[0].height));
+            console.log(response.data.candidates[0].height.toLocaleString(navigator.language));
+            console.log(formatNumber(response.data.candidates[0].height));
+
+            console.log(formatDate(response.data.candidates[0].timestamp))
           }
           else {
             throw new Error("Error");
@@ -30,44 +39,41 @@ import 'react-table/react-table.css';
 });
 }
 
-
 componentDidMount(){
   this.axiosResult = this.axiosResult.bind(this);
   this.axiosResult();
  setInterval(this.axiosResult, config.get("refreshInterval"))
 }
  render(){
-   /*
-   const data = [
-    {name: 'Tania', age:1, var:"18%"},
-    {name: 'bania', age:3, var:"19%"},
-    {name: 'sania', age:18, var:"15%"},
-    {name: 'sania', age:23, var:"15%"},
-    {name: 'sania', age:2, var:"15%"},
-    {name: 'sania', age:25, var:"15%"},
-    {name: 'sania', age:15, var:"15%"},
-] */
    const columns = [{
    Header: 'Height',
    headerStyle: { backgroundColor: '#7dcdcb' },
-   accessor: 'height', // String-based value accessors!
+   accessor:'height',
+   id: 'links',
+   Cell: props => /*<a href={"https://etherscan.io/block/height"}> */ new Intl.NumberFormat('en-GB', {style: 'decimal'}).format(props.value),
+   style:{textAlign:"center"},
 
  }, {
    Header: 'Time Found',
    headerStyle: { backgroundColor: '#7dcdcb' },
    accessor: 'timestamp',
-   Cell: props => <span className='number'>{props.value}</span> // Custom cell components!
+   style:{textAlign:"center"},
+   Cell: props => formatDate(props.value),
  }, {
-   Header:'Variance', // Custom header components!
+   Header:'Variance',
    headerStyle: { backgroundColor: '#7dcdcb' },
-   accessor: 'difficulty'
+   accessor: 'difficulty',
+   style:{textAlign:"center"},
+
  }]
+
    return(
       <div className="midBlocks">
-      <h3> Recently Found Blocks </h3>
+      <h3 className="mt-5"> Recently Found Blocks </h3>
       <ReactTable
         data={this.state.posts}
-        columns={columns}/>
+        columns={columns}
+        NoDataText={"Please Wait"}/>
       </div>
    );
  }

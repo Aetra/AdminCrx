@@ -1,5 +1,4 @@
 import React from 'react';
-import ContainsBlocksTop from "./ContainsBlocksTop";
 import ContainsBlocksMid from "./ContainsBlocksMid";
 import './style.css';
 
@@ -15,7 +14,6 @@ import './style.css';
  render(){
    return(
      <div className="blocks">
-       <ContainsBlocksTop/>
        <ContainsBlocksMid/>
     </div>
    );

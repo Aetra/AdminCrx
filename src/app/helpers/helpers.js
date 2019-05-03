@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export function formatHashrate(params/*, hash*/) {
   var hashrate=params;
   var i = 0;
@@ -12,4 +14,14 @@ export function formatHashrate(params/*, hash*/) {
 
 export function stringToInt(value) {
 	return parseInt(value);
+}
+
+export function formatDate(ts) {
+	var date = moment.unix(ts);
+	return date.format('DD/MM/YYYY - hh:mm');
+}
+
+export function formatNumber(numberString) {
+    let number = parseFloat(numberString);
+    return number.toLocaleString('USD');
 }
