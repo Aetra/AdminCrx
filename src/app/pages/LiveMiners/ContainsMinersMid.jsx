@@ -4,13 +4,10 @@ import config from '../../.././config1.js';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import {formatDate} from '../../helpers/helpers';
-import {variance} from '../../helpers/helpers';
 
 
 
-
-
-  class ContainsBlocksMid extends React.Component{
+  class ContainsMinersMid extends React.Component{
     constructor(props) {
     super(props);
     this.state={
@@ -19,16 +16,10 @@ import {variance} from '../../helpers/helpers';
   }
 
   axiosResult(){
-   axios.get(config.get("URL")+"admin/blocks")
+   axios.get(config.get("URL")+"admin/miners")
         .then(response=>{
           if (response.status === 200) {
             this.setState({posts:response.data.candidates})
-            console.log(response.data.candidates);
-            const diff=response.data.candidates[0].difficulty;
-            const share=response.data.candidates[0].shares;
-            console.log(variance(diff,share));
-            console.log(response.data.candidates[0].difficulty);
-            console.log(response.data.candidates[0].shares);
           }
           else {
             throw new Error("Error");
@@ -48,26 +39,30 @@ componentDidMount(){
 
  render(){
    const columns = [{
-   Header: 'Height',
+   Header: 'Login',
    headerStyle: { backgroundColor: '#7dcdcb' },
    accessor:'height',
    id: 'links',
    Cell: props => /*<a href={"https://etherscan.io/block/height"}> */ new Intl.NumberFormat('en-GB', {style: 'decimal'}).format(props.value),
    style:{textAlign:"center"},
  }, {
-   Header: 'Time Found',
+   Header: 'Hashrate',
    headerStyle: { backgroundColor: '#7dcdcb' },
    accessor: 'timestamp',
    style:{textAlign:"center"},
    Cell: props => formatDate(props.value),
  }, {
-   Header:'Variance',
+   Header:'Workers',
    headerStyle: { backgroundColor: '#7dcdcb' },
    accessor:('difficulty' / 'shares'),
-   }]
+},  {
+  Header:'LastBeat',
+  headerStyle: { backgroundColor: '#7dcdcb' },
+  accessor:('difficulty' / 'shares'),
+  }]
 
    return(
-      <div className="midBlocks">
+      <div className="midMiners">
       <h3 className="mt-5"> Recently Found Blocks </h3>
       <ReactTable
         data={this.state.posts}
@@ -77,4 +72,4 @@ componentDidMount(){
    );
  }
 }
-export default ContainsBlocksMid;
+export default ContainsMinersMid;

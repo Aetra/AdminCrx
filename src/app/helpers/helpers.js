@@ -25,3 +25,13 @@ export function formatNumber(numberString) {
     let number = parseFloat(numberString);
     return number.toLocaleString('USD');
 }
+
+export function variance(params1,params2){
+  var difficulty=params1;
+  var shares=params2;
+  var percent= (difficulty/shares)*100
+
+  return percent;
+
+
+}

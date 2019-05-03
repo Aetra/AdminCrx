@@ -1,12 +1,17 @@
 import React from 'react';
 import './style.css';
+import ContainsMinersTop from './ContainsMinersTop';
+import ContainsMinersMid from './ContainsMinersMid';
+
 
   class LiveMiners extends React.Component{
 
  render(){
    return(
      <div className="liveMiners">
-      <p>Live Miners</p>
+       <ContainsMinersTop/>
+       <ContainsMinersMid/>
+
     </div>
    );
  }

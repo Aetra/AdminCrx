@@ -7,18 +7,14 @@ import {formatDate} from '../../helpers/helpers';
 import {variance} from '../../helpers/helpers';
 
 
-
-
-
-  class ContainsBlocksMid extends React.Component{
+  class ContainsMinersTop extends React.Component{
     constructor(props) {
     super(props);
     this.state={
        posts:[],
      };
   }
-
-  axiosResult(){
+  componentDidMount(){
    axios.get(config.get("URL")+"admin/blocks")
         .then(response=>{
           if (response.status === 200) {
@@ -40,41 +36,14 @@ import {variance} from '../../helpers/helpers';
 });
 }
 
-componentDidMount(){
-  this.axiosResult = this.axiosResult.bind(this);
-  this.axiosResult();
- setInterval(this.axiosResult, config.get("refreshInterval"))
-}
-
  render(){
-   const columns = [{
-   Header: 'Height',
-   headerStyle: { backgroundColor: '#7dcdcb' },
-   accessor:'height',
-   id: 'links',
-   Cell: props => /*<a href={"https://etherscan.io/block/height"}> */ new Intl.NumberFormat('en-GB', {style: 'decimal'}).format(props.value),
-   style:{textAlign:"center"},
- }, {
-   Header: 'Time Found',
-   headerStyle: { backgroundColor: '#7dcdcb' },
-   accessor: 'timestamp',
-   style:{textAlign:"center"},
-   Cell: props => formatDate(props.value),
- }, {
-   Header:'Variance',
-   headerStyle: { backgroundColor: '#7dcdcb' },
-   accessor:('difficulty' / 'shares'),
-   }]
-
    return(
-      <div className="midBlocks">
-      <h3 className="mt-5"> Recently Found Blocks </h3>
-      <ReactTable
-        data={this.state.posts}
-        columns={columns}
-        NoDataText={"Please Wait"}/>
+      <div className="topMiners">
+      <h3 className=""> Total Hashrate: </h3>
+      <h3 className="mt-2"> Total Miners: </h3>
+
       </div>
    );
  }
 }
-export default ContainsBlocksMid;
+export default ContainsMinersTop;
