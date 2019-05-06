@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import config from '../../.././config1.js';
 import 'react-table/react-table.css';
-import {formatHashrate} from '../../helpers/helpers'
 
   class ContainsPaymentsTop extends React.Component{
     constructor(props) {

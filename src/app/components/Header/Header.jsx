@@ -29,9 +29,6 @@ import logoCrux from './img/LogoCrux.png';
               <li>
                 <NavLink to="/payments">Payments</NavLink>
               </li>
-              <li>
-                <NavLink to="/finances">Finances</NavLink>
-              </li>
             </ul>
           </div>
         </div>

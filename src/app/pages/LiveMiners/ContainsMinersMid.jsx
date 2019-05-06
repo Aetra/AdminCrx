@@ -12,8 +12,6 @@ import 'react-table/react-table.css';
      };
   }
 
-
-
   axiosResult(){
    axios.get(config.get("URL")+"admin/miners")
         .then(response=>{
@@ -22,6 +20,7 @@ import 'react-table/react-table.css';
                   response.data.miners = Object.keys(response.data.miners).map((value) => {
                     let m = response.data.miners[value];
                     m.login = value;
+                    console.log(m);
                     return m;
                   });
                   // Sort miners by hashrate
@@ -34,9 +33,8 @@ import 'react-table/react-table.css';
                     }
                     return 0;
                   });
+              //  console.log(response);
                 return response;
-                console.log(response);
-                this.setState({posts:response})
           }
           else {
             throw new Error("Error");
@@ -64,7 +62,7 @@ componentDidMount(){
  }, {
    Header: 'Hashrate',
    headerStyle: { backgroundColor: '#7dcdcb' },
-   accessor: 'hashrate',
+   accessor: 'hr',
    style:{textAlign:"center"},
  }, {
    Header:'Workers',
@@ -79,7 +77,7 @@ componentDidMount(){
 
    return(
       <div className="midMiners">
-      <h3 className="mt-5"> Recently Found Blocks </h3>
+      <h3 className="mt-5"> Miners </h3>
       <ReactTable
         data={this.state.posts}
         columns={columns}

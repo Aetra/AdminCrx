@@ -5,7 +5,8 @@ import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import {formatDate} from '../../helpers/helpers';
 
-  class ContainsPaymentsMid extends React.Component{
+
+  class ContainsUsersMid extends React.Component{
     constructor(props) {
     super(props);
     this.state={
@@ -18,7 +19,6 @@ import {formatDate} from '../../helpers/helpers';
         .then(response=>{
           if (response.status === 200) {
             this.setState({posts:response.data.payments})
-
           }
           else {
             throw new Error("Error");
@@ -38,35 +38,82 @@ componentDidMount(){
 
  render(){
    const columns = [{
-   Header: 'Time',
+   Header: 'Login',
    headerStyle: { backgroundColor: '#7dcdcb' },
    accessor:'timestamp' ,
    Cell: props => formatDate(props.value),
    id: 'links',
    style:{textAlign:"center"},
  }, {
-   Header: 'Amount',
+   Header: 'Mail',
    headerStyle: { backgroundColor: '#7dcdcb' },
    accessor: 'amount',
    Cell: props => (parseInt(props.value)*0.000000001).toFixed(3),
    style:{textAlign:"center"},
  }, {
-   Header:'Address',
+   Header:'Fee',
    headerStyle: { backgroundColor: '#7dcdcb' },
    accessor: 'address',
-   Cell: props =><a href={"https://etherscan.io/address/{props.value}"}  class="hash" rel="noopener" target="_blank"> {props.value}</a>,
+   Cell: props =><a href={"https://etherscan.io/address/{props.value}"}  className="hash" rel="noopener" target="_blank"> {props.value}</a>,
    style:{textAlign:"center"},
  },{
- Header:'Tx ID',
+ Header:'Balance',
  headerStyle: { backgroundColor: '#7dcdcb' },
  accessor: 'tx',
- Cell: props =><a href={"https://etherscan.io/tx/{props.value}"}  class="hash" rel="noopener" target="_blank"> {props.value}</a>,
+ Cell: props =><a href={"https://etherscan.io/tx/{props.value}"}  className="hash" rel="noopener" target="_blank"> {props.value}</a>,
  style:{textAlign:"center"},
-}]
+},
+{
+Header: 'Paid',
+headerStyle: { backgroundColor: '#7dcdcb' },
+accessor:'timestamp' ,
+Cell: props => formatDate(props.value),
+id: 'links',
+style:{textAlign:"center"},
+},
+{
+Header: 'Blocks',
+headerStyle: { backgroundColor: '#7dcdcb' },
+accessor:'timestamp' ,
+Cell: props => formatDate(props.value),
+id: 'links',
+style:{textAlign:"center"},
+},
+{
+Header: 'Threshold',
+headerStyle: { backgroundColor: '#7dcdcb' },
+accessor:'timestamp' ,
+Cell: props => formatDate(props.value),
+id: 'links',
+style:{textAlign:"center"},
+},
+{
+Header: '%',
+headerStyle: { backgroundColor: '#7dcdcb' },
+accessor:'timestamp' ,
+Cell: props => formatDate(props.value),
+id: 'links',
+style:{textAlign:"center"},
+},
+{
+Header: 'Last Beat',
+headerStyle: { backgroundColor: '#7dcdcb' },
+accessor:'timestamp' ,
+Cell: props => formatDate(props.value),
+id: 'links',
+style:{textAlign:"center"},
+},
+
+
+
+
+
+
+]
 
    return(
       <div className="midBlocks">
-      <h3 className="mt-5"> Latest Payouts </h3>
+      <h3 className="mt-5">Miners</h3>
       <ReactTable
         data={this.state.posts}
         columns={columns}
@@ -75,4 +122,4 @@ componentDidMount(){
    );
  }
 }
-export default ContainsPaymentsMid;
+export default ContainsUsersMid;
