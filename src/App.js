@@ -3,7 +3,6 @@ import Header from './app/components/Header/Header';
 import Footer from './app/components/Footer/Footer';
 
 import Blocks from "./app/pages/Blocks/Blocks";
-import Finances from "./app/pages/Finances/Finances";
 import Home from "./app/pages/Home/Home";
 import LiveMiners from "./app/pages/LiveMiners/LiveMiners";
 import Payments from "./app/pages/Payments/Payments";
@@ -20,7 +19,6 @@ function App() {
         <Route path="/liveMiners" exact component={LiveMiners} />
         <Route path="/users" exact component={Users}/>
         <Route path="/payments" exact component={Payments} />
-        <Route path="/finances" exact component={Finances} />
       <Footer/>
 
 

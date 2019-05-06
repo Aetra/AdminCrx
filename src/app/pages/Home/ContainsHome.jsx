@@ -3,21 +3,24 @@ import './styleHome.css';
 import axios from 'axios';
 import config from '../../.././config1.js';
 import {formatHashrate} from '../../helpers/helpers';
+import {variance} from '../../helpers/helpers';
+import ReactTable from 'react-table';
+import 'react-table/react-table.css';
 
 
   class ContainsHome extends React.Component{
     constructor(props) {
     super(props);
     this.state={
-       stats:[],
+       posts:[],
      };
   }
 
   axiosResult(){
-   axios.get(config.get("URLAPI")+"/pool/stats")
+   axios.get(config.get("URL")+"admin/stats")
         .then(response=>{
           if (response.status === 200) {
-            this.setState({stats:response.data.data})
+            this.setState({posts:response.data});
           }
           else {
             throw new Error("Error");
@@ -29,7 +32,6 @@ import {formatHashrate} from '../../helpers/helpers';
 });
 }
 
-
 componentDidMount(){
   this.axiosResult = this.axiosResult.bind(this);
   this.axiosResult();
@@ -37,14 +39,24 @@ componentDidMount(){
 }
 
  render(){
-   const {stats}=this.state;
-   const hashratev=formatHashrate(stats.hashrate);
-   console.log(stats);
+   const {posts}=this.state;
+   const hashratev=formatHashrate(posts.hashrate);
+   var diff=0;
+   var shar=0;
+   var vari=0;
+   console.log(this.state);
+   if(posts.nodes && posts.nodes.length>0){
+     console.log(posts.nodes[0].difficulty);
+     console.log(posts.stats.roundShares);
+     diff=posts.nodes[0].difficulty;
+     shar=posts.stats.roundShares;
+     vari=variance(diff,shar).toFixed(0);
+   }
+   console.log(vari);
+
 
    return(
-      <div className="cruxServ justify-content-center">
-        <h1 className="text-center"> Cruxpool Servers </h1>
-          <hr className=" styleHr"/>
+      <div className="homee justify-content-center">
           <div className="row">
             <div className="col-6">
               <p className="text-left"> Pool Hashrate: </p>
@@ -53,13 +65,12 @@ componentDidMount(){
               <p className="text-right"> {hashratev} </p>
             </div>
           </div>
-
         <div className="row">
           <div className="col-6">
             <p className="text-left"> Miner:</p>
           </div>
           <div className="col-6">
-            <p className="text-right"> {stats.minersTotal} </p>
+            <p className="text-right"> {posts.minersTotal} </p>
           </div>
         </div>
 
@@ -68,16 +79,18 @@ componentDidMount(){
             <p className="text-left"> workers:</p>
           </div>
           <div className="col-6">
-            <p className="text-right">{stats.workersTotal}  </p>
+            <p className="text-right">{posts.workersTotal}  </p>
           </div>
         </div>
 
         <div className="row">
           <div className="col-6">
-            <p className="text-left"> Variance:</p>
+                <p className="text-left">
+                Variance:
+                </p>
           </div>
           <div className="col-6">
-            <p className="text-right"> </p>
+            <p className="text-right">{vari}% </p>
           </div>
         </div>
     </div>

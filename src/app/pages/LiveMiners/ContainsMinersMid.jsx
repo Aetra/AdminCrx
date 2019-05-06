@@ -3,6 +3,10 @@ import axios from 'axios';
 import config from '../../.././config1.js';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
+import {formatDate} from '../../helpers/helpers';
+import {formatHashrate} from '../../helpers/helpers';
+import {workersLength} from '../../helpers/helpers';
+
 
   class ContainsMinersMid extends React.Component{
     constructor(props) {
@@ -20,11 +24,10 @@ import 'react-table/react-table.css';
                   response.data.miners = Object.keys(response.data.miners).map((value) => {
                     let m = response.data.miners[value];
                     m.login = value;
-                    console.log(m);
                     return m;
                   });
                   // Sort miners by hashrate
-                  response.data.miners = response.data.miners.sort((a, b) => {
+                  response= response.data.miners.sort((a, b) => {
                     if (a.hr < b.hr) {
                       return 1;
                     }
@@ -33,7 +36,7 @@ import 'react-table/react-table.css';
                     }
                     return 0;
                   });
-              //  console.log(response);
+                  this.setState({posts:response})
                 return response;
           }
           else {
@@ -58,21 +61,28 @@ componentDidMount(){
    headerStyle: { backgroundColor: '#7dcdcb' },
    accessor:'login',
    id: 'links',
+   Cell: props =><a href={'http://www.cruxpool.com/#/miner/'+props.value} className="hash" target="_blank" rel="noopener noreferrer"> {props.value}</a>,
    style:{textAlign:"center"},
  }, {
    Header: 'Hashrate',
    headerStyle: { backgroundColor: '#7dcdcb' },
    accessor: 'hr',
    style:{textAlign:"center"},
+   Cell: props => formatHashrate(props.value),
+
  }, {
    Header:'Workers',
    headerStyle: { backgroundColor: '#7dcdcb' },
-   accessor:('workers'),
+   style:{textAlign:"center"},
+   accessor:('Workers'),
+   Cell: props => workersLength(props.value),
+
 },  {
   Header:'LastBeat',
   headerStyle: { backgroundColor: '#7dcdcb' },
   accessor:('lastBeat'),
-/*  Cell: props => formatDate(props.value),*/
+  style:{textAlign:"center"},
+  Cell: props => formatDate(props.value),
   }]
 
    return(

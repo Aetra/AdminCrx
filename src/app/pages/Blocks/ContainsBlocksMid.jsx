@@ -14,17 +14,11 @@ import {variance} from '../../helpers/helpers';
      };
   }
 
-  axiosResult(){
+  componentDidMount(){
    axios.get(config.get("URL")+"admin/blocks")
         .then(response=>{
           if (response.status === 200) {
             this.setState({posts:response.data.candidates})
-            console.log(response.data.candidates);
-            const diff=response.data.candidates[0].difficulty;
-            const share=response.data.candidates[0].shares;
-            console.log(variance(diff,share));
-            console.log(response.data.candidates[0].difficulty);
-            console.log(response.data.candidates[0].shares);
           }
           else {
             throw new Error("Error");
@@ -36,12 +30,6 @@ import {variance} from '../../helpers/helpers';
         });
   }
 
-componentDidMount(){
-  this.axiosResult = this.axiosResult.bind(this);
-  this.axiosResult();
- setInterval(this.axiosResult, config.get("refreshInterval"))
-}
-
  render(){
 
    const columns = [{
@@ -49,7 +37,7 @@ componentDidMount(){
    headerStyle: { backgroundColor: '#7dcdcb' },
    accessor: d =>  new Intl.NumberFormat('en-GB', {style:'decimal'}).format(d.height),
    id: 'links',
-   Cell: props =><a href={"https://etherscan.io/block/height"} class="hash" rel="nofollow" target="_blank"> {props.value}</a>,
+   Cell: props =><a href={"https://etherscan.io/block/"+props.value} className="hash" target="_blank" rel="noopener noreferrer"> {props.value}</a>,
    style:{textAlign:"center"},
  }, {
    Header: 'Time Found',

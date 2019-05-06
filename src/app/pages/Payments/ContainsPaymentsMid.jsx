@@ -13,7 +13,7 @@ import {formatDate} from '../../helpers/helpers';
      };
   }
 
-  axiosResult(){
+  componentDidMount(){
    axios.get(config.get("URL")+"admin/payments")
         .then(response=>{
           if (response.status === 200) {
@@ -30,11 +30,7 @@ import {formatDate} from '../../helpers/helpers';
         });
   }
 
-componentDidMount(){
-  this.axiosResult = this.axiosResult.bind(this);
-  this.axiosResult();
- setInterval(this.axiosResult, config.get("refreshInterval"))
-}
+
 
  render(){
    const columns = [{
@@ -54,13 +50,13 @@ componentDidMount(){
    Header:'Address',
    headerStyle: { backgroundColor: '#7dcdcb' },
    accessor: 'address',
-   Cell: props =><a href={"https://etherscan.io/address/{props.value}"}  class="hash" rel="noopener" target="_blank"> {props.value}</a>,
+   Cell: props =><a href={"https://etherscan.io/address/"+props.value}  className="hash" target="_blank" rel="noopener noreferrer"> {props.value}</a>,
    style:{textAlign:"center"},
  },{
  Header:'Tx ID',
  headerStyle: { backgroundColor: '#7dcdcb' },
  accessor: 'tx',
- Cell: props =><a href={"https://etherscan.io/tx/{props.value}"}  class="hash" rel="noopener" target="_blank"> {props.value}</a>,
+ Cell: props =><a href={"https://etherscan.io/tx/"+props.value}  className="hash" target="_blank" rel="noopener noreferrer"> {props.value}</a>,
  style:{textAlign:"center"},
 }]
 
