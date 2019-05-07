@@ -18,7 +18,6 @@ import {formatDate} from '../../helpers/helpers';
         .then(response=>{
           if (response.status === 200) {
             this.setState({posts:response.data.payments})
-
           }
           else {
             throw new Error("Error");
@@ -29,8 +28,6 @@ import {formatDate} from '../../helpers/helpers';
           throw error;
         });
   }
-
-
 
  render(){
    const columns = [{
@@ -46,6 +43,9 @@ import {formatDate} from '../../helpers/helpers';
    accessor: 'amount',
    Cell: props => (parseInt(props.value)*0.000000001).toFixed(3),
    style:{textAlign:"center"},
+   width:100,
+   maxWidth:100,
+   minWidth:100,
  }, {
    Header:'Address',
    headerStyle: { backgroundColor: '#7dcdcb' },
@@ -59,7 +59,6 @@ import {formatDate} from '../../helpers/helpers';
  Cell: props =><a href={"https://etherscan.io/tx/"+props.value}  className="hash" target="_blank" rel="noopener noreferrer"> {props.value}</a>,
  style:{textAlign:"center"},
 }]
-
    return(
       <div className="midBlocks">
       <h3 className="mt-5"> Latest Payouts </h3>

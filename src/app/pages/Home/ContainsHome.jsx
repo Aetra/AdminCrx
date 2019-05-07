@@ -2,11 +2,7 @@ import React from 'react';
 import './styleHome.css';
 import axios from 'axios';
 import config from '../../.././config1.js';
-import {formatHashrate} from '../../helpers/helpers';
-import {variance} from '../../helpers/helpers';
-import ReactTable from 'react-table';
-import 'react-table/react-table.css';
-
+import {formatHashrate,variance} from '../../helpers/helpers';
 
   class ContainsHome extends React.Component{
     constructor(props) {
@@ -29,7 +25,7 @@ import 'react-table/react-table.css';
         .catch(error => {
           console.log("api error:" + error);
           throw error;
-});
+        });
 }
 
 componentDidMount(){
@@ -42,18 +38,13 @@ componentDidMount(){
    const {posts}=this.state;
    const hashratev=formatHashrate(posts.hashrate);
    var diff=0;
-   var shar=0;
+   var shares=0;
    var vari=0;
-   console.log(this.state);
    if(posts.nodes && posts.nodes.length>0){
-     console.log(posts.nodes[0].difficulty);
-     console.log(posts.stats.roundShares);
      diff=posts.nodes[0].difficulty;
-     shar=posts.stats.roundShares;
-     vari=variance(diff,shar).toFixed(0);
+     shares=posts.stats.roundShares;
+     vari=variance(shares,diff).toFixed(0);
    }
-   console.log(vari);
-
 
    return(
       <div className="homee justify-content-center">

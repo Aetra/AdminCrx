@@ -3,10 +3,7 @@ import axios from 'axios';
 import config from '../../.././config1.js';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
-import {formatDate} from '../../helpers/helpers';
-import {formatHashrate} from '../../helpers/helpers';
-import {workersLength} from '../../helpers/helpers';
-
+import {formatDate,formatHashrate,workersLength} from '../../helpers/helpers';
 
   class ContainsMinersMid extends React.Component{
     constructor(props) {
@@ -49,11 +46,11 @@ import {workersLength} from '../../helpers/helpers';
         });
   }
 
-componentDidMount(){
-  this.axiosResult = this.axiosResult.bind(this);
-  this.axiosResult();
- setInterval(this.axiosResult, config.get("refreshInterval"))
-}
+  componentDidMount(){
+    this.axiosResult = this.axiosResult.bind(this);
+    this.axiosResult();
+    setInterval(this.axiosResult, config.get("refreshInterval"))
+  }
 
  render(){
    const columns = [{
@@ -69,14 +66,15 @@ componentDidMount(){
    accessor: 'hr',
    style:{textAlign:"center"},
    Cell: props => formatHashrate(props.value),
-
  }, {
    Header:'Workers',
    headerStyle: { backgroundColor: '#7dcdcb' },
    style:{textAlign:"center"},
+   width:100,
+   maxWidth:100,
+   minWidth:100,
    accessor:('Workers'),
    Cell: props => workersLength(props.value),
-
 },  {
   Header:'LastBeat',
   headerStyle: { backgroundColor: '#7dcdcb' },

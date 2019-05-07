@@ -5,15 +5,14 @@ import ContainsPaymentsMid from "./ContainsPaymentsMid";
 
 
   class Payments extends React.Component{
+   render(){
+     return(
+       <div className="payments">
+        <ContainsPaymentsTop/>
+        <ContainsPaymentsMid/>
 
- render(){
-   return(
-     <div className="payments">
-      <ContainsPaymentsTop/>
-      <ContainsPaymentsMid/>
-
-    </div>
-   );
- }
-}
+      </div>
+     );
+   }
+  }
 export default Payments;

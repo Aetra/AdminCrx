@@ -12,6 +12,14 @@ export function formatHashrate(params, hash) {
   return hashrate.toFixed(4) + ' ' + units[i]+'/s';
 }
 
+export function formatDifficulty(params, hash) {
+  var difficulty=params*1;
+  while (difficulty > 1000) {
+    difficulty = difficulty / 1000;
+  }
+  return difficulty.toFixed(1);
+}
+
 export function variance(params1,params2){
   var difficulty=params1;
   var shares=params2;

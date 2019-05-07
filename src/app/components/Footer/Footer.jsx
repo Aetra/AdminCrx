@@ -2,10 +2,8 @@ import React from 'react';
 import './styleFooter.css';
 import logoCrux from './img/LogoCrux.png';
 
-
   class Footer extends React.Component{
-
- render(){
+  render(){
    return(
      <footer className="wn-footer">
        <div className="container-fluid">

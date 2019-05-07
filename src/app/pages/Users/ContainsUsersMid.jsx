@@ -3,9 +3,7 @@ import axios from 'axios';
 import config from '../../.././config1.js';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
-import {formatBalance} from '../../helpers/helpers';
-import {formatDuration} from '../../helpers/helpers';
-import {progressThreshold} from '../../helpers/helpers';
+import {formatBalance,formatDuration,progressThreshold} from '../../helpers/helpers';
 
   class ContainsUsersMid extends React.Component{
     constructor(props) {
@@ -24,18 +22,10 @@ import {progressThreshold} from '../../helpers/helpers';
               m.login = value;
               return m;
             });
-
-            // Sort miners by hashrate
             response= response.data.miners.sort((a, b) => {
-              if (a.hr < b.hr) {
-                return 1;
-              }
-              if (a.hr > b.hr) {
-                return -1;
-              }
-              return 0;
+              return response;
             });
-          this.setState({posts:response})
+            this.setState({posts:response})
           return response;
           }
 
@@ -48,7 +38,6 @@ import {progressThreshold} from '../../helpers/helpers';
           throw error;
         });
   }
-
 
  render(){
    const columns = [{
@@ -67,54 +56,65 @@ import {progressThreshold} from '../../helpers/helpers';
    headerStyle: { backgroundColor: '#7dcdcb' },
    accessor: 'fee',
    style:{textAlign:"center"},
+   width:100,
+   maxWidth:100,
+   minWidth:100,
  },{
- Header:'Balance',
- headerStyle: { backgroundColor: '#7dcdcb' },
- accessor: 'balance',
- Cell: props => formatBalance(props.value),
+   Header:'Balance',
+   headerStyle: { backgroundColor: '#7dcdcb' },
+   accessor: 'balance',
+   Cell: props => formatBalance(props.value),
 
- style:{textAlign:"center"},
-},
-{
-Header: 'Paid',
-headerStyle: { backgroundColor: '#7dcdcb' },
-accessor:'paid' ,
-Cell: props => formatBalance(props.value),
-id: 'links',
-style:{textAlign:"center"},
-},
-{
-Header: 'Blocks',
-headerStyle: { backgroundColor: '#7dcdcb' },
-accessor:'blocksFound' ,
-style:{textAlign:"center"},
-},
-{
-Header: 'Threshold',
-headerStyle: { backgroundColor: '#7dcdcb' },
-accessor:'threshold' ,
-style:{textAlign:"center"},
-},
-{
-Header: '%',
-headerStyle: { backgroundColor: '#7dcdcb' },
-id: 'percent',
-accessor: d => progressThreshold(d.balance, d.threshold),
-style:{textAlign:"center"},
-},
+   style:{textAlign:"center"},
+  },
+  {
+  Header: 'Paid',
+  headerStyle: { backgroundColor: '#7dcdcb' },
+  accessor:'paid' ,
+  Cell: props => formatBalance(props.value),
+  id: 'links',
+  style:{textAlign:"center"},
+  },
+  {
+  Header: 'Blocks',
+  headerStyle: { backgroundColor: '#7dcdcb' },
+  accessor:'blocksFound' ,
+  style:{
+    textAlign:"center",
+    color:'#56ab86'},
+  width:100,
+  maxWidth:100,
+  minWidth:100,
+  },
+  {
+  Header: 'Threshold',
+  headerStyle: { backgroundColor: '#7dcdcb' },
+  accessor:'threshold' ,
+  style:{textAlign:"center"},
+  width:100,
+  maxWidth:100,
+  minWidth:100,
+  },
+  {
+  Header: '%',
+  headerStyle: { backgroundColor: '#7dcdcb' },
+  id: 'percent',
+  accessor: d => progressThreshold(d.balance, d.threshold),
+  style:{
+    textAlign:"center",
+    color:'#2181c8'      },
+  },
 
-{
-Header: 'Last Beat',
-headerStyle: { backgroundColor: '#7dcdcb' },
-accessor:'lastShare' ,
-Cell: props => formatDuration(props.value),
+  {
+  Header: 'Last Beat',
+  headerStyle: { backgroundColor: '#7dcdcb' },
+  accessor:'lastShare' ,
+  Cell: props => formatDuration(props.value),
 
-id: 'links',
-style:{textAlign:"center"},
-},
-
-
-]
+  id: 'links',
+  style:{textAlign:"center"},
+  },]
+  
   return(
       <div className="midBlocks">
       <h3 className="mt-5">Miners</h3>

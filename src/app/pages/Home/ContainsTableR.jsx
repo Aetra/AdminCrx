@@ -3,9 +3,7 @@ import axios from 'axios';
 import config from '../../.././config1.js';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
-import {formatDate} from '../../helpers/helpers';
-import {formatNumber} from '../../helpers/helpers';
-
+import {formatDate,formatDifficulty} from '../../helpers/helpers';
 
   class ContainsTableR extends React.Component{
     constructor(props) {
@@ -23,14 +21,12 @@ import {formatNumber} from '../../helpers/helpers';
               let m = response.data.data.nodes[value];
               return m;
             });
-
             response= response.data.data.nodes.sort((a, b) => {
               return 0;
             });
           this.setState({posts:response})
           return response;
           }
-
           else {
             throw new Error("Error");
           }
@@ -45,7 +41,6 @@ import {formatNumber} from '../../helpers/helpers';
     this.axiosResult();
    setInterval(this.axiosResult, config.get("refreshInterval"))
   }
-
 
  render(){
   const columns = [{
@@ -63,8 +58,10 @@ import {formatNumber} from '../../helpers/helpers';
      Header:'Difficulty',
      headerStyle: { backgroundColor: '#7dcdcb' },
      accessor: 'difficulty',
-     Cell: props => formatNumber(props.value),
+     Cell: props => formatDifficulty(props.value),
      style:{textAlign:"center"},
+     width:100,
+
    },{
      Header: 'lastBeat',
      headerStyle: { backgroundColor: '#7dcdcb' },

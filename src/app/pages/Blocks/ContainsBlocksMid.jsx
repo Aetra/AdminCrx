@@ -3,8 +3,7 @@ import axios from 'axios';
 import config from '../../.././config1.js';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
-import {formatDate} from '../../helpers/helpers';
-import {variance} from '../../helpers/helpers';
+import {formatDate,variance} from '../../helpers/helpers';
 
   class ContainsBlocksMid extends React.Component{
     constructor(props) {
@@ -39,6 +38,7 @@ import {variance} from '../../helpers/helpers';
    id: 'links',
    Cell: props =><a href={"https://etherscan.io/block/"+props.value} className="hash" target="_blank" rel="noopener noreferrer"> {props.value}</a>,
    style:{textAlign:"center"},
+   width:400,
  }, {
    Header: 'Time Found',
    headerStyle: { backgroundColor: '#7dcdcb' },
@@ -52,6 +52,7 @@ import {variance} from '../../helpers/helpers';
    accessor: d => variance(d.shares, d.difficulty).toFixed(0),
    Cell: row => <span>{row.value} %</span>,
    style:{textAlign:"center"},
+   width:400,
  }]
 
    return(

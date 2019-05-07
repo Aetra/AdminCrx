@@ -3,17 +3,15 @@ import './style.css';
 import ContainsMinersTop from './ContainsMinersTop';
 import ContainsMinersMid from './ContainsMinersMid';
 
-
   class LiveMiners extends React.Component{
+   render(){
+     return(
+       <div className="liveMiners">
+         <ContainsMinersTop/>
+         <ContainsMinersMid/>
 
- render(){
-   return(
-     <div className="liveMiners">
-       <ContainsMinersTop/>
-       <ContainsMinersMid/>
-
-    </div>
-   );
- }
+      </div>
+     );
+   }
 }
 export default LiveMiners;
