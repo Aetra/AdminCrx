@@ -31,13 +31,14 @@ import {formatDate} from '../../helpers/helpers';
 
  render(){
    const columns = [{
+
    Header: 'Time',
    headerStyle: { backgroundColor: '#7dcdcb' },
    accessor:'timestamp' ,
    Cell: props => formatDate(props.value),
    id: 'links',
    style:{textAlign:"center"},
- }, {
+ },{
    Header: 'Amount',
    headerStyle: { backgroundColor: '#7dcdcb' },
    accessor: 'amount',
@@ -46,22 +47,22 @@ import {formatDate} from '../../helpers/helpers';
    width:100,
    maxWidth:100,
    minWidth:100,
- }, {
+ },{
    Header:'Address',
    headerStyle: { backgroundColor: '#7dcdcb' },
    accessor: 'address',
    Cell: props =><a href={"https://etherscan.io/address/"+props.value}  className="hash" target="_blank" rel="noopener noreferrer"> {props.value}</a>,
    style:{textAlign:"center"},
  },{
- Header:'Tx ID',
- headerStyle: { backgroundColor: '#7dcdcb' },
- accessor: 'tx',
- Cell: props =><a href={"https://etherscan.io/tx/"+props.value}  className="hash" target="_blank" rel="noopener noreferrer"> {props.value}</a>,
- style:{textAlign:"center"},
+   Header:'Tx ID',
+   headerStyle: { backgroundColor: '#7dcdcb' },
+   accessor: 'tx',
+   Cell: props =><a href={"https://etherscan.io/tx/"+props.value}  className="hash" target="_blank" rel="noopener noreferrer"> {props.value}</a>,
+   style:{textAlign:"center"},
 }]
    return(
       <div className="midBlocks">
-      <h3 className="mt-5"> Latest Payouts </h3>
+      <h3 className="mt-3 font-weight-light"> Latest Payouts </h3>
       <ReactTable
         data={this.state.posts}
         columns={columns}

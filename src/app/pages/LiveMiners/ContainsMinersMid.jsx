@@ -25,13 +25,7 @@ import {formatDate,formatHashrate,workersLength} from '../../helpers/helpers';
                   });
                   // Sort miners by hashrate
                   response= response.data.miners.sort((a, b) => {
-                    if (a.hr < b.hr) {
-                      return 1;
-                    }
-                    if (a.hr > b.hr) {
-                      return -1;
-                    }
-                    return 0;
+                    return 0
                   });
                   this.setState({posts:response})
                 return response;
@@ -60,22 +54,25 @@ import {formatDate,formatHashrate,workersLength} from '../../helpers/helpers';
    id: 'links',
    Cell: props =><a href={'http://www.cruxpool.com/#/miner/'+props.value} className="hash" target="_blank" rel="noopener noreferrer"> {props.value}</a>,
    style:{textAlign:"center"},
- }, {
+ },{
+
    Header: 'Hashrate',
    headerStyle: { backgroundColor: '#7dcdcb' },
    accessor: 'hr',
    style:{textAlign:"center"},
    Cell: props => formatHashrate(props.value),
- }, {
+ },{
+
    Header:'Workers',
    headerStyle: { backgroundColor: '#7dcdcb' },
    style:{textAlign:"center"},
+   id:'worker',
    width:100,
    maxWidth:100,
    minWidth:100,
-   accessor:('Workers'),
-   Cell: props => workersLength(props.value),
-},  {
+   accessor: d => workersLength(d.Workers),
+   Cell: props => (props.value),
+},{
   Header:'LastBeat',
   headerStyle: { backgroundColor: '#7dcdcb' },
   accessor:('lastBeat'),
@@ -85,7 +82,7 @@ import {formatDate,formatHashrate,workersLength} from '../../helpers/helpers';
 
    return(
       <div className="midMiners">
-      <h3 className="mt-5"> Miners </h3>
+      <h3 className="mt-3 font-weight-light"> Miners </h3>
       <ReactTable
         data={this.state.posts}
         columns={columns}

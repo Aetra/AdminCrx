@@ -13,7 +13,7 @@ import {formatDate,formatDifficulty} from '../../helpers/helpers';
      };
   }
 
-  axiosResult(){
+  componentDidMount(){
    axios.get(config.get("URLAPI")+"/pool/stats")
         .then(response=>{
           if (response.status === 200) {
@@ -36,46 +36,45 @@ import {formatDate,formatDifficulty} from '../../helpers/helpers';
           throw error;
         });
   }
-  componentDidMount(){
-    this.axiosResult = this.axiosResult.bind(this);
-    this.axiosResult();
-   setInterval(this.axiosResult, config.get("refreshInterval"))
-  }
+
 
  render(){
   const columns = [{
      Header: 'Name of Pool',
      headerStyle: { backgroundColor: '#7dcdcb' },
      accessor: 'name',
+     resizable: false,
+     filterable: false,
+     expander:false,
      style:{textAlign:"center"},
-   }, {
+   },{
      Header: 'Height',
      headerStyle: { backgroundColor: '#7dcdcb' },
      id: 'height',
      accessor: d =>  new Intl.NumberFormat('en-GB', {style:'decimal'}).format(d.height),
      style:{textAlign:"center"},
-   }, {
+   },{
      Header:'Difficulty',
      headerStyle: { backgroundColor: '#7dcdcb' },
      accessor: 'difficulty',
      Cell: props => formatDifficulty(props.value),
      style:{textAlign:"center"},
      width:100,
-
    },{
      Header: 'lastBeat',
      headerStyle: { backgroundColor: '#7dcdcb' },
      accessor: 'lastBeat',
      Cell: props => formatDate(props.value),
      style:{textAlign:"center"},
-   },
- ]
+   },]
 
   return(
       <div className="tableNodes">
       <ReactTable
         data={this.state.posts}
         columns={columns}
+        defaultPageSize={10}
+        showPaginationBottom={false}
         NoDataText={"Please Wait"}/>
       </div>
    );

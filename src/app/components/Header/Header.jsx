@@ -7,7 +7,7 @@ import logoCrux from './img/LogoCrux.png';
   render(){
     var d = new Date();
     var weekday = new Array(7);
-    weekday[0] =  "Sunday";
+    weekday[0] = "Sunday";
     weekday[1] = "Monday";
     weekday[2] = "Tuesday";
     weekday[3] = "Wednesday";
@@ -22,7 +22,7 @@ import logoCrux from './img/LogoCrux.png';
           <div className="col-4">
               <img src={logoCrux} alt="Crux" className="logoCrux"/>
           </div>
-          <div className="col-7 navBar">
+          <div className="col-7 navbar-toggler">
             <ul>
               <li>
                 <NavLink to= "/home"> Home </NavLink>
@@ -42,7 +42,7 @@ import logoCrux from './img/LogoCrux.png';
             </ul>
           </div>
           <div className="col-1">
-        <p className="text-light pt-3">  {n} </p>
+        <p className="text-light pt-4">  {n} </p>
           </div>
         </div>
     </header>

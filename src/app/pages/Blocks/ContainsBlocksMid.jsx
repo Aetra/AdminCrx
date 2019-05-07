@@ -53,11 +53,16 @@ import {formatDate,variance} from '../../helpers/helpers';
    Cell: row => <span>{row.value} %</span>,
    style:{textAlign:"center"},
    width:400,
+   sortMethod: (a, b) => {
+     var aa = parseInt(a);
+     var bb = parseInt(b);
+     return aa > bb ? 1 : -1;
+   },
  }]
 
    return(
       <div className="midBlocks">
-      <h3 className="mt-5"> Recently Found Blocks </h3>
+      <h3 className="mt-4 font-weight-light"> Recently Found Blocks </h3>
       <ReactTable
         data={this.state.posts}
         columns={columns}

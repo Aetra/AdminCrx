@@ -10,7 +10,6 @@ import ContainsPaymentsMid from "./ContainsPaymentsMid";
        <div className="payments">
         <ContainsPaymentsTop/>
         <ContainsPaymentsMid/>
-
       </div>
      );
    }

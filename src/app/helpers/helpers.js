@@ -9,7 +9,7 @@ export function formatHashrate(params, hash) {
     hashrate = hashrate / 1000;
     i++;
   }
-  return hashrate.toFixed(4) + ' ' + units[i]+'/s';
+  return hashrate.toFixed(3) + ' ' + units[i]+'/s';
 }
 
 export function formatDifficulty(params, hash) {
@@ -97,9 +97,7 @@ export function progressThreshold(params1, params2) {
   var balance = params1*0.000000001;
   var threshold = params2;
   var defaultThreshold = 0.1;
-
   var progress = 0;
-
 
   if(threshold === undefined){
     threshold = defaultThreshold;
@@ -108,6 +106,5 @@ export function progressThreshold(params1, params2) {
   if(threshold!==0) {
       progress = balance/threshold*100;
   }
-
-  return renderSafeHTML(progress.toFixed(1) + '%');
+  return progress.toFixed(1);
 }

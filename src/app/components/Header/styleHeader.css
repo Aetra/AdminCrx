@@ -19,7 +19,6 @@ ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-
 }
 
 li{
@@ -38,13 +37,11 @@ li a{
 li a:hover:not(.active){
   background-color: var(--colorNavHover);
   text-decoration: none;
-
 }
 
 .active{
   background-color: var(--colorNavActive);
   text-decoration: none;
-
 }
 
 /* Mobile Devices */
@@ -59,5 +56,4 @@ li a:hover:not(.active){
   .logoCrux{
     width:30%;
   }
-
 }
