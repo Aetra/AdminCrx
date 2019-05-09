@@ -93,6 +93,7 @@ export function renderSafeHTML(rawHTML, element = 'div') {
     }
   });
 }
+
 export function progressThreshold(params1, params2) {
   var balance = params1*0.000000001;
   var threshold = params2;

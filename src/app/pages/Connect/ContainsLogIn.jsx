@@ -1,37 +1,37 @@
 import React from 'react';
 import axios from 'axios';
 import config from '../../.././config1.js';
-
+import {Store} from 'react-stores';
   class ContainsLogIn extends React.Component{
     constructor(props) {
       super(props);
-      this.handleSubmit=this.handleSubmit.bind(this);
-    }
-    handleSubmit(event)
-    {
-      var body = "mail="+this.mail.value+"&subject="+this.subject.value+"&message="+this.message.value;
+    this.state = {
+        username: "",
+        password: ""
+      };
 
-        fetch('https://iliium.com/api/contact',{
-          method:'POST',
-          body:body,
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          }
-        }).then((response) =>
-          {
-            if (response.ok){
-              alert('Contact send, we will process your request as soon as possible.');
-            } else {
-              alert('Error sending mail, please try again');
-            }
-          },
-          (error) =>
-          {
-            window.alert('Contact failled, please retry');
-          });
-
-      event.preventDefault();
+    this.onSubmit = this.onSubmit.bind(this);
     }
+
+    onSubmit(e) {
+      e.preventDefault();
+
+      const { username, password } = this.state;
+      const { history } = this.props;
+
+      this.setState({ error: false });
+
+      if (!(username === 'george' && password === 'foreman')) {
+        return this.setState({ error: true });
+      }
+
+      Store.set('loggedIn', true);
+      history.push('/users');
+    }
+
+
+
+
     render(){
       return(
         <div className="anchor part_Cont container-fluid">
@@ -43,14 +43,14 @@ import config from '../../.././config1.js';
             </div>
           <div className="mt-3 row ">
             <div className="col-12 col-sm-6 mx-auto">
-              <form onSubmit={this.handleSubmit} id="contact-form" class="form" role="form">
+              <form onSubmit={this.handleSubmit} id="contact-form" className="form" role="form">
                 <div className="form-group">
-                  <label className="form-label" for="email">Username</label>
-                  <input type="email" className="form-control" id="email" ref={(input) => this.mail = input} placeholder="Enter Username" tabindex="2" required/>
+                  <label className="form-label" htmlFor="username">Username</label>
+                  <input type="username" className="form-control" id="username" ref={(input) => this.mail = input} placeholder="Enter Username" tabIndex="2" required/>
                 </div>
                 <div className="form-group">
-                  <label className="form-label" for="subject">Password</label>
-                  <input type="subject" className="form-control" id="subject" ref={(input) => this.subject = input} placeholder="Enter Password" tabindex="3" required/>
+                  <label className="form-label" htmlFor="subject">Password</label>
+                  <input type="password" className="form-control" id="password" ref={(input) => this.subject = input} placeholder="Enter Password" tabIndex="3" required/>
                 </div>
                 <label>
                   <input type="checkbox" checked="checked" name="remember" /> Remember Me

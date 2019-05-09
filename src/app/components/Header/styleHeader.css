@@ -36,6 +36,7 @@ li a{
 
 li a:hover:not(.active){
   background-color: var(--colorNavHover);
+  background-color: none;
   text-decoration: none;
 }
 

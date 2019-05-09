@@ -25,7 +25,7 @@ import logoCrux from './img/LogoCrux.png';
           <div className="col-7 navbar-toggler">
             <ul>
               <li>
-                <NavLink to= "/"> Home </NavLink>
+                <NavLink to= "/home"> Home </NavLink>
               </li>
               <li>
                 <NavLink to="/blocks">Blocks</NavLink>
@@ -39,9 +39,6 @@ import logoCrux from './img/LogoCrux.png';
               <li>
                 <NavLink to="/payments">Payments</NavLink>
               </li>
-              <li>
-                <NavLink to="/login">Login</NavLink>
-                </li>
             </ul>
           </div>
           <div className="col-1">
