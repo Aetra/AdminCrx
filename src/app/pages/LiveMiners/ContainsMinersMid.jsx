@@ -17,18 +17,25 @@ import {formatDate,formatHashrate,workersLength} from '../../helpers/helpers';
    axios.get(config.get("URL")+"admin/miners")
         .then(response=>{
           if (response.status === 200) {
-                  // Convert map to array
-                  response.data.miners = Object.keys(response.data.miners).map((value) => {
-                    let m = response.data.miners[value];
-                    m.login = value;
-                    return m;
-                  });
-                  // Sort miners by hashrate
-                  response= response.data.miners.sort((a, b) => {
-                    return 0
-                  });
-                  this.setState({posts:response})
-                return response;
+            // Convert map to array
+            response.data.miners = Object.keys(response.data.miners).map((value) => {
+              let m = response.data.miners[value];
+              m.login = value;
+              return m;
+              });
+
+            // Sort miners by hashrate
+            response= response.data.miners.sort((a, b) => {
+              if (a.hr < b.hr) {
+                return 1;
+              }
+              if (a.hr > b.hr) {
+                return -1;
+              }
+              return 0;
+            });
+              this.setState({posts:response})
+              return response;
           }
           else {
             throw new Error("Error");

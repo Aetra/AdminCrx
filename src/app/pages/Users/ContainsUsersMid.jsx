@@ -57,18 +57,18 @@ import {formatBalance,formatDuration,progressThreshold} from '../../helpers/help
    accessor:d=>d.fee,
    style:{textAlign:"center"},
    Cell: row => (
-     row.value==-1?
+     row.value===-1?
      <span className="" style={{color:'#F23737'}}>end</span> :
      <span className="" style={{color:'#00C071'}}>{row.value}</span>
    ),
    sortMethod: (a, b) => {
      var aa,bb;
-     if(a==="" || a===undefined || a==0 ){
+     if(a==="" || a===undefined || a===0 ){
        aa=0;
      }else{
        aa=parseFloat(a);
      }
-     if(b==="" || b===undefined ||b==0){
+     if(b==="" || b===undefined ||b===0){
        bb=0;
      }else{
        bb=parseFloat(b);
@@ -95,7 +95,7 @@ import {formatBalance,formatDuration,progressThreshold} from '../../helpers/help
     id:"paid",
     accessor: d=>formatBalance(d.paid),
     Cell: row =>(
-    row.value=='NaN'?
+    row.value==='NaN'?
     <p className="" style={{color:'black'}}>0.000000</p> :
     <span className="" style={{color:'#eea770'}}>{row.value}</span>
   ),

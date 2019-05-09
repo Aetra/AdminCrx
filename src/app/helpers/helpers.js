@@ -17,7 +17,7 @@ export function formatDifficulty(params, hash) {
   while (difficulty > 1000) {
     difficulty = difficulty / 1000;
   }
-  return difficulty.toFixed(1);
+  return difficulty.toFixed(3);
 }
 
 export function variance(params1,params2){
