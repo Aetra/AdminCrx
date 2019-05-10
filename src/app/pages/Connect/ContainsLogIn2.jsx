@@ -1,17 +1,17 @@
 import React from 'react';
-import {fakeAuth,PrivateRoute} from '../../.././App';
-import {Route,Redirect, withRouter} from "react-router-dom";
-
+import {fakeAuth} from '../../.././Routing';
+import {Redirect} from "react-router-dom";
+import './Style.css';
 
   class ContainsLogIn2 extends React.Component {
     constructor(props) {
     super(props);
     //this.handleSubmit=this.handleSubmit.bind(this);
-
     this.state={
       redirectToReferrer: false,
      };
-}
+   }
+
   login = () => {
     fakeAuth.authenticate(() => {
       this.setState(() => ({
@@ -27,6 +27,20 @@ import {Route,Redirect, withRouter} from "react-router-dom";
     if (redirectToReferrer === true) {
       return <Redirect to={from} />
     }
+    /*
+    handleSubmit(event){
+      var body="username="+this.username.value+"&password="+this.password.value;
+    }
+    onSubmit(e) {
+       e.preventDefault();
+
+       const { username, password } = this.state;
+       const { history } = this.props;
+       this.setState({ error: false });
+       if (!(username === 'george' && password === 'foreman')) {
+         return this.setState({ error: true });
+       }
+     }*/
 
     return (
       <div className="anchor part_Cont container-fluid">

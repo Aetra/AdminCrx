@@ -68,7 +68,6 @@ import {formatDate,variance} from '../../helpers/helpers';
         columns={columns}
         NoDataText={"Please Wait"}/>
       </div>
-   );
- }
+   );}
 }
 export default ContainsBlocksMid;

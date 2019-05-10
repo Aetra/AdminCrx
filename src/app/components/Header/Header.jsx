@@ -19,10 +19,10 @@ import logoCrux from './img/LogoCrux.png';
     return(
      <header className="headerStyle container-fluids">
        <div className="row align-items-start">
-          <div className="col-4">
+          <div className="col-3">
               <img src={logoCrux} alt="Crux" className="logoCrux"/>
           </div>
-          <div className="col-7 navbar-toggler">
+          <div className="col-8 navbar-toggler">
             <ul>
               <li>
                 <NavLink to= "/home"> Home </NavLink>
@@ -38,6 +38,9 @@ import logoCrux from './img/LogoCrux.png';
               </li>
               <li>
                 <NavLink to="/payments">Payments</NavLink>
+              </li>
+              <li>
+                <NavLink to="/Finance">Finance</NavLink>
               </li>
             </ul>
           </div>

@@ -24,8 +24,8 @@ import 'react-table/react-table.css';
         .catch(error => {
           console.log("api error:" + error);
           throw error;
-});
-}
+        });
+  }
 
  render(){
    const {stats}=this.state;
@@ -36,7 +36,6 @@ import 'react-table/react-table.css';
       <h4 className=""> Total Payments sent: {totalPayments} </h4>
 
       </div>
-   );
- }
+   );}
 }
 export default ContainsPaymentsTop;

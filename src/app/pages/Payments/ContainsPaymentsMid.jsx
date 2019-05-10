@@ -59,7 +59,7 @@ import {formatDate} from '../../helpers/helpers';
    accessor: 'tx',
    Cell: props =><a href={"https://etherscan.io/tx/"+props.value}  className="hash" target="_blank" rel="noopener noreferrer"> {props.value}</a>,
    style:{textAlign:"center"},
-}]
+ }]
    return(
       <div className="midBlocks">
       <h3 className="mt-3 font-weight-light"> Latest Payouts </h3>
@@ -68,7 +68,6 @@ import {formatDate} from '../../helpers/helpers';
         columns={columns}
         NoDataText={"Please Wait"}/>
       </div>
-   );
+   );}
  }
-}
 export default ContainsPaymentsMid;

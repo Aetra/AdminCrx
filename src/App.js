@@ -1,49 +1,14 @@
 import React from 'react';
 import Header from './app/components/Header/Header';
 import Footer from './app/components/Footer/Footer';
-import Blocks from "./app/pages/Blocks/Blocks";
-import Home from "./app/pages/Home/Home";
-import LiveMiners from "./app/pages/LiveMiners/LiveMiners";
-import Payments from "./app/pages/Payments/Payments";
-import LogInPage from "./app/pages/Connect/LogInPage";
-import ContainsLogIn2 from "./app/pages/Connect/ContainsLogIn2";
-import Users from "./app/pages/Users/Users";
-import {Route, Switch, Redirect,Router,Link, withRouter} from "react-router-dom";
-
-export const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={(props) => (
-    fakeAuth.isAuthenticated === true
-      ? <Component {...props} />
-      : <Redirect to={{
-        pathname: '/login',
-        state: { from: props.location }
-        }} />
-  )} />
-)
-
-export const fakeAuth = {
-  isAuthenticated: false,
-  authenticate(cb) {
-    this.isAuthenticated = true
-    setTimeout(cb, 100) // fake async
-  },
-  signout(cb) {
-    this.isAuthenticated = false
-    setTimeout(cb, 100) // fake async
-  },
-}
+import Routing from "./Routing"
 
 
 function App() {
   return (
     <div className="App">
       <Header/>
-          <Route path="/blocks" exact component={Blocks} />
-          <Route path="/login" exact component={ContainsLogIn2} />
-          <PrivateRoute path='/home' component={Home} />
-          <PrivateRoute path='/payments' component={Payments} />
-          <PrivateRoute path='/users' component={Users} />
-          <PrivateRoute path='/liveMiners' component={LiveMiners} />
+          <Routing/>
       <Footer/>
     </div>
   );

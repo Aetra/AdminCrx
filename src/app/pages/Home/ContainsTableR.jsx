@@ -77,7 +77,6 @@ import {formatDate,formatDifficulty} from '../../helpers/helpers';
         showPaginationBottom={false}
         NoDataText={"Please Wait"}/>
       </div>
-   );
- }
+   );}
 }
 export default ContainsTableR;

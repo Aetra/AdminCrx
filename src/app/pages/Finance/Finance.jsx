@@ -1,8 +1,7 @@
 import React from 'react';
-import ContainsBlocksMid from "./ContainsBlocksMid";
 import './style.css';
 
-class Blocks extends React.Component{
+class Finance extends React.Component{
   constructor(props) {
   super(props);
   this.state={
@@ -12,8 +11,8 @@ class Blocks extends React.Component{
  render(){
    return(
      <div className="blocks">
-       <ContainsBlocksMid/>
+       <p> Finance</p>
     </div>
    );}
 }
-export default Blocks;
+export default Finance;

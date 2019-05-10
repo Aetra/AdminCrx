@@ -40,6 +40,7 @@ componentDidMount(){
    var diff=0;
    var shares=0;
    var vari=0;
+   console.log("************")
    if(posts.nodes && posts.nodes.length>0){
      diff=posts.nodes[0].difficulty;
      shares=posts.stats.roundShares;

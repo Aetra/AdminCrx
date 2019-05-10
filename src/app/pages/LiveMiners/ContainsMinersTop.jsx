@@ -24,8 +24,8 @@ import {formatHashrate} from '../../helpers/helpers'
         .catch(error => {
           console.log("api error:" + error);
           throw error;
-});
-}
+        });
+  }
 
  render(){
    const {stats}=this.state;
@@ -37,7 +37,6 @@ import {formatHashrate} from '../../helpers/helpers'
       <h4 className="mt-2"> Total Miners: {stats.minersTotal} </h4>
 
       </div>
-   );
- }
+   );}
 }
 export default ContainsMinersTop;

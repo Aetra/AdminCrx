@@ -95,7 +95,6 @@ import {formatDate,formatHashrate,workersLength} from '../../helpers/helpers';
         columns={columns}
         NoDataText={"Please Wait"}/>
       </div>
-   );
- }
+   );}
 }
 export default ContainsMinersMid;

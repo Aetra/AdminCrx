@@ -199,7 +199,6 @@ import {formatBalance,formatDuration,progressThreshold} from '../../helpers/help
          ]}
         NoDataText={"Please Wait"}/>
       </div>
-   );
- }
+   );}
 }
 export default ContainsUsersMid;

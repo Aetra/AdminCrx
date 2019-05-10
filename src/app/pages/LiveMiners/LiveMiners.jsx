@@ -9,7 +9,6 @@ import ContainsMinersMid from './ContainsMinersMid';
        <div className="liveMiners">
          <ContainsMinersTop/>
          <ContainsMinersMid/>
-
       </div>
      );
    }
