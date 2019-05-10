@@ -12,7 +12,7 @@ import './Style.css';
      };
    }
 
-  login = () => {
+  submit = () => {
     fakeAuth.authenticate(() => {
       this.setState(() => ({
         redirectToReferrer: true
@@ -47,6 +47,7 @@ import './Style.css';
         <div className="stContact">
           <div className="row">
             <div className="col-12">
+              <p>You must log in to view the page</p>
               <h2 className="titleContact"> Log In</h2>
             </div>
           </div>
@@ -65,11 +66,9 @@ import './Style.css';
                 <input type="checkbox" checked="checked" name="remember" /> Remember Me
               </label>
               <div className="text-center">
-                <button type="submit" className="btn btn-start-order" value="Submit">SUBMIT</button>
+                <button onClick={this.submit}type="submit" className="btn btn-start-order" value="Submit">SUBMIT</button>
               </div>
             </form>
-        <p>You must log in to view the page</p>
-        <button onClick={this.login}>Log in</button>
         </div>
       </div>
     </div>

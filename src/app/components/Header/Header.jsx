@@ -15,7 +15,7 @@ import logoCrux from './img/LogoCrux.png';
     weekday[5] = "Friday";
     weekday[6] = "Saturday";
 
-    var n = weekday[d.getDay()];
+    var day = weekday[d.getDay()];
     return(
      <header className="headerStyle container-fluids">
        <div className="row align-items-start">
@@ -45,7 +45,7 @@ import logoCrux from './img/LogoCrux.png';
             </ul>
           </div>
           <div className="col-1">
-        <p className="text-light pt-4">  {n} </p>
+        <p className="text-light text-uppercase pt-4">  {day} </p>
           </div>
         </div>
     </header>

@@ -10,7 +10,7 @@ class Finance extends React.Component{
 }
  render(){
    return(
-     <div className="blocks">
+     <div className="finance">
        <p> Finance</p>
     </div>
    );}

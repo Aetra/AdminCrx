@@ -48,13 +48,13 @@ li a:hover:not(.active){
 /* Mobile Devices */
 @media (min-width: 320px) and (max-width:767px) {
   .logoCrux{
-    width:100%;
+    width:70%;
   }
 }
 
 /* Medium Devices */
 @media (min-width:768px) and (max-width:1023px) {
   .logoCrux{
-    width:30%;
+    width:50%;
   }
 }

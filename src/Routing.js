@@ -36,7 +36,7 @@ class RootingTest extends React.Component {
   render(){
   return (
     <div>
-      <Route path="/blocks" exact component={Blocks}/>
+      <PrivateRoute path="/blocks" exact component={Blocks}/>
       <Route path="/login" exact component={ContainsLogIn2}/>
       <PrivateRoute exact path='/' component={Home}/>
       <PrivateRoute path='/home' component={Home}/>
