@@ -3,7 +3,6 @@ import Header from './app/components/Header/Header';
 import Footer from './app/components/Footer/Footer';
 import Routing from "./Routing"
 
-
 function App() {
   return (
     <div className="App">
@@ -13,5 +12,4 @@ function App() {
     </div>
   );
 }
-
 export default App;

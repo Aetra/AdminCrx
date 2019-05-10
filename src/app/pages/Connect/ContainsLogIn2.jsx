@@ -43,7 +43,7 @@ import './Style.css';
      }*/
 
     return (
-      <div className="anchor part_Cont container-fluid">
+      <div className="ui anchor part_Cont container-fluid">
         <div className="stContact">
           <div className="row">
             <div className="col-12">

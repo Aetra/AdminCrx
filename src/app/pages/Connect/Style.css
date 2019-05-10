@@ -3,6 +3,9 @@
   height:auto;
 }
 
+.ui{
+  height:100vh;
+}
 .stContact {
   padding-top:4%;
 }
@@ -66,6 +69,9 @@ textarea {
 	border-color: #5e9bfc !important;
   border-radius:65% !important;
 	color: #5e9bfc !important;
+}
+.buttonO{
+  color:white;
 }
 
 /* Mobile Devices */

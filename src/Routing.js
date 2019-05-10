@@ -7,7 +7,7 @@ import ContainsLogIn2 from "./app/pages/Connect/ContainsLogIn2";
 import Users from "./app/pages/Users/Users";
 import Finance from "./app/pages/Finance/Finance";
 
-import {Route, Redirect} from "react-router-dom";
+import {Route, Redirect, withRouter} from "react-router-dom";
 
 export const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
@@ -31,6 +31,20 @@ export const fakeAuth = {
     setTimeout(cb, 100) // fake async
   },
 }
+
+// Because we pass our component to withRouter
+// our component will be passed `history` as a prop.
+export const AuthButton = withRouter(({ history }) => (
+  fakeAuth.isAuthenticated ? (
+    <p>
+      Welcome! <button onClick={() => {
+        fakeAuth.signout(() => history.push('/'))
+      }}>Sign out</button>
+    </p>
+  ) : (
+    <p>You are not logged in.</p>
+  )
+))
 
 class RootingTest extends React.Component {
   render(){

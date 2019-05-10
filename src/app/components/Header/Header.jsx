@@ -2,6 +2,7 @@ import React from 'react';
 import './styleHeader.css';
 import {NavLink} from "react-router-dom";
 import logoCrux from './img/LogoCrux.png';
+import {AuthButton} from '../../.././Routing';
 
   class Header extends React.Component{
   render(){
@@ -22,7 +23,7 @@ import logoCrux from './img/LogoCrux.png';
           <div className="col-3">
               <img src={logoCrux} alt="Crux" className="logoCrux"/>
           </div>
-          <div className="col-8 navbar-toggler">
+          <div className="col-7 navbar-toggler">
             <ul>
               <li>
                 <NavLink to= "/home"> Home </NavLink>
@@ -44,8 +45,10 @@ import logoCrux from './img/LogoCrux.png';
               </li>
             </ul>
           </div>
-          <div className="col-1">
-        <p className="text-light text-uppercase pt-4">  {day} </p>
+          <div className="col-2">
+            <div className="pt-3 buttonO">
+              <AuthButton/>
+            </div>
           </div>
         </div>
     </header>
