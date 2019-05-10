@@ -1,12 +1,12 @@
 import React from 'react';
 import './Style.css';
-import ContainsLogIn  from './ContainsLogIn';
+import ContainsLogIn2  from './ContainsLogIn2';
 
   class LogInPage extends React.Component{
    render(){
      return(
        <div className="liveMiners">
-         <ContainsLogIn/>
+         <ContainsLogIn2/>
       </div>
      );
    }
