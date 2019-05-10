@@ -1,23 +1,22 @@
 import React from 'react';
-import './style/styleP1.css';
+import './styleHome.css';
 import axios from 'axios';
+import config from '../../.././config1.js';
+import {formatHashrate,variance} from '../../helpers/helpers';
 
-
-  class ContainsP1 extends React.Component{
+  class ContainsHome extends React.Component{
     constructor(props) {
     super(props);
     this.state={
-       stats:[],
+       posts:[],
      };
-
   }
 
   axiosResult(){
-   axios.get()
+   axios.get(config.get("URL")+"admin/stats")
         .then(response=>{
           if (response.status === 200) {
-            console.log(response);
-            this.setState({stats:response.data.data})
+            this.setState({posts:response.data});
           }
           else {
             throw new Error("Error");
@@ -26,9 +25,8 @@ import axios from 'axios';
         .catch(error => {
           console.log("api error:" + error);
           throw error;
-});
+        });
 }
-
 
 componentDidMount(){
   this.axiosResult = this.axiosResult.bind(this);
@@ -37,26 +35,33 @@ componentDidMount(){
 }
 
  render(){
-   const {stats}=this.state;
+   const {posts}=this.state;
+   const hashratev=formatHashrate(posts.hashrate);
+   var diff=0;
+   var shares=0;
+   var vari=0;
+   if(posts.nodes && posts.nodes.length>0){
+     diff=posts.nodes[0].difficulty;
+     shares=posts.stats.roundShares;
+     vari=variance(shares,diff).toFixed(0);
+   }
+
    return(
-      <div className="cruxServ">
-        <h1> Cruxpool Servers </h1>
-          <hr className=" styleHr"/>
+      <div className="homee justify-content-center">
           <div className="row">
             <div className="col-6">
               <p className="text-left"> Pool Hashrate: </p>
             </div>
             <div className="col-6">
-              <p className="text-right"> {stats.hashrate} </p>
+              <p className="text-right"> {hashratev} </p>
             </div>
           </div>
-
         <div className="row">
           <div className="col-6">
             <p className="text-left"> Miner:</p>
           </div>
           <div className="col-6">
-            <p className="text-right"> {stats.minersTotal} </p>
+            <p className="text-right"> {posts.minersTotal} </p>
           </div>
         </div>
 
@@ -65,11 +70,22 @@ componentDidMount(){
             <p className="text-left"> workers:</p>
           </div>
           <div className="col-6">
-            <p className="text-right">{stats.workersTotal}  </p>
+            <p className="text-right">{posts.workersTotal}  </p>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-6">
+                <p className="text-left">
+                Variance:
+                </p>
+          </div>
+          <div className="col-6">
+            <p className="text-right">{vari}% </p>
           </div>
         </div>
     </div>
    );
  }
 }
-export default ContainsP1;
+export default ContainsHome;

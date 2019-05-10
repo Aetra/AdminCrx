@@ -1,14 +1,19 @@
 import React from 'react';
+import ContainsBlocksMid from "./ContainsBlocksMid";
 import './style.css';
 
-  class Blocks extends React.Component{
-
+class Blocks extends React.Component{
+  constructor(props) {
+  super(props);
+  this.state={
+  stats:[],
+  };
+}
  render(){
    return(
      <div className="blocks">
-      <p> Blocks</p>
+       <ContainsBlocksMid/>
     </div>
-   );
- }
+   );}
 }
 export default Blocks;

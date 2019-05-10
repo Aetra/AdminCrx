@@ -2,17 +2,28 @@ import React from 'react';
 import './styleHeader.css';
 import {NavLink} from "react-router-dom";
 import logoCrux from './img/LogoCrux.png';
+import {AuthButton} from '../../.././Routing';
 
   class Header extends React.Component{
+  render(){
+    var d = new Date();
+    var weekday = new Array(7);
+    weekday[0] = "Sunday";
+    weekday[1] = "Monday";
+    weekday[2] = "Tuesday";
+    weekday[3] = "Wednesday";
+    weekday[4] = "Thursday";
+    weekday[5] = "Friday";
+    weekday[6] = "Saturday";
 
- render(){
-   return(
+    var day = weekday[d.getDay()];
+    return(
      <header className="headerStyle container-fluids">
        <div className="row align-items-start">
           <div className="col-3">
-              <img src={logoCrux} alt="Crux" class="logoCrux"/>
+              <img src={logoCrux} alt="Crux" className="logoCrux"/>
           </div>
-          <div className="col-9 navBar">
+          <div className="col-7 navbar-toggler">
             <ul>
               <li>
                 <NavLink to= "/home"> Home </NavLink>
@@ -30,15 +41,17 @@ import logoCrux from './img/LogoCrux.png';
                 <NavLink to="/payments">Payments</NavLink>
               </li>
               <li>
-                <NavLink to="/finances">Finances</NavLink>
+                <NavLink to="/Finance">Finance</NavLink>
               </li>
             </ul>
           </div>
+          <div className="col-2">
+            <div className="pt-3 buttonO">
+              <AuthButton/>
+            </div>
+          </div>
         </div>
     </header>
-
-
-
    );
  }
 }
