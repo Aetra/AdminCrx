@@ -18,6 +18,7 @@ import {formatBalance,formatDuration,progressThreshold} from '../../helpers/help
         .then(response=>{
           if (response.status === 200) {
             response.data.miners = Object.keys(response.data.miners).map((value) => {
+              console.log(response.data.miners);
               let m = response.data.miners[value];
               m.login = value;
               return m;

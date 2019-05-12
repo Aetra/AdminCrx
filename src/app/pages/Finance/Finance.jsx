@@ -1,4 +1,5 @@
 import React from 'react';
+import ContainsFinance from "./ContainsFinance";
 import './style.css';
 
 class Finance extends React.Component{
@@ -10,8 +11,8 @@ class Finance extends React.Component{
 }
  render(){
    return(
-     <div className="finance">
-       <p> Finance</p>
+     <div className="blocks">
+       <ContainsFinance/>
     </div>
    );}
 }
