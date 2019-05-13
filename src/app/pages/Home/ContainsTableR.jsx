@@ -41,8 +41,7 @@ import {formatDate,formatDifficulty} from '../../helpers/helpers';
     this.axiosResult = this.axiosResult.bind(this);
     this.axiosResult();
     this.interval=setInterval(this.axiosResult, config.get("refreshInterval"))
-      if(this.state && this.state.length>0){
-      }
+
   }
   componentWillUnmount() {
     clearInterval(this.interval.nam)

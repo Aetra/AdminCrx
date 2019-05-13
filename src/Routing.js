@@ -6,6 +6,8 @@ import Payments from "./app/pages/Payments/Payments";
 import ContainsLogIn2 from "./app/pages/Connect/ContainsLogIn2";
 import Users from "./app/pages/Users/Users";
 import Finance from "./app/pages/Finance/Finance";
+import {authenticationService} from './app/services';
+import {history} from './app/helpers';
 
 import {Route, Redirect, withRouter} from "react-router-dom";
 
@@ -19,7 +21,20 @@ export const PrivateRoute = ({ component: Component, ...rest }) => (
         }} />
   )} />
 )
+/*
+export const PrivateRoute = ({ component: Component, ...rest }) => (
+    <Route {...rest} render={props => {
+        const currentUser = authenticationService.currentUserValue;
+        if (!currentUser) {
+            // not logged in so redirect to login page with the return url
+            return <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
+        }
 
+        // authorised so return component
+        return <Component {...props} />
+    }} />
+)
+*/
 export const fakeAuth = {
   isAuthenticated: false,
   authenticate(cb) {
@@ -47,17 +62,33 @@ export const AuthButton = withRouter(({ history }) => (
 ))
 
 class RootingTest extends React.Component {
+  constructor(props) {
+        super(props);
+
+        this.state = {
+            currentUser: null
+        };
+    }
+
+    componentDidMount() {
+        authenticationService.currentUser.subscribe(x => this.setState({ currentUser: x }));
+    }
+
+    logout() {
+        authenticationService.logout();
+        history.push('/login');
+    }
   render(){
   return (
     <div>
-      <Route path="/blocks" exact component={Blocks}/>
+      <PrivateRoute path="/blocks" exact component={Blocks}/>
       <Route path="/login" exact component={ContainsLogIn2}/>
-      <Route exact path='/' component={Home}/>
-      <Route path='/home' component={Home}/>
-      <Route path='/payments' component={Payments}/>
-      <Route path='/users' component={Users}/>
-      <Route path='/liveMiners' component={LiveMiners}/>
-      <Route path='/finance' component={Finance}/>
+      <PrivateRoute exact path='/' component={Home}/>
+      <PrivateRoute path='/home' component={Home}/>
+      <PrivateRoute path='/payments' component={Payments}/>
+      <PrivateRoute path='/users' component={Users}/>
+      <PrivateRoute path='/liveMiners' component={LiveMiners}/>
+      <PrivateRoute path='/finance' component={Finance}/>
 
     </div>
   )}

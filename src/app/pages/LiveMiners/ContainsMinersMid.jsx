@@ -13,7 +13,10 @@ import {formatDate,formatHashrate,workersLength} from '../../helpers/helpers';
      };
   }
 
+
   axiosResult(){
+    const CancelToken = axios.CancelToken;
+    let cancel;
    axios.get(config.get("URL")+"admin/miners")
         .then(response=>{
           if (response.status === 200) {
@@ -50,7 +53,12 @@ import {formatDate,formatHashrate,workersLength} from '../../helpers/helpers';
   componentDidMount(){
     this.axiosResult = this.axiosResult.bind(this);
     this.axiosResult();
-    setInterval(this.axiosResult, config.get("refreshInterval"))
+    this.interval=setInterval(this.axiosResult, config.get("refreshInterval"))
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval.nam)
+    this.state={posts:[],};
   }
 
  render(){

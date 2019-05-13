@@ -1,5 +1,5 @@
-import config from 'config';
-import { authHeader, handleResponse } from '@/_helpers';
+import { authHeader, handleResponse } from '.././helpers';
+import config from '../.././config1.js';
 
 export const userService = {
     getAll

@@ -1,11 +1,18 @@
 import React from 'react';
 import {fakeAuth} from '../../.././Routing';
 import {Redirect} from "react-router-dom";
+import { Formik, Field, Form, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+import {authenticationService} from '../.././services';
+
 import './Style.css';
 
   class ContainsLogIn2 extends React.Component {
     constructor(props) {
     super(props);
+    if (authenticationService.currentUserValue) {
+         this.props.history.push('/');npm install -S yup
+     }
     //this.handleSubmit=this.handleSubmit.bind(this);
     this.state={
       redirectToReferrer: false,
