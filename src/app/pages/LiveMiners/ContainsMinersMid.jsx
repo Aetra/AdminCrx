@@ -88,7 +88,7 @@ import {formatDate,formatHashrate,workersLength} from '../../helpers/helpers';
   }]
 
    return(
-      <div className="midMiners">
+      <div className="container-fluid midMiners">
       <h3 className="mt-3 font-weight-light"> Miners </h3>
       <ReactTable
         data={this.state.posts}

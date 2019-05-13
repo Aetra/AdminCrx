@@ -61,7 +61,7 @@ import {formatDate,variance} from '../../helpers/helpers';
  }]
 
    return(
-      <div className="midBlocks">
+      <div className="container-fluid midBlocks">
       <h3 className="mt-4 font-weight-light"> Recently Found Blocks </h3>
       <ReactTable
         data={this.state.posts}

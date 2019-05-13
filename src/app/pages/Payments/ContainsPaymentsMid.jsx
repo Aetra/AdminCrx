@@ -61,7 +61,7 @@ import {formatDate} from '../../helpers/helpers';
    style:{textAlign:"center"},
  }]
    return(
-      <div className="midBlocks">
+      <div className="container-fluid midBlocks">
       <h3 className="mt-3 font-weight-light"> Latest Payouts </h3>
       <ReactTable
         data={this.state.posts}

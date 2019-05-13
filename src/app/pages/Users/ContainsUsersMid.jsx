@@ -192,7 +192,7 @@ import {formatBalance,formatDuration,progressThreshold} from '../../helpers/help
   },]
 
   return(
-      <div className="midBlocks container-fluid">
+      <div className="container-fluid midBlocks container-fluid">
       <h3 className="mt-4 font-weight-light">Miners</h3>
       <h4 className="font-weight-light">Total Users: {countUsers}</h4>
 

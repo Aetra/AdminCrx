@@ -84,7 +84,7 @@ import {formatDate,formatDifficulty} from '../../helpers/helpers';
    },]
 
   return(
-      <div className="tableNodes">
+      <div className="container-fluid tableNodes">
       <ReactTable
         data={this.state.posts}
         onSortedChange={onSortedChange}
