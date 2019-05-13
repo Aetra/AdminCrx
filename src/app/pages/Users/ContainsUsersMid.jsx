@@ -18,7 +18,6 @@ import {formatBalance,formatDuration,progressThreshold} from '../../helpers/help
         .then(response=>{
           if (response.status === 200) {
             response.data.miners = Object.keys(response.data.miners).map((value) => {
-              console.log(response.data.miners);
               let m = response.data.miners[value];
               m.login = value;
               return m;
@@ -40,6 +39,8 @@ import {formatBalance,formatDuration,progressThreshold} from '../../helpers/help
   }
 
  render(){
+   const countUsers=this.state.posts.length;
+   console.log(countUsers);
    const columns = [{
    Header: 'Login',
    headerStyle: { backgroundColor: '#7dcdcb' },
@@ -51,6 +52,10 @@ import {formatBalance,formatDuration,progressThreshold} from '../../helpers/help
    headerStyle: { backgroundColor: '#7dcdcb' },
    accessor: 'mail',
    style:{textAlign:"center"},
+   width:280,
+   maxWidth:280,
+   minWidth:200,
+
  },{
    Header:'Fee',
    headerStyle: { backgroundColor: '#7dcdcb' },
@@ -138,7 +143,7 @@ import {formatBalance,formatDuration,progressThreshold} from '../../helpers/help
       textAlign:"center",
       color:'#56ab86'
     },
-    width:100,
+    width:70,
     maxWidth:100,
     minWidth:100,
   },{
@@ -187,8 +192,10 @@ import {formatBalance,formatDuration,progressThreshold} from '../../helpers/help
   },]
 
   return(
-      <div className="midBlocks">
+      <div className="midBlocks container-fluid">
       <h3 className="mt-4 font-weight-light">Miners</h3>
+      <h4 className="font-weight-light">Total Users: {countUsers}</h4>
+
       <ReactTable
         data={this.state.posts}
         columns={columns}

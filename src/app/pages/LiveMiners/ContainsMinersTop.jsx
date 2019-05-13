@@ -33,8 +33,11 @@ import {formatHashrate} from '../../helpers/helpers'
 
    return(
       <div className="topMiners text-center">
-      <h4 className=""> Total Hashrate: {hashratev} </h4>
-      <h4 className="mt-2"> Total Miners: {stats.minersTotal} </h4>
+      <h4 className="">Total Hashrate: {hashratev} </h4>
+      <h4 className="">Total Workers: {stats.workersTotal} </h4>
+
+      <h4 className="">Total Miners: {stats.minersTotal} </h4>
+
 
       </div>
    );}

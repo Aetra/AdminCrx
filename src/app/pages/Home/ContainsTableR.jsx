@@ -13,7 +13,7 @@ import {formatDate,formatDifficulty} from '../../helpers/helpers';
      };
   }
 
-  componentDidMount(){
+  axiosResult(){
    axios.get(config.get("URLAPI")+"/pool/stats")
         .then(response=>{
           if (response.status === 200) {
@@ -37,15 +37,30 @@ import {formatDate,formatDifficulty} from '../../helpers/helpers';
         });
   }
 
+  componentDidMount(){
+    this.axiosResult = this.axiosResult.bind(this);
+    this.axiosResult();
+    this.interval=setInterval(this.axiosResult, config.get("refreshInterval"))
+      if(this.state && this.state.length>0){
+      }
+  }
+  componentWillUnmount() {
+    clearInterval(this.interval.nam)
+  }
 
  render(){
+   var controlledSortState = [{id:"nam",desc:false}];
+
+   function onSortedChange(newSorted, column, shiftKey)
+   {
+	    console.log(controlledSortState);
+    }
+
   const columns = [{
      Header: 'Name of Pool',
      headerStyle: { backgroundColor: '#7dcdcb' },
-     accessor: 'name',
-     resizable: false,
-     filterable: false,
-     expander:false,
+     id: 'nam',
+      accessor: 'name',
      style:{textAlign:"center"},
    },{
      Header: 'Height',
@@ -72,6 +87,8 @@ import {formatDate,formatDifficulty} from '../../helpers/helpers';
       <div className="tableNodes">
       <ReactTable
         data={this.state.posts}
+        onSortedChange={onSortedChange}
+				sorted={controlledSortState}
         columns={columns}
         defaultPageSize={10}
         showPaginationBottom={false}

@@ -8,7 +8,7 @@ import './styleHome.css';
    render(){
      return(
        <div className="homee">
-        <h1 className="text-center"> Cruxpool Servers </h1>
+        <h1 className="mt-3 text-center font-weight-light"> Cruxpool Servers </h1>
         <hr className=" styleHr"/>
          <div className="pt-3 row">
            <div className="col-6">

@@ -50,14 +50,14 @@ class RootingTest extends React.Component {
   render(){
   return (
     <div>
-      <PrivateRoute path="/blocks" exact component={Blocks}/>
+      <Route path="/blocks" exact component={Blocks}/>
       <Route path="/login" exact component={ContainsLogIn2}/>
-      <PrivateRoute exact path='/' component={Home}/>
-      <PrivateRoute path='/home' component={Home}/>
-      <PrivateRoute path='/payments' component={Payments}/>
-      <PrivateRoute path='/users' component={Users}/>
-      <PrivateRoute path='/liveMiners' component={LiveMiners}/>
-      <PrivateRoute path='/finance' component={Finance}/>
+      <Route exact path='/' component={Home}/>
+      <Route path='/home' component={Home}/>
+      <Route path='/payments' component={Payments}/>
+      <Route path='/users' component={Users}/>
+      <Route path='/liveMiners' component={LiveMiners}/>
+      <Route path='/finance' component={Finance}/>
 
     </div>
   )}

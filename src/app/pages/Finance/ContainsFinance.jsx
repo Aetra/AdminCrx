@@ -10,6 +10,7 @@ import {formatBalance} from '../../helpers/helpers';
     this.state={
        postsEtbh:[],
        postsPay:[],
+       postsStats:[],
      };
   }
 
@@ -27,15 +28,18 @@ componentDidMount(){
 
   function getPayment(){
         return axios.get(config.get("URL")+"admin/finances");
-      }
-      
+  }
+  function getStatsPool(){
+        return axios.get(config.get("URL")+"admin/stats");
+  }
+
     var that=this;
-    axios.all([getEthbtc(),getPayment()])
-      .then(axios.spread(function (ethbtc, payments) {
+    axios.all([getEthbtc(),getPayment(),getStatsPool()])
+      .then(axios.spread(function (ethbtc, payments, statsPool) {
         if (ethbtc.status || payments.status === 200) {
-          console.log("oui")
           that.setState({postsEtbh:ethbtc.data});
           that.setState({postsPay:payments.data});
+          that.setState({postsStats:statsPool.data});
         }
         else{
           throw new Error("Error");
@@ -49,31 +53,42 @@ componentDidMount(){
     }
 
  render(){
+   /** Part NiceHash */
+   const postsStat=this.state.postsStats;
+   var diff=0;
+   if(postsStat.nodes && postsStat.nodes.length>0){
+     diff=postsStat.nodes[0].difficulty;
+   }
    const postsEthbc=this.state.postsEtbh.value;
-   const postsPayd=this.state.postsPay;
-   console.log(postsPayd.finances)
-   console.log(postsPayd)
-   var balance=0;
-   var fee=0;
-   var feePaid=0;
-   var paid=0;
+   var mined = 1000000000000 * 86400 * 2040000000 / diff;
+   var minedBtc = mined*postsEthbc;
+   var result = {brut:0,net:0};
+   result.brut = formatBalance(minedBtc);
+   result.net = formatBalance(minedBtc-6.5/100*minedBtc);
 
-   if(postsPayd.finances && postsPayd.finances ){
+   /**Part finance */
+   const postsPayd=this.state.postsPay;
+   var fee,feePaid,paid,pendingBalance=0;
+
+   if(postsPayd.finances){
+     pendingBalance=formatBalance(postsPayd.pendingBalance);
      if(postsPayd.finances.stats){
        fee=formatBalance(postsPayd.finances.stats.fee);
        feePaid=formatBalance(postsPayd.finances.stats.feePaid);
        paid=formatBalance(postsPayd.finances.stats.paid);
      }
-     console.log(this.postsPayd)
    }
+
    return(
       <div className="homee justify-content-center">
+        <h1 className="mt-3 text-center font-weight-light"> Cruxpool Finance </h1>
+        <hr className=" styleHr"/>
           <div className="row">
             <div className="col-6">
-              <p className="text-left"> Fee: </p>
+              <p className="text-left"> Fee balance: </p>
             </div>
             <div className="col-6">
-              <p className="text-right">{fee} </p>
+              <p className="text-right">{fee} ETH </p>
             </div>
           </div>
         <div className="row">
@@ -81,27 +96,50 @@ componentDidMount(){
             <p className="text-left"> FeePaid:</p>
           </div>
           <div className="col-6">
-            <p className="text-right"> {feePaid} </p>
+            <p className="text-right"> {feePaid} ETH </p>
           </div>
         </div>
 
         <div className="row">
           <div className="col-6">
-            <p className="text-left"> Paid:</p>
+            <p className="text-left">Total paid:</p>
           </div>
           <div className="col-6">
-            <p className="text-right">{paid}</p>
+            <p className="text-right">{paid} ETH</p>
           </div>
         </div>
 
         <div className="row">
           <div className="col-6">
-            <p className="text-left"> Ethbtc: </p>
+            <p className="text-left"> Pending balance: </p>
           </div>
           <div className="col-6">
-            <p className="text-right">{postsEthbc}</p>
+            <p className="text-right">{pendingBalance} ETH</p>
           </div>
         </div>
+
+        <h3 className="mt-4 text-center font-weight-light"> NiceHash Analysys</h3>
+          <hr className=" styleHr2"/>
+
+        <div className="mt-4 row">
+          <div className="col-6">
+            <p className="text-left"> Nicehash rentability: </p>
+          </div>
+          <div className="col-6">
+            <p className="text-right">{result.brut} BTC/TH/Day</p>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-6">
+            <p className="text-left"> Nicehash net rentability: </p>
+          </div>
+          <div className="col-6">
+            <p className="text-right">{result.net} BTC/TH/Day</p>
+          </div>
+        </div>
+
+
     </div>
    );
  }
