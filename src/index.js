@@ -6,6 +6,11 @@ import * as serviceWorker from './serviceWorker';
 import '.././node_modules/bootstrap/dist/css/bootstrap.css';
 import {BrowserRouter} from "react-router-dom";
 
+// setup fake backend
+import { configureFakeBackend } from './app/helpers';
+configureFakeBackend();
+
+
 ReactDOM.render(
 
     <BrowserRouter>
