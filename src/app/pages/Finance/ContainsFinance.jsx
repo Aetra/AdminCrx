@@ -14,9 +14,6 @@ import {formatBalance} from '../../helpers/helpers';
      };
   }
 
-
-
-
 //fee feePaid paid ethbtc
 /* https://cruxpool.com/admin/finances
 https://cruxpool.com/currencies/ticker/ethbtc
@@ -68,10 +65,11 @@ componentDidMount(){
 
    /**Part finance */
    const postsPayd=this.state.postsPay;
-   var fee,feePaid,paid,pendingBalance=0;
+   var fee,feePaid,paid,pendingBalance,allBalance=0;
 
    if(postsPayd.finances){
      pendingBalance=formatBalance(postsPayd.pendingBalance);
+     allBalance=formatBalance(postsPayd.allBalance);
      if(postsPayd.finances.stats){
        fee=formatBalance(postsPayd.finances.stats.fee);
        feePaid=formatBalance(postsPayd.finances.stats.feePaid);
@@ -115,6 +113,15 @@ componentDidMount(){
           </div>
           <div className="col-6">
             <p className="text-right">{pendingBalance} ETH</p>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-6">
+            <p className="text-left"> Global balance: </p>
+          </div>
+          <div className="col-6">
+            <p className="text-right">{allBalance} ETH</p>
           </div>
         </div>
 

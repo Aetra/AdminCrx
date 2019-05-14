@@ -12,17 +12,6 @@ import {history} from './app/helpers';
 import {Route, Redirect, withRouter} from "react-router-dom";
 
 export const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={(props) => (
-    fakeAuth.isAuthenticated === true
-      ? <Component {...props} />
-      : <Redirect to={{
-        pathname: '/login',
-        state: { from: props.location }
-        }} />
-  )} />
-)
-/*
-export const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={props => {
         const currentUser = authenticationService.currentUserValue;
         if (!currentUser) {
@@ -34,32 +23,6 @@ export const PrivateRoute = ({ component: Component, ...rest }) => (
         return <Component {...props} />
     }} />
 )
-*/
-export const fakeAuth = {
-  isAuthenticated: false,
-  authenticate(cb) {
-    this.isAuthenticated = true
-    setTimeout(cb, 100) // fake async
-  },
-  signout(cb) {
-    this.isAuthenticated = false
-    setTimeout(cb, 100) // fake async
-  },
-}
-
-// Because we pass our component to withRouter
-// our component will be passed `history` as a prop.
-export const AuthButton = withRouter(({ history }) => (
-  fakeAuth.isAuthenticated ? (
-    <p>
-      Welcome! <button onClick={() => {
-        fakeAuth.signout(() => history.push('/'))
-      }}>Sign out</button>
-    </p>
-  ) : (
-    <p>You are not logged in.</p>
-  )
-))
 
 class RootingTest extends React.Component {
   constructor(props) {
@@ -79,16 +42,21 @@ class RootingTest extends React.Component {
         history.push('/login');
     }
   render(){
+    const { currentUser } = this.state;
   return (
     <div>
+      <div>
       <PrivateRoute path="/blocks" exact component={Blocks}/>
-      <Route path="/login" exact component={ContainsLogIn2}/>
       <PrivateRoute exact path='/' component={Home}/>
       <PrivateRoute path='/home' component={Home}/>
       <PrivateRoute path='/payments' component={Payments}/>
       <PrivateRoute path='/users' component={Users}/>
       <PrivateRoute path='/liveMiners' component={LiveMiners}/>
       <PrivateRoute path='/finance' component={Finance}/>
+      </div>
+    
+      <Route path="/login" exact component={ContainsLogIn2}/>
+
 
     </div>
   )}
