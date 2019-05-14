@@ -1,5 +1,7 @@
 import React from 'react';
-import ContainsBlocksMid from "./ContainsBlocksMid";
+import ContainsBlocksLeft from "./ContainsBlocksLeft";
+import ContainsBlocksRight from "./ContainsBlocksRight";
+
 import './style.css';
 
 class Blocks extends React.Component{
@@ -12,7 +14,10 @@ class Blocks extends React.Component{
  render(){
    return(
      <div className="blocks">
-       <ContainsBlocksMid/>
+      <div className="row">
+        <ContainsBlocksLeft/>
+        <ContainsBlocksRight/>
+      </div>
     </div>
    );}
 }

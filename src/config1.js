@@ -5,5 +5,6 @@ config.set({
     URL:"https://www.cruxpool.com/",
     POOL: "/pool/stats",
     refreshInterval:2000,
+    fakeAPI:'http://localhost:3000'
 });
 export default config;

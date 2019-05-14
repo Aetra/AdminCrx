@@ -4,13 +4,20 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import '.././node_modules/bootstrap/dist/css/bootstrap.css';
-import {BrowserRouter} from "react-router-dom";
+import {Router} from "react-router-dom";
+import {history} from './app/helpers';
+
+
+// setup fake backend
+import { configureFakeBackend } from './app/helpers';
+configureFakeBackend();
+
 
 ReactDOM.render(
 
-    <BrowserRouter>
+    <Router history={history}>
       <App />
-    </BrowserRouter>
+    </Router>
     ,document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

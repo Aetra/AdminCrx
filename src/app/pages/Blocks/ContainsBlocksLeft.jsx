@@ -5,7 +5,7 @@ import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import {formatDate,variance} from '../../helpers/helpers';
 
-  class ContainsBlocksMid extends React.Component{
+  class ContainsBlocksLeft extends React.Component{
     constructor(props) {
     super(props);
     this.state={
@@ -30,6 +30,7 @@ import {formatDate,variance} from '../../helpers/helpers';
   }
 
  render(){
+   var bT=this.state.posts.length;
 
    const columns = [{
    Header: 'Height',
@@ -61,8 +62,14 @@ import {formatDate,variance} from '../../helpers/helpers';
  }]
 
    return(
+<<<<<<< HEAD:src/app/pages/Blocks/ContainsBlocksMid.jsx
       <div className="container-fluid midBlocks">
       <h3 className="mt-4 font-weight-light"> Recently Found Blocks </h3>
+=======
+      <div className="col-7 midBlocks">
+
+      <h3 className="mt-4 font-weight-light"> Recently Found Blocks, Actually: {bT} </h3>
+>>>>>>> jwt2:src/app/pages/Blocks/ContainsBlocksLeft.jsx
       <ReactTable
         data={this.state.posts}
         columns={columns}
@@ -70,4 +77,4 @@ import {formatDate,variance} from '../../helpers/helpers';
       </div>
    );}
 }
-export default ContainsBlocksMid;
+export default ContainsBlocksLeft;
