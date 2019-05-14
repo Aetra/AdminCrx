@@ -39,7 +39,7 @@ import {formatDate,variance} from '../../helpers/helpers';
    id: 'links',
    Cell: props =><a href={"https://etherscan.io/block/"+props.value} className="hash" target="_blank" rel="noopener noreferrer"> {props.value}</a>,
    style:{textAlign:"center"},
-   width:400,
+   width:200,
  }, {
    Header: 'Time Found',
    headerStyle: { backgroundColor: '#7dcdcb' },
@@ -53,7 +53,7 @@ import {formatDate,variance} from '../../helpers/helpers';
    accessor: d => variance(d.shares, d.difficulty).toFixed(0),
    Cell: row => <span>{row.value} %</span>,
    style:{textAlign:"center"},
-   width:400,
+   width:200,
    sortMethod: (a, b) => {
      var aa = parseInt(a);
      var bb = parseInt(b);
@@ -62,14 +62,9 @@ import {formatDate,variance} from '../../helpers/helpers';
  }]
 
    return(
-<<<<<<< HEAD:src/app/pages/Blocks/ContainsBlocksMid.jsx
-      <div className="container-fluid midBlocks">
-      <h3 className="mt-4 font-weight-light"> Recently Found Blocks </h3>
-=======
       <div className="col-7 midBlocks">
 
       <h3 className="mt-4 font-weight-light"> Recently Found Blocks, Actually: {bT} </h3>
->>>>>>> jwt2:src/app/pages/Blocks/ContainsBlocksLeft.jsx
       <ReactTable
         data={this.state.posts}
         columns={columns}

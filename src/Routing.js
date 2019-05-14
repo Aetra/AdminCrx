@@ -9,7 +9,7 @@ import Finance from "./app/pages/Finance/Finance";
 import {authenticationService} from './app/services';
 import {history} from './app/helpers';
 
-import {Route, Redirect, withRouter} from "react-router-dom";
+import {Route, Redirect} from "react-router-dom";
 
 export const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={props => {
@@ -54,7 +54,7 @@ class RootingTest extends React.Component {
       <PrivateRoute path='/liveMiners' component={LiveMiners}/>
       <PrivateRoute path='/finance' component={Finance}/>
       </div>
-    
+
       <Route path="/login" exact component={ContainsLogIn2}/>
 
 
