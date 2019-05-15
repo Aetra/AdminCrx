@@ -41,11 +41,12 @@ import {formatDate,formatDifficulty} from '../../helpers/helpers';
     this.axiosResult = this.axiosResult.bind(this);
     this.axiosResult();
     this.interval=setInterval(this.axiosResult, config.get("refreshInterval"))
+  }
 
-  }
   componentWillUnmount() {
-    clearInterval(this.interval.nam)
-  }
+    clearInterval(this.interval);
+    this.setState({posts:[],})
+    }
 
  render(){
    var controlledSortState = [{id:"nam",desc:false}];

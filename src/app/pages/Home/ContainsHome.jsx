@@ -26,12 +26,17 @@ import {formatHashrate,variance} from '../../helpers/helpers';
           console.log("api error:" + error);
           throw error;
         });
-}
+  }
 
 componentDidMount(){
   this.axiosResult = this.axiosResult.bind(this);
   this.axiosResult();
- setInterval(this.axiosResult, config.get("refreshInterval"))
+  this.interval=setInterval(this.axiosResult, config.get("refreshInterval"))
+}
+
+componentWillUnmount() {
+   clearInterval(this.interval);
+   this.setState({posts:[],})
 }
 
  render(){

@@ -2,7 +2,7 @@ import React from 'react';
 import ContainsHome from './ContainsHome';
 import ContainsTableR from './ContainsTableR';
 import './styleHome.css';
-import {userService, authenticationService } from '../.././services';
+import {userService, authenticationService } from '../.././_services';
 
 
   class Home extends React.Component{
@@ -16,7 +16,12 @@ import {userService, authenticationService } from '../.././services';
        }
        componentDidMount() {
       userService.getAll().then(users => this.setState({ users }));
-  }
+      }
+
+      componentWillUnmount() {
+          this.setState({currentUser:null,users:null})
+      }
+
    render(){
              const { currentUser, users } = this.state;
      return(

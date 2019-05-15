@@ -2,7 +2,7 @@ import React from 'react';
 import './styleHeader.css';
 import {NavLink} from "react-router-dom";
 import logoCrux from './img/LogoCrux.png';
-import { authenticationService } from '../.././services';
+import { authenticationService } from '../.././_services';
 import { history } from '../.././helpers';
   class Header extends React.Component{
 
@@ -18,7 +18,7 @@ import { history } from '../.././helpers';
           <div className="col-3">
               <img src={logoCrux} alt="Crux" className="logoCrux"/>
           </div>
-          <div className="col-8 navbar-toggler">
+          <div className="col-7 navbar-toggler">
             <ul>
               <li>
                 <NavLink to= "/home"> Home </NavLink>
@@ -40,9 +40,9 @@ import { history } from '../.././helpers';
               </li>
             </ul>
           </div>
-          <div className="col-1">
+          <div className="col-2">
             <div className="pt-3 buttonO">
-                <button onClick={this.logout} className="button">Logout</button>
+                <button onClick={this.logout} className="btn btn-outline-dark">Logout</button>
             </div>
           </div>
         </div>

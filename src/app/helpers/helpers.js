@@ -50,7 +50,6 @@ export function formatDuration(ts) {
 	var date = moment.unix(ts);
 	var now = moment();
 	var duration = moment.duration(now.diff(date));
-
 	var label ='';
 
 	if (duration.years()> 0) {
@@ -76,13 +75,10 @@ export function formatDuration(ts) {
 	} else {
 		label += '00:'
 	}
-
 	if(duration.seconds()<10){
 		label += '0';
 	}
 	label += duration.seconds();
-
-
 	return label;
 }
 
