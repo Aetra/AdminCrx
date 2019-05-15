@@ -8,7 +8,6 @@ class Users extends React.Component{
      <div className="users">
       <ContainsUsersMid/>
     </div>
-   );
- }
+   );}
 }
 export default Users;

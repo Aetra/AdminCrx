@@ -15,8 +15,7 @@ import {formatDate,formatHashrate,workersLength} from '../../helpers/helpers';
 
 
   axiosResult(){
-    const CancelToken = axios.CancelToken;
-    let cancel;
+
    axios.get(config.get("URL")+"admin/miners")
         .then(response=>{
           if (response.status === 200) {
@@ -57,8 +56,8 @@ import {formatDate,formatHashrate,workersLength} from '../../helpers/helpers';
   }
 
   componentWillUnmount() {
-    clearInterval(this.interval.nam)
-    this.state={posts:[],};
+    clearInterval(this.interval);
+    this.setState({posts:[],})
   }
 
  render(){

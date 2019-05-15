@@ -39,7 +39,7 @@ import {formatDate,variance} from '../../helpers/helpers';
    id: 'links',
    Cell: props =><a href={"https://etherscan.io/block/"+props.value} className="hash" target="_blank" rel="noopener noreferrer"> {props.value}</a>,
    style:{textAlign:"center"},
-   width:200,
+   width:250,
  }, {
    Header: 'Time Found',
    headerStyle: { backgroundColor: '#7dcdcb' },
@@ -53,16 +53,15 @@ import {formatDate,variance} from '../../helpers/helpers';
    accessor: d => variance(d.shares, d.difficulty).toFixed(0),
    Cell: row => <span>{row.value} %</span>,
    style:{textAlign:"center"},
-   width:200,
+   width:250,
    sortMethod: (a, b) => {
      var aa = parseInt(a);
      var bb = parseInt(b);
      return aa > bb ? 1 : -1;
    },
  }]
-
    return(
-      <div className="col-7 midBlocks">
+      <div className="col-8 midBlocks">
 
       <h3 className="mt-4 font-weight-light"> Recently Found Blocks, Actually: {bT} </h3>
       <ReactTable

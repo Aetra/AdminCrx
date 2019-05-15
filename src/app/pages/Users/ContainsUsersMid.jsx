@@ -40,7 +40,6 @@ import {formatBalance,formatDuration,progressThreshold} from '../../helpers/help
 
  render(){
    const countUsers=this.state.posts.length;
-   console.log(countUsers);
    const columns = [{
    Header: 'Login',
    headerStyle: { backgroundColor: '#7dcdcb' },
@@ -63,7 +62,7 @@ import {formatBalance,formatDuration,progressThreshold} from '../../helpers/help
    accessor:d=>d.fee,
    style:{textAlign:"center"},
    Cell: row => (
-     row.value===-1?
+     row.value==='-1'?
      <span className="" style={{color:'#F23737'}}>end</span> :
      <span className="" style={{color:'#00C071'}}>{row.value}</span>
    ),
@@ -79,7 +78,6 @@ import {formatBalance,formatDuration,progressThreshold} from '../../helpers/help
      }else{
        bb=parseFloat(b);
      }
-
      return aa > bb ? 1 : -1;
    },
    width:100,

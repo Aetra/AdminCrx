@@ -15,7 +15,6 @@ import 'react-table/react-table.css';
         .then(response=>{
           if (response.status === 200) {
             this.setState({stats:response.data})
-            console.log(response);
           }
           else {
             throw new Error("Error");

@@ -26,19 +26,15 @@ import {formatHashrate} from '../../helpers/helpers'
           throw error;
         });
   }
-
  render(){
    const {stats}=this.state;
    const hashratev=formatHashrate(stats.hashrate);
 
    return(
       <div className="topMiners text-center">
-      <h4 className="">Total Hashrate: {hashratev} </h4>
-      <h4 className="">Total Workers: {stats.workersTotal} </h4>
-
-      <h4 className="">Total Miners: {stats.minersTotal} </h4>
-
-
+        <h4 className="">Total Hashrate: {hashratev} </h4>
+        <h4 className="">Total Workers: {stats.workersTotal} </h4>
+        <h4 className="">Total Miners: {stats.minersTotal} </h4>
       </div>
    );}
 }

@@ -11,7 +11,6 @@ import ContainsPaymentsMid from "./ContainsPaymentsMid";
         <ContainsPaymentsTop/>
         <ContainsPaymentsMid/>
       </div>
-     );
-   }
+     );}
   }
 export default Payments;

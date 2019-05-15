@@ -1,8 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import config from '../../.././config1.js';
-import ReactTable from 'react-table';
-import 'react-table/react-table.css';
 import {variance} from '../../helpers/helpers';
 
   class ContainsBlocksRight extends React.Component{
@@ -30,7 +28,6 @@ import {variance} from '../../helpers/helpers';
   }
 
  render(){
-   var diff,share,part;
 
    function calcDiffShares(part){
      var totSharesFirst = part.reduce( function(tot, record) {
@@ -46,30 +43,22 @@ import {variance} from '../../helpers/helpers';
    if(this.state.posts.candidates){
      var bT=this.state.posts.candidates.length;
 
-     /** break down array */
-     var firstPart=(this.state.posts.candidates.slice(0,16));
-     var secPart=this.state.posts.candidates.slice(0,32);
-     var thirdPart=this.state.posts.candidates.slice(0,64);
-     var foPart=this.state.posts.candidates.slice(0,128);
-     var fifPart=this.state.posts.candidates.slice(0,256);
-     var endPart=this.state.posts.candidates.slice(0);
-
-
-    /** Luck: 16 */
-    console.log(calcDiffShares(firstPart));
+    /** Calcul luck & break down array */
     var vari=calcDiffShares(this.state.posts.candidates.slice(0,8));
     var variFirst=calcDiffShares(this.state.posts.candidates.slice(0,16));
     var variSec=calcDiffShares(this.state.posts.candidates.slice(0,32));
     var variThird=calcDiffShares(this.state.posts.candidates.slice(0,64));
     var variFo=calcDiffShares(this.state.posts.candidates.slice(0,128));
     var variFif=calcDiffShares(this.state.posts.candidates.slice(0,256));
+    var variSix=calcDiffShares(this.state.posts.candidates.slice(0,512));
+    var variSeven=calcDiffShares(this.state.posts.candidates.slice(0,1024));
     var variEnd=calcDiffShares(this.state.posts.candidates.slice(0));
 
 
 }
 
    return(
-      <div className="col-5 midBlocks">
+      <div className="col-4 midBlocks">
       <h3 className="mt-4 font-weight-light"> Luck on the last blocks found </h3>
         <div className="mt-2 row">
           <div className="col-6">
@@ -139,7 +128,7 @@ import {variance} from '../../helpers/helpers';
             <p> 512 </p>
           </div>
           <div className="col-6">
-            <p>{variFif} %</p>
+            <p>{variSix} %</p>
           </div>
         </div>
 
@@ -148,7 +137,7 @@ import {variance} from '../../helpers/helpers';
             <p> 1024 </p>
           </div>
           <div className="col-6">
-            <p>{variFif} %</p>
+            <p>{variSeven} %</p>
           </div>
         </div>
 
