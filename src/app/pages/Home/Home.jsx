@@ -23,7 +23,6 @@ import {userService, authenticationService } from '../.././_services';
       }
 
    render(){
-             const { currentUser, users } = this.state;
      return(
        <div className="homee">
         <h1 className="mt-3 text-center font-weight-light"> Cruxpool Servers </h1>
