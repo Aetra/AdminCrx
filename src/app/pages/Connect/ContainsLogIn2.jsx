@@ -16,10 +16,6 @@ class ContainsLogIn2 extends React.Component {
     render() {
         return (
             <div className="contact">
-                <div className="alert alert-info">
-                  Username: test<br />
-                  Password: test
-                </div>
                 <h2 className="mt-5 text-center">Login</h2>
                 <Formik
                     initialValues={{

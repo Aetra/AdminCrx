@@ -26,14 +26,6 @@ import {userService, authenticationService } from '../.././_services';
              const { currentUser, users } = this.state;
      return(
        <div className="homee">
-         <h2 className="pl-4 font-weight-light">Hi {currentUser.firstName}!</h2>
-          {users &&
-              <ul>
-                  {users.map(user =>
-                      <li key={user.id}>{user.firstName} {user.lastName}</li>
-                  )}
-              </ul>
-          }
         <h1 className="mt-3 text-center font-weight-light"> Cruxpool Servers </h1>
         <hr className=" styleHr"/>
          <div className="pt-3 row">
