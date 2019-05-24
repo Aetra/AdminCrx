@@ -13,7 +13,7 @@ import {formatBalance,formatDuration,progressThreshold} from '../../helpers/help
      };
   }
 
-  componentDidMount(){
+  axiosResult(){
    axios.get(config.get("URL")+"admin/miners/all")
         .then(response=>{
           if (response.status === 200) {
@@ -36,6 +36,16 @@ import {formatBalance,formatDuration,progressThreshold} from '../../helpers/help
           console.log("api error:" + error);
           throw error;
         });
+  }
+  componentDidMount(){
+    this.axiosResult = this.axiosResult.bind(this);
+    this.axiosResult();
+    this.interval=setInterval(this.axiosResult, config.get("refreshIntervalUsers"))
+  }
+
+  componentWillUnmount() {
+     clearInterval(this.interval);
+     this.setState({posts:[],})
   }
 
  render(){
@@ -80,9 +90,9 @@ import {formatBalance,formatDuration,progressThreshold} from '../../helpers/help
      }
      return aa > bb ? 1 : -1;
    },
-   width:100,
+   width:50,
    maxWidth:100,
-   minWidth:100,
+   minWidth:50,
  },{
    Header:'Balance',
    headerStyle: { backgroundColor: '#7dcdcb' },
@@ -117,6 +127,9 @@ import {formatBalance,formatDuration,progressThreshold} from '../../helpers/help
     }
     return aa > bb ? 1 : -1;
   },
+    width:130,
+    maxWidth:150,
+    minWidth:120,
     style:{textAlign:"center"},
   },{
     Header: 'Blocks',
@@ -141,7 +154,7 @@ import {formatBalance,formatDuration,progressThreshold} from '../../helpers/help
       textAlign:"center",
       color:'#56ab86'
     },
-    width:70,
+    width:80,
     maxWidth:100,
     minWidth:100,
   },{
@@ -149,9 +162,9 @@ import {formatBalance,formatDuration,progressThreshold} from '../../helpers/help
     headerStyle: { backgroundColor: '#7dcdcb' },
     accessor:'threshold' ,
     style:{textAlign:"center"},
-    width:100,
-    maxWidth:100,
-    minWidth:100,
+    width:130,
+    maxWidth:150,
+    minWidth:130,
     sortMethod: (a, b) => {
       var aa,bb;
       if(a==="" || a===undefined ){
@@ -177,16 +190,24 @@ import {formatBalance,formatDuration,progressThreshold} from '../../helpers/help
       var bb = parseFloat(b);
       return aa > bb ? 1 : -1;
     },
+    width:120,
+    maxWidth:100,
+    minWidth:100,
     style:{
       textAlign:"center",
       color:'#2181c8'},
   },{
     Header: 'Last Beat',
     headerStyle: { backgroundColor: '#7dcdcb' },
-    accessor:'lastShare' ,
-    Cell: props => formatDuration(props.value),
+    id: 'time',
+    accessor: d =>d.lastShare,
     id: 'links',
     style:{textAlign:"center"},
+    Cell: row => (
+      row.value=='1538396188'?
+      <span className="" style={{color:'#00C071'}}>{row.value}</span>:
+      <span className="">{row.value}</span>
+    ),
   },]
 
   return(

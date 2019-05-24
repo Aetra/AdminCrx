@@ -50,7 +50,7 @@ import {formatDate,variance} from '../../helpers/helpers';
    Header:'Variance',
    headerStyle: { backgroundColor: '#7dcdcb' },
    id: 'open_rate',
-   accessor: d => variance(d.shares, d.difficulty).toFixed(0),
+   accessor: d => variance(d.shares, d.difficulty).toFixed(1),
    Cell: row => <span>{row.value} %</span>,
    style:{textAlign:"center"},
    width:250,

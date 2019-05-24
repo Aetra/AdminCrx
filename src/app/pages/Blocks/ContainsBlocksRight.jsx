@@ -37,7 +37,7 @@ import {variance} from '../../helpers/helpers';
      var totDiffFirst = part.reduce(function(tot, record) {
         return tot + record.difficulty;
     },0);
-     return variance(totSharesFirst,totDiffFirst).toFixed(0);
+     return variance(totSharesFirst,totDiffFirst).toFixed(1);
    }
 
    if(this.state.posts.candidates){

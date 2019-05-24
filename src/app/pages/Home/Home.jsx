@@ -28,10 +28,10 @@ import {userService, authenticationService } from '../.././_services';
         <h1 className="mt-3 text-center font-weight-light"> Cruxpool Servers </h1>
         <hr className=" styleHr"/>
          <div className="pt-3 row">
-           <div className="col-6">
+           <div className="col-3">
              <ContainsHome/>
            </div>
-           <div className=" col-6">
+           <div className=" col-9">
              <ContainsTableR/>
            </div>
          </div>
