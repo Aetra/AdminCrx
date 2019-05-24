@@ -4,6 +4,8 @@ import config from '../../.././config1.js';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import {formatBalance,formatDuration,progressThreshold,offline} from '../../helpers/helpers';
+import moment from "moment";
+
 
   class ContainsUsersMid extends React.Component{
     constructor(props) {
@@ -49,6 +51,8 @@ import {formatBalance,formatDuration,progressThreshold,offline} from '../../help
   }
 
  render(){
+   var now = moment();
+
    const countUsers=this.state.posts.length;
    const columns = [{
    Header: 'Login',
@@ -200,14 +204,13 @@ import {formatBalance,formatDuration,progressThreshold,offline} from '../../help
     Header: 'Last Beat',
     headerStyle: { backgroundColor: '#7dcdcb' },
     id: 'time',
-    accessor: d =>(
-      d.lastShare=offline(d.lastShare)?
-      <span className="">{d.lastShare}</span>:
-      <span className="" style={{color:'#00C071'}}>{d.lastShare}</span>
-      ),
-      style:{textAlign:"center"},
-      Cell: props => (props.value+ "%"),
-
+    accessor: d=> d.lastShare,
+    Cell: props => (
+      props.value>"1558693640"?
+      <span className="" style={{color:'#00C071'}}>{(formatDuration(props.value))}</span>:
+      <span className="">{(formatDuration(props.value))}</span>
+  ),
+    style:{textAlign:"center"},
 
   },]
 
