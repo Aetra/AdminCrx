@@ -40,21 +40,54 @@ import {variance} from '../../helpers/helpers';
      return variance(totSharesFirst,totDiffFirst).toFixed(1);
    }
 
+
    if(this.state.posts.candidates){
      var bT=this.state.posts.candidates.length;
+     console.log(bT);
+     function printList (list) {
+      for (var i = 0; i < list.length; i++){
+          var varianceTab= variance(list[i].shares,list[i].difficulty);
+          console.log(parseFloat(varianceTab));
+      }
+    }
+    printList(this.state.posts.candidates);
+    console.log(this.varianceTab);
+    var somme = 0;  // variable pour le resultat
 
-    /** Calcul luck & break down array */
-    var vari=calcDiffShares(this.state.posts.candidates.slice(0,8));
-    var variFirst=calcDiffShares(this.state.posts.candidates.slice(0,16));
-    var variSec=calcDiffShares(this.state.posts.candidates.slice(0,32));
-    var variThird=calcDiffShares(this.state.posts.candidates.slice(0,64));
-    var variFo=calcDiffShares(this.state.posts.candidates.slice(0,128));
-    var variFif=calcDiffShares(this.state.posts.candidates.slice(0,256));
-    var variSix=calcDiffShares(this.state.posts.candidates.slice(0,512));
-    var variSeven=calcDiffShares(this.state.posts.candidates.slice(0,1024));
-    var variEnd=calcDiffShares(this.state.posts.candidates.slice(0));
+     var b=this.state.posts.candidates[0].difficulty;
+     var a=this.state.posts.candidates[0].shares;
 
+     var b1=this.state.posts.candidates[1].difficulty;
+     var a1=this.state.posts.candidates[1].shares;
 
+     var b2=this.state.posts.candidates[2].difficulty;
+     var a2=this.state.posts.candidates[2].shares;
+
+     var b3=this.state.posts.candidates[3].difficulty;
+     var a3=this.state.posts.candidates[3].shares;
+
+     var b4=this.state.posts.candidates[4].difficulty;
+     var a4=this.state.posts.candidates[4].shares;
+
+     var b5=this.state.posts.candidates[5].difficulty;
+     var a5=this.state.posts.candidates[5].shares;
+
+     var b6=this.state.posts.candidates[6].difficulty;
+     var a6=this.state.posts.candidates[6].shares;
+
+     var b7=this.state.posts.candidates[7].difficulty;
+     var a7=this.state.posts.candidates[7].shares;
+
+     var var1=parseFloat(variance(a,b).toFixed(1));
+     var var2=parseFloat(variance(a1,b1).toFixed(1));
+     var var3=parseFloat(variance(a2,b2).toFixed(1));
+     var var4=parseFloat(variance(a3,b3).toFixed(1));
+     var var5=parseFloat(variance(a4,b4).toFixed(1));
+     var var6=parseFloat(variance(a5,b5).toFixed(1));
+     var var7=parseFloat(variance(a6,b6).toFixed(1));
+     var var8=parseFloat(variance(a7,b7).toFixed(1));
+     var ult=(var1+var2+var3+var4+var5+var6+var7+var8);
+     var ult2=((var1+var2+var3+var4+var5+var6+var7+var8)/8);
 }
 
    return(
@@ -74,7 +107,7 @@ import {variance} from '../../helpers/helpers';
             <p> 8 </p>
           </div>
           <div className="col-6">
-            <p>{vari} %</p>
+            <p> %</p>
           </div>
         </div>
 
@@ -83,7 +116,7 @@ import {variance} from '../../helpers/helpers';
             <p> 16 </p>
           </div>
           <div className="col-6">
-            <p>{variFirst} %</p>
+            <p> %</p>
           </div>
         </div>
 
@@ -92,7 +125,7 @@ import {variance} from '../../helpers/helpers';
             <p> 32 </p>
           </div>
           <div className="col-6">
-            <p>{variSec} %</p>
+            <p> %</p>
           </div>
         </div>
 
@@ -101,7 +134,7 @@ import {variance} from '../../helpers/helpers';
             <p> 64 </p>
           </div>
           <div className="col-6">
-            <p>{variThird}% </p>
+            <p>% </p>
           </div>
         </div>
 
@@ -110,7 +143,7 @@ import {variance} from '../../helpers/helpers';
             <p> 128 </p>
           </div>
           <div className="col-6">
-            <p>{variFo} %</p>
+            <p> %</p>
           </div>
         </div>
 
@@ -119,7 +152,7 @@ import {variance} from '../../helpers/helpers';
             <p> 256 </p>
           </div>
           <div className="col-6">
-            <p>{variFif} %</p>
+            <p> %</p>
           </div>
         </div>
 
@@ -128,7 +161,7 @@ import {variance} from '../../helpers/helpers';
             <p> 512 </p>
           </div>
           <div className="col-6">
-            <p>{variSix} %</p>
+            <p> %</p>
           </div>
         </div>
 
@@ -137,7 +170,7 @@ import {variance} from '../../helpers/helpers';
             <p> 1024 </p>
           </div>
           <div className="col-6">
-            <p>{variSeven} %</p>
+            <p> %</p>
           </div>
         </div>
 
@@ -146,7 +179,7 @@ import {variance} from '../../helpers/helpers';
             <p> Total: {bT} </p>
           </div>
           <div className="col-6">
-            <p>{variEnd}%</p>
+            <p>%</p>
           </div>
         </div>
 

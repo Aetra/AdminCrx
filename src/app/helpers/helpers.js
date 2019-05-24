@@ -59,19 +59,15 @@ export function formatDuration(ts) {
 	var now = moment();
 	var duration = moment.duration(now.diff(date));
 	var label ='';
-
 	if (duration.years()> 0) {
 		label += duration.years()+ 'y, ';
 	}
-
 	if (duration.months()> 0) {
 		label += duration.months()+ 'm, ';
 	}
-
 	if (duration.days()> 0) {
 		label += duration.days()+ 'd, ';
 	}
-
 	if(duration.hours()>0) {
 		label += duration.hours()+':';
 	}

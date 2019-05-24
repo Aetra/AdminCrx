@@ -8,7 +8,6 @@ import {userService, authenticationService } from '../.././_services';
   class Home extends React.Component{
     constructor(props) {
            super(props);
-
            this.state = {
                currentUser: authenticationService.currentUserValue,
                users: null

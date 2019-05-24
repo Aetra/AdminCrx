@@ -3,8 +3,7 @@ import axios from 'axios';
 import config from '../../.././config1.js';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
-import {formatBalance,formatDuration,progressThreshold,offline} from '../../helpers/helpers';
-import moment from "moment";
+import {formatBalance,formatDuration,progressThreshold} from '../../helpers/helpers';
 
 
   class ContainsUsersMid extends React.Component{
@@ -51,7 +50,6 @@ import moment from "moment";
   }
 
  render(){
-   var now = moment();
 
    const countUsers=this.state.posts.length;
    const columns = [{
@@ -218,7 +216,6 @@ import moment from "moment";
       <div className="container-fluid midBlocks container-fluid">
       <h3 className="mt-4 font-weight-light">Miners</h3>
       <h4 className="font-weight-light">Total Users: {countUsers}</h4>
-
       <ReactTable
         data={this.state.posts}
         columns={columns}
