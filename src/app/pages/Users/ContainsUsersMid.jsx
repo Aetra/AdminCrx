@@ -3,7 +3,7 @@ import axios from 'axios';
 import config from '../../.././config1.js';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
-import {formatBalance,formatDuration,progressThreshold} from '../../helpers/helpers';
+import {formatBalance,formatDuration,progressThreshold,offline} from '../../helpers/helpers';
 
   class ContainsUsersMid extends React.Component{
     constructor(props) {
@@ -200,14 +200,15 @@ import {formatBalance,formatDuration,progressThreshold} from '../../helpers/help
     Header: 'Last Beat',
     headerStyle: { backgroundColor: '#7dcdcb' },
     id: 'time',
-    accessor: d =>d.lastShare,
-    id: 'links',
-    style:{textAlign:"center"},
-    Cell: row => (
-      row.value=='1538396188'?
-      <span className="" style={{color:'#00C071'}}>{row.value}</span>:
-      <span className="">{row.value}</span>
-    ),
+    accessor: d =>(
+      d.lastShare=offline(d.lastShare)?
+      <span className="">{d.lastShare}</span>:
+      <span className="" style={{color:'#00C071'}}>{d.lastShare}</span>
+      ),
+      style:{textAlign:"center"},
+      Cell: props => (props.value+ "%"),
+
+
   },]
 
   return(
