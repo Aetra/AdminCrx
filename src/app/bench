@@ -1,0 +1,5 @@
+Cell: props => (
+  props.value>"1558693640"?
+  <span className="" style={{color:'#00C071'}}>{(formatDuration(props.value))}</span>:
+  <span className="">{(formatDuration(props.value))}</span>
+),

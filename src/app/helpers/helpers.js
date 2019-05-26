@@ -76,7 +76,7 @@ export function formatDuration(ts) {
 			label += '0';
 		}
 		label += duration.minutes()+':';
-	} else {
+	} else{
 		label += '00:'
 	}
 	if(duration.seconds()<10){

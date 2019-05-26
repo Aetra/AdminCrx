@@ -107,7 +107,7 @@ import {variance} from '../../helpers/helpers';
             <p> 8 </p>
           </div>
           <div className="col-6">
-            <p> %</p>
+            <p>{ult2}</p>
           </div>
         </div>
 

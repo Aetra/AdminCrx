@@ -3,7 +3,7 @@ import axios from 'axios';
 import config from '../../.././config1.js';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
-import {formatBalance,formatDuration,progressThreshold} from '../../helpers/helpers';
+import {formatBalance,formatDuration,progressThreshold,offline} from '../../helpers/helpers';
 
 
   class ContainsUsersMid extends React.Component{
@@ -50,7 +50,6 @@ import {formatBalance,formatDuration,progressThreshold} from '../../helpers/help
   }
 
  render(){
-
    const countUsers=this.state.posts.length;
    const columns = [{
    Header: 'Login',
@@ -202,14 +201,13 @@ import {formatBalance,formatDuration,progressThreshold} from '../../helpers/help
     Header: 'Last Beat',
     headerStyle: { backgroundColor: '#7dcdcb' },
     id: 'time',
-    accessor: d=> d.lastShare,
-    Cell: props => (
-      props.value>"1558693640"?
-      <span className="" style={{color:'#00C071'}}>{(formatDuration(props.value))}</span>:
-      <span className="">{(formatDuration(props.value))}</span>
-  ),
+    accessor: d=>d.lastShare,
     style:{textAlign:"center"},
-
+    Cell:row=>(
+    formatDuration(row.value)<'15:00'?
+    <div className="" style={{color:'#14e21d'}}>{formatDuration(row.value)}</div> :
+    <span className="" style={{color:'black'}}>{formatDuration(row.value)}</span>
+  ),
   },]
 
   return(
