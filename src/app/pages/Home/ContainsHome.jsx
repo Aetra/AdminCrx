@@ -48,7 +48,7 @@ componentWillUnmount() {
    if(posts.nodes && posts.nodes.length>0){
      diff=posts.nodes[0].difficulty;
      shares=posts.stats.roundShares;
-     vari=variance(shares,diff).toFixed(0);
+     vari=variance(shares,diff).toFixed(1);
    }
 
    return(
