@@ -14,21 +14,16 @@ import {formatBalance} from '../../helpers/helpers';
      };
   }
 
-//fee feePaid paid ethbtc
-/* https://cruxpool.com/admin/finances
-https://cruxpool.com/currencies/ticker/ethbtc
-*/
-componentDidMount(){
+axiosResult(){
   function getEthbtc() {
       return axios.get(config.get("URL")+"currencies/ticker/ethbtc");
     }
-
-  function getPayment(){
-        return axios.get(config.get("URL")+"admin/finances");
-  }
-  function getStatsPool(){
-        return axios.get(config.get("URL")+"admin/stats");
-  }
+    function getPayment(){
+          return axios.get(config.get("URL")+"admin/finances");
+    }
+    function getStatsPool(){
+          return axios.get(config.get("URL")+"admin/stats");
+    }
 
     var that=this;
     axios.all([getEthbtc(),getPayment(),getStatsPool()])
@@ -47,6 +42,16 @@ componentDidMount(){
         console.log("api error:" + error);
         throw error;
       });
+    }
+    componentDidMount(){
+      this.axiosResult = this.axiosResult.bind(this);
+      this.axiosResult();
+      this.interval=setInterval(this.axiosResult, config.get("refreshIntervalUsers"))
+    }
+
+    componentWillUnmount() {
+       clearInterval(this.interval);
+       this.setState({postsEtbh:[],postsPay:[],postsStats:[],})
     }
 
  render(){
@@ -79,73 +84,77 @@ componentDidMount(){
 
    return(
       <div className="homee justify-content-center">
-        <h1 className="mt-3 text-center font-weight-light"> Cruxpool Finance </h1>
-        <hr className=" styleHr"/>
-          <div className="row">
-            <div className="col-6">
-              <p className="text-left"> Fee balance: </p>
+        <div className="mt-5 row">
+          <div className="col-6">
+            <h1 className="mt-3 text-center font-weight-light"> Cruxpool Finance </h1>
+            <hr className=" styleHr"/>
+              <div className="mt-4 row">
+                <div className="col-4 offset-2">
+                  <p className="text-left"> Fee balance: </p>
+                </div>
+                <div className="col-3">
+                  <p className="text-right">{fee} ETH </p>
+                </div>
+              </div>
+            <div className="row">
+              <div className="col-4 offset-2">
+                <p className="text-left"> FeePaid:</p>
+              </div>
+              <div className="col-3">
+                <p className="text-right"> {feePaid} ETH </p>
+              </div>
             </div>
-            <div className="col-6">
-              <p className="text-right">{fee} ETH </p>
+
+            <div className="row">
+              <div className="col-4 offset-2">
+                <p className="text-left">Total paid:</p>
+              </div>
+              <div className="col-3">
+                <p className="text-right">{paid} ETH</p>
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="col-4 offset-2">
+                <p className="text-left"> Pending balance: </p>
+              </div>
+              <div className="col-3">
+                <p className="text-right">{pendingBalance} ETH</p>
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="col-4 offset-2">
+                <p className="text-left"> Global balance: </p>
+              </div>
+              <div className="col-3">
+                <p className="text-right">{allBalance} ETH</p>
+              </div>
             </div>
           </div>
-        <div className="row">
-          <div className="col-6">
-            <p className="text-left"> FeePaid:</p>
-          </div>
-          <div className="col-6">
-            <p className="text-right"> {feePaid} ETH </p>
+
+          <div className="col-5">
+            <h1 className="mt-3 text-center font-weight-light"> NiceHash Analysys</h1>
+              <hr className=" styleHr"/>
+            <div className="mt-4 row">
+              <div className="col-4 offset-2">
+                <p className="text-left"> Nicehash rentability: </p>
+              </div>
+              <div className="col-5">
+                <p className="text-right">{result.brut} BTC/TH/Day</p>
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="col-4 offset-2">
+                <p className="text-left"> Nicehash net rentability: </p>
+              </div>
+              <div className="col-5">
+                <p className="text-right">{result.net} BTC/TH/Day</p>
+              </div>
+            </div>
           </div>
         </div>
-
-        <div className="row">
-          <div className="col-6">
-            <p className="text-left">Total paid:</p>
-          </div>
-          <div className="col-6">
-            <p className="text-right">{paid} ETH</p>
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="col-6">
-            <p className="text-left"> Pending balance: </p>
-          </div>
-          <div className="col-6">
-            <p className="text-right">{pendingBalance} ETH</p>
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="col-6">
-            <p className="text-left"> Global balance: </p>
-          </div>
-          <div className="col-6">
-            <p className="text-right">{allBalance} ETH</p>
-          </div>
-        </div>
-
-        <h3 className="mt-4 text-center font-weight-light"> NiceHash Analysys</h3>
-          <hr className=" styleHr2"/>
-
-        <div className="mt-4 row">
-          <div className="col-6">
-            <p className="text-left"> Nicehash rentability: </p>
-          </div>
-          <div className="col-6">
-            <p className="text-right">{result.brut} BTC/TH/Day</p>
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="col-6">
-            <p className="text-left"> Nicehash net rentability: </p>
-          </div>
-          <div className="col-6">
-            <p className="text-right">{result.net} BTC/TH/Day</p>
-          </div>
-        </div>
-
 
     </div>
    );

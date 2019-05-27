@@ -4,6 +4,8 @@ import config from '../../.././config1.js';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import {formatBalance,formatDuration,progressThreshold} from '../../helpers/helpers';
+var ts=((Date.now()/1000)-900000).toFixed(0);
+
 
   class ContainsUsersMid extends React.Component{
     constructor(props) {
@@ -13,7 +15,7 @@ import {formatBalance,formatDuration,progressThreshold} from '../../helpers/help
      };
   }
 
-  componentDidMount(){
+  axiosResult(){
    axios.get(config.get("URL")+"admin/miners/all")
         .then(response=>{
           if (response.status === 200) {
@@ -37,8 +39,20 @@ import {formatBalance,formatDuration,progressThreshold} from '../../helpers/help
           throw error;
         });
   }
+  componentDidMount(){
+    this.axiosResult = this.axiosResult.bind(this);
+    this.axiosResult();
+    this.interval=setInterval(this.axiosResult, config.get("refreshIntervalUsers"))
+  }
+
+  componentWillUnmount() {
+     clearInterval(this.interval);
+     this.setState({posts:[],})
+  }
 
  render(){
+   console.log(ts);
+
    const countUsers=this.state.posts.length;
    const columns = [{
    Header: 'Login',
@@ -80,9 +94,9 @@ import {formatBalance,formatDuration,progressThreshold} from '../../helpers/help
      }
      return aa > bb ? 1 : -1;
    },
-   width:100,
+   width:50,
    maxWidth:100,
-   minWidth:100,
+   minWidth:50,
  },{
    Header:'Balance',
    headerStyle: { backgroundColor: '#7dcdcb' },
@@ -117,6 +131,9 @@ import {formatBalance,formatDuration,progressThreshold} from '../../helpers/help
     }
     return aa > bb ? 1 : -1;
   },
+    width:130,
+    maxWidth:150,
+    minWidth:120,
     style:{textAlign:"center"},
   },{
     Header: 'Blocks',
@@ -141,7 +158,7 @@ import {formatBalance,formatDuration,progressThreshold} from '../../helpers/help
       textAlign:"center",
       color:'#56ab86'
     },
-    width:70,
+    width:80,
     maxWidth:100,
     minWidth:100,
   },{
@@ -150,7 +167,7 @@ import {formatBalance,formatDuration,progressThreshold} from '../../helpers/help
     accessor:'threshold' ,
     style:{textAlign:"center"},
     width:100,
-    maxWidth:100,
+    maxWidth:150,
     minWidth:100,
     sortMethod: (a, b) => {
       var aa,bb;
@@ -177,23 +194,29 @@ import {formatBalance,formatDuration,progressThreshold} from '../../helpers/help
       var bb = parseFloat(b);
       return aa > bb ? 1 : -1;
     },
+    width:100,
+    maxWidth:100,
+    minWidth:50 ,
     style:{
       textAlign:"center",
       color:'#2181c8'},
   },{
     Header: 'Last Beat',
     headerStyle: { backgroundColor: '#7dcdcb' },
-    accessor:'lastShare' ,
-    Cell: props => formatDuration(props.value),
-    id: 'links',
+    id: 'time',
+    accessor: d=>d.lastShare,
     style:{textAlign:"center"},
+    Cell:row=>(
+    formatDuration(row.value)<formatDuration(ts)?
+    <div className="" style={{color:'#14e21d'}}>{formatDuration(row.value)}</div>:
+    <span className="" style={{color:'black'}}>{formatDuration(row.value)}</span>
+  ),
   },]
 
   return(
       <div className="container-fluid midBlocks container-fluid">
       <h3 className="mt-4 font-weight-light">Miners</h3>
       <h4 className="font-weight-light">Total Users: {countUsers}</h4>
-
       <ReactTable
         data={this.state.posts}
         columns={columns}

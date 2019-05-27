@@ -1,6 +1,14 @@
 import moment from "moment";
 import React from 'react';
 
+
+export function offline(ts) {
+  var date = moment.unix(ts);
+	var now = moment();
+  moment.duration(now.diff(date));
+  var duration = moment.duration(now.diff(date));
+  return duration.asSeconds()>900;
+}
 export function formatHashrate(params, hash) {
   var hashrate=params*1;
   var i = 0;
@@ -27,6 +35,22 @@ export function variance(params1,params2){
   return percent;
 }
 
+export function luck(blocks) {
+    var len = 0;
+    var sum = 0;
+    if (blocks && blocks.length > 0) {
+        for (var i = 0; i<blocks.length; i++) {
+            sum += variance(blocks[i].shares, blocks[i].difficulty);
+            len++
+        }
+    }
+    if (len > 0) {
+        var luck = sum/len;
+        return luck.toFixed(1);
+    }
+    return 0;
+}
+
 export function formatDate(ts) {
 	var date = new Date(ts * 1000);
 	return date.toLocaleString();
@@ -51,19 +75,15 @@ export function formatDuration(ts) {
 	var now = moment();
 	var duration = moment.duration(now.diff(date));
 	var label ='';
-
 	if (duration.years()> 0) {
 		label += duration.years()+ 'y, ';
 	}
-
 	if (duration.months()> 0) {
 		label += duration.months()+ 'm, ';
 	}
-
 	if (duration.days()> 0) {
 		label += duration.days()+ 'd, ';
 	}
-
 	if(duration.hours()>0) {
 		label += duration.hours()+':';
 	}
@@ -72,7 +92,7 @@ export function formatDuration(ts) {
 			label += '0';
 		}
 		label += duration.minutes()+':';
-	} else {
+	} else{
 		label += '00:'
 	}
 	if(duration.seconds()<10){

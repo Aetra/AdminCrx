@@ -1,10 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 import config from '../../.././config1.js';
-import {variance} from '../../helpers/helpers';
+import {luck} from '../../helpers/helpers';
 
-  class ContainsBlocksRight extends React.Component{
-    constructor(props) {
+class ContainsBlocksRight extends React.Component{
+  constructor(props) {
     super(props);
     this.state={
        posts:[],
@@ -29,33 +29,20 @@ import {variance} from '../../helpers/helpers';
 
  render(){
 
-   function calcDiffShares(part){
-     var totSharesFirst = part.reduce( function(tot, record) {
-         return tot + record.shares;
-     },0);
-
-     var totDiffFirst = part.reduce(function(tot, record) {
-        return tot + record.difficulty;
-    },0);
-     return variance(totSharesFirst,totDiffFirst).toFixed(0);
-   }
-
    if(this.state.posts.candidates){
+     var list=this.state.posts.candidates;
      var bT=this.state.posts.candidates.length;
 
-    /** Calcul luck & break down array */
-    var vari=calcDiffShares(this.state.posts.candidates.slice(0,8));
-    var variFirst=calcDiffShares(this.state.posts.candidates.slice(0,16));
-    var variSec=calcDiffShares(this.state.posts.candidates.slice(0,32));
-    var variThird=calcDiffShares(this.state.posts.candidates.slice(0,64));
-    var variFo=calcDiffShares(this.state.posts.candidates.slice(0,128));
-    var variFif=calcDiffShares(this.state.posts.candidates.slice(0,256));
-    var variSix=calcDiffShares(this.state.posts.candidates.slice(0,512));
-    var variSeven=calcDiffShares(this.state.posts.candidates.slice(0,1024));
-    var variEnd=calcDiffShares(this.state.posts.candidates.slice(0));
-
-
-}
+     var luck8 = luck(list.slice(0,8));
+     var luck16 = luck(list.slice(0,16));
+     var luck32 = luck(list.slice(0,32));
+     var luck64 = luck(list.slice(0,64));
+     var luck128 = luck(list.slice(0,128));
+     var luck256 = luck(list.slice(0,256));
+     var luck512 = luck(list.slice(0,512));
+     var luck1024 = luck(list.slice(0,1024));
+     var luckAll = luck(list);
+    }
 
    return(
       <div className="col-4 midBlocks">
@@ -74,7 +61,7 @@ import {variance} from '../../helpers/helpers';
             <p> 8 </p>
           </div>
           <div className="col-6">
-            <p>{vari} %</p>
+            <p>{luck8} %</p>
           </div>
         </div>
 
@@ -83,7 +70,7 @@ import {variance} from '../../helpers/helpers';
             <p> 16 </p>
           </div>
           <div className="col-6">
-            <p>{variFirst} %</p>
+            <p> {luck16} %</p>
           </div>
         </div>
 
@@ -92,7 +79,7 @@ import {variance} from '../../helpers/helpers';
             <p> 32 </p>
           </div>
           <div className="col-6">
-            <p>{variSec} %</p>
+            <p>{luck32} %</p>
           </div>
         </div>
 
@@ -101,7 +88,7 @@ import {variance} from '../../helpers/helpers';
             <p> 64 </p>
           </div>
           <div className="col-6">
-            <p>{variThird}% </p>
+            <p> {luck64} %</p>
           </div>
         </div>
 
@@ -110,7 +97,7 @@ import {variance} from '../../helpers/helpers';
             <p> 128 </p>
           </div>
           <div className="col-6">
-            <p>{variFo} %</p>
+            <p> {luck128} %</p>
           </div>
         </div>
 
@@ -119,7 +106,7 @@ import {variance} from '../../helpers/helpers';
             <p> 256 </p>
           </div>
           <div className="col-6">
-            <p>{variFif} %</p>
+            <p> {luck256} %</p>
           </div>
         </div>
 
@@ -128,7 +115,7 @@ import {variance} from '../../helpers/helpers';
             <p> 512 </p>
           </div>
           <div className="col-6">
-            <p>{variSix} %</p>
+            <p> {luck512} %</p>
           </div>
         </div>
 
@@ -137,7 +124,7 @@ import {variance} from '../../helpers/helpers';
             <p> 1024 </p>
           </div>
           <div className="col-6">
-            <p>{variSeven} %</p>
+            <p> {luck1024} %</p>
           </div>
         </div>
 
@@ -146,7 +133,7 @@ import {variance} from '../../helpers/helpers';
             <p> Total: {bT} </p>
           </div>
           <div className="col-6">
-            <p>{variEnd}%</p>
+            <p> {luckAll} %</p>
           </div>
         </div>
 
