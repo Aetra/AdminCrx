@@ -72,9 +72,8 @@ import {formatDate,formatDifficulty} from '../../helpers/helpers';
      Header:'Difficulty',
      headerStyle: { backgroundColor: '#7dcdcb' },
      accessor: 'difficulty',
-     Cell: props => formatDifficulty(props.value),
+     Cell: props => props.value,
      style:{textAlign:"center"},
-     width:100,
    },{
      Header: 'lastBeat',
      headerStyle: { backgroundColor: '#7dcdcb' },
