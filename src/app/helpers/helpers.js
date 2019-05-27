@@ -35,6 +35,22 @@ export function variance(params1,params2){
   return percent;
 }
 
+export function luck(blocks) {
+    var len = 0;
+    var sum = 0;
+    if (blocks && blocks.length > 0) {
+        for (var i = 0; i<blocks.length; i++) {
+            sum += variance(blocks[i].shares, blocks[i].difficulty);
+            len++
+        }
+    }
+    if (len > 0) {
+        var luck = sum/len;
+        return luck.toFixed(1);
+    }
+    return 0;
+}
+
 export function formatDate(ts) {
 	var date = new Date(ts * 1000);
 	return date.toLocaleString();
