@@ -4,6 +4,7 @@ import config from '../../.././config1.js';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import {formatBalance,formatDuration,progressThreshold,offline} from '../../helpers/helpers';
+var ts=((Date.now()/1000)-900000).toFixed(0);
 
 
   class ContainsUsersMid extends React.Component{
@@ -50,6 +51,8 @@ import {formatBalance,formatDuration,progressThreshold,offline} from '../../help
   }
 
  render(){
+   console.log(ts);
+
    const countUsers=this.state.posts.length;
    const columns = [{
    Header: 'Login',
@@ -163,9 +166,9 @@ import {formatBalance,formatDuration,progressThreshold,offline} from '../../help
     headerStyle: { backgroundColor: '#7dcdcb' },
     accessor:'threshold' ,
     style:{textAlign:"center"},
-    width:130,
+    width:100,
     maxWidth:150,
-    minWidth:130,
+    minWidth:100,
     sortMethod: (a, b) => {
       var aa,bb;
       if(a==="" || a===undefined ){
@@ -191,9 +194,9 @@ import {formatBalance,formatDuration,progressThreshold,offline} from '../../help
       var bb = parseFloat(b);
       return aa > bb ? 1 : -1;
     },
-    width:120,
+    width:100,
     maxWidth:100,
-    minWidth:100,
+    minWidth:50 ,
     style:{
       textAlign:"center",
       color:'#2181c8'},
@@ -204,8 +207,8 @@ import {formatBalance,formatDuration,progressThreshold,offline} from '../../help
     accessor: d=>d.lastShare,
     style:{textAlign:"center"},
     Cell:row=>(
-    formatDuration(row.value)<'15:00'?
-    <div className="" style={{color:'#14e21d'}}>{formatDuration(row.value)}</div> :
+    formatDuration(row.value)<formatDuration(ts)?
+    <div className="" style={{color:'#14e21d'}}>{formatDuration(row.value)}</div>:
     <span className="" style={{color:'black'}}>{formatDuration(row.value)}</span>
   ),
   },]

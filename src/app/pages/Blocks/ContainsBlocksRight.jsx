@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import config from '../../.././config1.js';
 import {variance} from '../../helpers/helpers';
+const reducer = (accumulator, currentValue) => accumulator + currentValue;
 
   class ContainsBlocksRight extends React.Component{
     constructor(props) {
@@ -42,17 +43,15 @@ import {variance} from '../../helpers/helpers';
 
 
    if(this.state.posts.candidates){
+     var varianceTab;
      var bT=this.state.posts.candidates.length;
-     console.log(bT);
-     function printList (list) {
+     var list=this.state.posts.candidates;
       for (var i = 0; i < list.length; i++){
-          var varianceTab= variance(list[i].shares,list[i].difficulty);
-          console.log(parseFloat(varianceTab));
+          varianceTab=variance(list[i].shares,list[i].difficulty);
+          console.log(varianceTab);
+
       }
-    }
-    printList(this.state.posts.candidates);
-    console.log(this.varianceTab);
-    var somme = 0;  // variable pour le resultat
+
 
      var b=this.state.posts.candidates[0].difficulty;
      var a=this.state.posts.candidates[0].shares;
