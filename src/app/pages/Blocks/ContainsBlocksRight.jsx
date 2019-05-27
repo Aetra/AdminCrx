@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import config from '../../.././config1.js';
 import {variance} from '../../helpers/helpers';
-const reducer = (accumulator, currentValue) => accumulator + currentValue;
 
   class ContainsBlocksRight extends React.Component{
     constructor(props) {
@@ -30,63 +29,74 @@ const reducer = (accumulator, currentValue) => accumulator + currentValue;
 
  render(){
 
-   function calcDiffShares(part){
-     var totSharesFirst = part.reduce( function(tot, record) {
-         return tot + record.shares;
-     },0);
-
-     var totDiffFirst = part.reduce(function(tot, record) {
-        return tot + record.difficulty;
-    },0);
-     return variance(totSharesFirst,totDiffFirst).toFixed(1);
-   }
-
-
    if(this.state.posts.candidates){
-     var varianceTab;
+     var varianceTab,varianceTab1,varianceTab2,varianceTab3,varianceTab4,varianceTab5,varianceTab6,varianceTab7,varianceTabT;
      var bT=this.state.posts.candidates.length;
      var list=this.state.posts.candidates;
+     var sum=0;
+     var sum1=0;
+     var sum2=0;
+     var sum3=0;
+     var sum4=0;
+     var sum5=0;
+     var sum6=0;
+     var sum7=0;
+
+     var sumT=0;
+
+
       for (var i = 0; i < list.length; i++){
+        if(i<8){
           varianceTab=variance(list[i].shares,list[i].difficulty);
-          console.log(varianceTab);
+          sum+=varianceTab;
+        }
+        if(i<16){
+          varianceTab1=variance(list[i].shares,list[i].difficulty);
+          sum1+=varianceTab1;
+        }
+        if(i<32){
+          varianceTab2=variance(list[i].shares,list[i].difficulty);
+          sum2+=varianceTab2;
+        }
+        if(i<64){
+          varianceTab3=variance(list[i].shares,list[i].difficulty);
+          sum3+=varianceTab3;
+        }
+        if(i<128){
+          varianceTab4=variance(list[i].shares,list[i].difficulty);
+          sum4+=varianceTab4;
+        }
+        if(i<256){
+          varianceTab5=variance(list[i].shares,list[i].difficulty);
+          sum5+=varianceTab5;
+        }
+        if(i<512){
+          varianceTab6=variance(list[i].shares,list[i].difficulty);
+          sum6+=varianceTab6;
+        }
+        if(i<1024){
+          varianceTab7=variance(list[i].shares,list[i].difficulty);
+          sum7+=varianceTab7;
+        }
 
+
+        if(i<=bT)
+        {
+          varianceTabT=variance(list[i].shares,list[i].difficulty);
+          sumT+=varianceTabT;
+        }
       }
+      sum=(sum/8).toFixed(1);
+      sum1=(sum1/16).toFixed(1);
+      sum2=(sum2/32).toFixed(1);
+      sum3=(sum3/64).toFixed(1);
+      sum4=(sum4/128).toFixed(1);
+      sum5=(sum5/256).toFixed(1);
+      sum6=(sum6/512).toFixed(1);
+      sum7=(sum7/1024).toFixed(1);
 
 
-     var b=this.state.posts.candidates[0].difficulty;
-     var a=this.state.posts.candidates[0].shares;
-
-     var b1=this.state.posts.candidates[1].difficulty;
-     var a1=this.state.posts.candidates[1].shares;
-
-     var b2=this.state.posts.candidates[2].difficulty;
-     var a2=this.state.posts.candidates[2].shares;
-
-     var b3=this.state.posts.candidates[3].difficulty;
-     var a3=this.state.posts.candidates[3].shares;
-
-     var b4=this.state.posts.candidates[4].difficulty;
-     var a4=this.state.posts.candidates[4].shares;
-
-     var b5=this.state.posts.candidates[5].difficulty;
-     var a5=this.state.posts.candidates[5].shares;
-
-     var b6=this.state.posts.candidates[6].difficulty;
-     var a6=this.state.posts.candidates[6].shares;
-
-     var b7=this.state.posts.candidates[7].difficulty;
-     var a7=this.state.posts.candidates[7].shares;
-
-     var var1=parseFloat(variance(a,b).toFixed(1));
-     var var2=parseFloat(variance(a1,b1).toFixed(1));
-     var var3=parseFloat(variance(a2,b2).toFixed(1));
-     var var4=parseFloat(variance(a3,b3).toFixed(1));
-     var var5=parseFloat(variance(a4,b4).toFixed(1));
-     var var6=parseFloat(variance(a5,b5).toFixed(1));
-     var var7=parseFloat(variance(a6,b6).toFixed(1));
-     var var8=parseFloat(variance(a7,b7).toFixed(1));
-     var ult=(var1+var2+var3+var4+var5+var6+var7+var8);
-     var ult2=((var1+var2+var3+var4+var5+var6+var7+var8)/8);
+      sumT=(sumT/bT).toFixed(1);
 }
 
    return(
@@ -106,7 +116,7 @@ const reducer = (accumulator, currentValue) => accumulator + currentValue;
             <p> 8 </p>
           </div>
           <div className="col-6">
-            <p>{ult2}</p>
+            <p>{sum}</p>
           </div>
         </div>
 
@@ -115,7 +125,7 @@ const reducer = (accumulator, currentValue) => accumulator + currentValue;
             <p> 16 </p>
           </div>
           <div className="col-6">
-            <p> %</p>
+            <p> {sum1}</p>
           </div>
         </div>
 
@@ -124,7 +134,7 @@ const reducer = (accumulator, currentValue) => accumulator + currentValue;
             <p> 32 </p>
           </div>
           <div className="col-6">
-            <p> %</p>
+            <p>{sum2}</p>
           </div>
         </div>
 
@@ -133,7 +143,7 @@ const reducer = (accumulator, currentValue) => accumulator + currentValue;
             <p> 64 </p>
           </div>
           <div className="col-6">
-            <p>% </p>
+            <p>{sum3}</p>
           </div>
         </div>
 
@@ -142,7 +152,7 @@ const reducer = (accumulator, currentValue) => accumulator + currentValue;
             <p> 128 </p>
           </div>
           <div className="col-6">
-            <p> %</p>
+            <p> {sum4}</p>
           </div>
         </div>
 
@@ -151,7 +161,7 @@ const reducer = (accumulator, currentValue) => accumulator + currentValue;
             <p> 256 </p>
           </div>
           <div className="col-6">
-            <p> %</p>
+            <p> {sum5}</p>
           </div>
         </div>
 
@@ -160,7 +170,7 @@ const reducer = (accumulator, currentValue) => accumulator + currentValue;
             <p> 512 </p>
           </div>
           <div className="col-6">
-            <p> %</p>
+            <p> {sum6}</p>
           </div>
         </div>
 
@@ -169,7 +179,7 @@ const reducer = (accumulator, currentValue) => accumulator + currentValue;
             <p> 1024 </p>
           </div>
           <div className="col-6">
-            <p> %</p>
+            <p> {sum7}</p>
           </div>
         </div>
 
@@ -178,7 +188,7 @@ const reducer = (accumulator, currentValue) => accumulator + currentValue;
             <p> Total: {bT} </p>
           </div>
           <div className="col-6">
-            <p>%</p>
+            <p>{sumT}</p>
           </div>
         </div>
 

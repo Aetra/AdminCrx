@@ -3,7 +3,7 @@ import axios from 'axios';
 import config from '../../.././config1.js';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
-import {formatBalance,formatDuration,progressThreshold,offline} from '../../helpers/helpers';
+import {formatBalance,formatDuration,progressThreshold} from '../../helpers/helpers';
 var ts=((Date.now()/1000)-900000).toFixed(0);
 
 
