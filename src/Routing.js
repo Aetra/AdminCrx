@@ -51,6 +51,8 @@ class RootingTest extends React.Component {
       <PrivateRoute path='/users' component={Users}/>
       <PrivateRoute path='/liveMiners' component={LiveMiners}/>
       <PrivateRoute path='/finance' component={Finance}/>
+      <PrivateRoute path='/charts' component={Finance}/>
+
       </div>
 
       <Route path="/login" exact component={ContainsLogIn2}/>

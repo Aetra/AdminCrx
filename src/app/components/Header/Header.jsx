@@ -24,6 +24,9 @@ import { history } from '../.././helpers';
                 <NavLink to= "/home"> Home </NavLink>
               </li>
               <li>
+                <NavLink to="/charts">Charts</NavLink>
+              </li>
+              <li>
                 <NavLink to="/blocks">Blocks</NavLink>
               </li>
               <li>
