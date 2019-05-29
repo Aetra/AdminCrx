@@ -8,20 +8,32 @@ export default class Dashboard extends Component {
         labels:["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     }
 
-    render() {
-      var hashratev=0;
-      const {posts}=this.state;
+      axiosResult(){
+       axios.get("http://localhost:3000/ETH/history24h")
+            .then(response=>{
+              if (response.status === 200) {
+                this.setState({posts:response.data});
+              }
+              else {
+                throw new Error("Error");
+              }
+            })
+            .catch(error => {
+              console.log("api error:" + error);
+              throw error;
+            });
+      }
+
+    render(){
       if(this.state){
         if(this.state.posts[0]){
           console.log(this.state.posts[0].hashrate);
-          hashratev=this.state.posts[0].hashrate;
         }
       }
         const { posts, labels } = this.state;
         return (
             <div className={classes.container}>
             <header>
-                <img src={chartIcon} alt="bar chart icon" />
                 <h1>Sales Dashboard</h1>
             </header>
                 <LineGraph
