@@ -2,6 +2,7 @@ import moment from "moment";
 import React from 'react';
 
 
+
 export function offline(ts) {
   var date = moment.unix(ts);
 	var now = moment();
@@ -9,6 +10,12 @@ export function offline(ts) {
   var duration = moment.duration(now.diff(date));
   return duration.asSeconds()>900;
 }
+
+export function removeComa(params){
+  params=params.replace(',', '');
+  return params=params.replace(',', '');
+}
+
 export function formatHashrate(params, hash) {
   var hashrate=params*1;
   var i = 0;
