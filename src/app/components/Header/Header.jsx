@@ -6,10 +6,10 @@ import { authenticationService } from '../.././_services';
 import { history } from '../.././helpers';
   class Header extends React.Component{
 
-        logout() {
-            authenticationService.logout();
-            history.push('/login');
-        }
+  logout() {
+    authenticationService.logout();
+    history.push('/login');
+  }
 
   render(){
     return(

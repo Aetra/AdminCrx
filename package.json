@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
+    "chart.js": "^2.8.0",
     "dotenv": "^7.0.0",
     "formik": "^1.5.4",
     "highcharts-react-official": "^2.1.3",
