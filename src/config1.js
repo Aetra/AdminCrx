@@ -7,6 +7,7 @@ config.set({
     refreshInterval:2000,
     refreshIntervalUsers:60000,
     refreshIntervalFinance:30000,
+    refreshIntervalDiag:10000000,
 
     fakeAPI:'http://localhost:3000'
 });
