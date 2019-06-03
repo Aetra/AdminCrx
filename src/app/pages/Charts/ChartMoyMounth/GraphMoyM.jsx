@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import classes from "../Dashboard.module.css";
-import LineGraph from "./LineGraph";
+import LineGraphMoyM from "./LineGraphMoyM";
 import axios from 'axios';
 import {formatDate} from '../../../helpers/helpers';
 import config from '../../../.././config1.js';
 
 
- class GraphHr24h extends Component {
+ class GraphMoyM extends Component {
   constructor(props) {
   super(props);
   this.state={
@@ -16,26 +16,23 @@ import config from '../../../.././config1.js';
 }
 
       axiosResult(){
-       axios.get("http://localhost:3000/ETH/history/day/24h")
+       axios.get("http://localhost:3000/ETH/history/mounth/1559563778")
             .then(response=>{
               if (response.status === 200) {
                 if(response.data){
-                  var hr = Object.keys(response.data).map((value) => {
-                        let m = response.data[value].hashrate;
+                  var moyhr = Object.keys(response.data).map((value) => {
+                        let m = response.data[value].moyHrate;
                         return m;
                 });
                 var ts = Object.keys(response.data).map((value) => {
-                      console.log("tt2");
                       let m = response.data[value].timestamp;
                       m=formatDate(m);
                       return m;
               });
                 }
               // Sort miners by hashrat
-                this.setState({posts:hr});
+                this.setState({posts:moyhr});
                 this.setState({labels:ts});
-                console.log(hr);
-                console.log(ts);
               }
               else {
                 throw new Error("Error");
@@ -56,17 +53,16 @@ import config from '../../../.././config1.js';
     render(){
       const data=this.state.posts;
       const labels=this.state.labels;
-      console.log(labels);
         return (
             <div className={classes.container}>
             <header>
-                <h1>Hashrate of last 24 hours</h1>
+                <h1>Average Hashrate per mounth</h1>
             </header>
-                <LineGraph
+                <LineGraphMoyM
                   data={data}
                   labels={labels}/>
             </div>
         )
     }
 }
-export default GraphHr24h;
+export default GraphMoyM;

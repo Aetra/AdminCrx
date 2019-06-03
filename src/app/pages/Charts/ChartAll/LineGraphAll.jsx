@@ -9,7 +9,7 @@ Chart.defaults.global.defaultFontFamily = "'PT Sans', sans-serif"
 Chart.defaults.global.legend.display = false;
 //--Chart Style Options--//
 
-export default class LineGraph extends PureComponent {
+export default class LineGraphAll extends PureComponent {
     chartRef = React.createRef();
 
     componentDidMount() {
@@ -22,7 +22,7 @@ export default class LineGraph extends PureComponent {
 
     buildChart = () => {
         const myChartRef = this.chartRef.current.getContext("2d");
-        const { data, average, labels } = this.props;
+        const { data,dataM,dataW, average, labels } = this.props;
 
         if (typeof myLineChart !== "undefined") myLineChart.destroy();
 
@@ -37,6 +37,18 @@ export default class LineGraph extends PureComponent {
                         data: data,
                         fill: false,
                         borderColor: "#6da6d2"
+                    },
+                    {
+                      label:"Miners",
+                      data: dataM,
+                      fill: false,
+                      borderColor: "#bbf755"
+                    },
+                    {
+                      label:"Workers",
+                      data: dataW,
+                      fill: false,
+                      borderColor: "#d26d6d"
                     }
                 ]
             },

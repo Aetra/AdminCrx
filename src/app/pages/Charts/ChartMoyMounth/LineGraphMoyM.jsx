@@ -9,7 +9,7 @@ Chart.defaults.global.defaultFontFamily = "'PT Sans', sans-serif"
 Chart.defaults.global.legend.display = false;
 //--Chart Style Options--//
 
-export default class LineGraph extends PureComponent {
+export default class LineGraphMoyM extends PureComponent {
     chartRef = React.createRef();
 
     componentDidMount() {
@@ -36,7 +36,7 @@ export default class LineGraph extends PureComponent {
                         label: "Moyenne hashrate",
                         data: data,
                         fill: false,
-                        borderColor: "#6da6d2"
+                        borderColor: "#d28c6d"
                     }
                 ]
             },
