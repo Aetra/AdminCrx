@@ -33,65 +33,16 @@ export default class LineGraph extends Component {
                 labels: labels,
                 datasets: [
                     {
-                        label: "Sales",
+                        label: "hashrate",
                         data: data,
                         fill: false,
-                        borderColor: "#6610f2"
+                        borderColor: "#6da6d2"
                     }
                 ]
             },
             options: {
-              responsive: true,
-              labels: [],
-              tooltips: {
-              mode: 'label'
-              },
-              elements: {
-              line: {
-              fill: false
-              }
-              },
-              scales: {
-
-              xAxes: [
-                {
-                  display: true,
-                  gridLines: {
-                    display: false
-                  },
-
-                  labels: [],
-                }
-              ],
-              yAxes: [
-                {
-                  type: 'linear',
-                  display: true,
-                  position: 'left',
-                  id: 'y-axis-1',
-                  gridLines: {
-                    display: false
-                  },
-                  labels: {
-                    show: true
-                  }
-                },
-                {
-                  type: 'linear',
-                  display: true,
-                  position: 'right',
-                  id: 'y-axis-2',
-                  gridLines: {
-                    display: false
-                  },
-                  labels: {
-                    show: true
-                  }
-                }
-              ]
-
-              }
-              }
+                //Customize chart options
+            }
         });
 
     }

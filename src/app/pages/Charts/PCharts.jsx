@@ -1,6 +1,6 @@
 import React from 'react';
 import LineGraph from "./LineGraph";
-import Graph from "./Graph.jsx";
+import GraphHr24h from "./GraphHr24h.jsx";
 import "./style.css";
 
 class PCharts extends React.Component{
@@ -8,11 +8,8 @@ class PCharts extends React.Component{
  render(){
    return(
     <div className="mt-2 charts">
-      <div className="mt-3">
-        <LineGraph/>
-      </div>
       <div className="mt-2">
-        <Graph/>
+        <GraphHr24h/>
       </div>
     </div>
 
