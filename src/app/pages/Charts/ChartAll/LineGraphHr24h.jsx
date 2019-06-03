@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import Chart from "chart.js";
 import {Line as LineChart} from 'chart.js';
-import classes from "./LineGraph.module.css";
+import classes from "../LineGraph.module.css";
 let myLineChart;
 
 //--Chart Style Options--//
@@ -9,7 +9,7 @@ Chart.defaults.global.defaultFontFamily = "'PT Sans', sans-serif"
 Chart.defaults.global.legend.display = false;
 //--Chart Style Options--//
 
-export default class LineGraph extends Component {
+export default class LineGraph extends PureComponent {
     chartRef = React.createRef();
 
     componentDidMount() {
@@ -40,15 +40,11 @@ export default class LineGraph extends Component {
                     }
                 ]
             },
-            options: {
-                //Customize chart options
-            }
+            options: {}
         });
-
     }
 
     render() {
-
         return (
             <div className={classes.graphContainer}>
                 <canvas

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import classes from "./Dashboard.module.css";
-import LineGraph from "./LineGraph";
+import classes from "../Dashboard.module.css";
+import LineGraphHr24h from "./LineGraphHr24h";
 import axios from 'axios';
-import {formatDate} from '../../helpers/helpers';
+import {formatDate} from '../../../helpers/helpers';
+import config from '../../../.././config1.js';
 
 
  class GraphHr24h extends Component {
@@ -14,8 +15,7 @@ import {formatDate} from '../../helpers/helpers';
    };
 }
 
-
-      componentDidMount(){
+      axiosResult(){
        axios.get("http://localhost:3000/ETH/history24h")
             .then(response=>{
               if (response.status === 200) {
@@ -46,6 +46,11 @@ import {formatDate} from '../../helpers/helpers';
               throw error;
             });
       }
+      componentDidMount(){
+        this.axiosResult = this.axiosResult.bind(this);
+        this.axiosResult();
+        this.interval=setInterval(this.axiosResult, config.get("refreshIntervalGraph"))
+      }
 
     render(){
       const data=this.state.posts;
@@ -54,9 +59,9 @@ import {formatDate} from '../../helpers/helpers';
         return (
             <div className={classes.container}>
             <header>
-                <h1>Sales Dashboard</h1>
+                <h1>Hashrate of last 24 hours</h1>
             </header>
-                <LineGraph
+                <LineGraphHr24h
                   data={data}
                   labels={labels}/>
             </div>

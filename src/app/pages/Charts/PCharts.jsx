@@ -1,6 +1,6 @@
 import React from 'react';
-import LineGraph from "./LineGraph";
-import GraphHr24h from "./GraphHr24h.jsx";
+import GraphHr24h from "./ChartHrLast24h/GraphHr24h";
+import GraphMoyM from "./ChartMoyMounth/GraphMoyM";
 import "./style.css";
 
 class PCharts extends React.Component{
