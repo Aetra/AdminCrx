@@ -8,7 +8,7 @@ import axios from 'axios';
   super(props);
   this.state={
      posts:[],
-     labels:["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+     labels:[]
    };
 }
 
@@ -17,7 +17,11 @@ import axios from 'axios';
        axios.get("http://localhost:3000/ETH/history24h")
             .then(response=>{
               if (response.status === 200) {
-                this.setState({posts:response.data});
+                response.data = Object.keys(response.data.miners).map((value) => {
+                  let m = response.data.miners[value];
+                  m.login = value;
+                  return m;
+                  });                this.setState({labels:response.data});
               }
               else {
                 throw new Error("Error");
@@ -31,26 +35,30 @@ import axios from 'axios';
 
     render(){
 
-        const labels = this.state.labels;
-        var ui=this.state.posts;
-        if(this.state){
-          if(this.state.posts[0]){
-            ui=this.state.posts[0].hashrate;
-            var posts=this.state.posts[1].hashrate;
-            console.log(this.state.posts[0].hashrate);
+        var labels=0;
+        var len = 0;
+        var sum = 0;
+        if(this.state.posts){
+          if (this.state.posts && this.state.posts.length > 0) {
+              for (var i = 0; i<this.state.posts.length; i++) {
+                  console.log("ui");
+                  sum= this.state.posts[i].hashrate;
+                  labels=this.state.posts[i].timestamp;
+                   console.log(sum);
+                   console.log(labels);
+                  len++
+              }
           }
         }
 
-        console.log(ui);
         return (
             <div className={classes.container}>
             <header>
                 <h1>Sales Dashboard</h1>
-                <p>{ui}</p>
             </header>
                 <LineGraph
-                    data={ui}
-                    labels={labels} />
+                  data={sum}
+                  labels={labels}/>
             </div>
         )
     }

@@ -37,18 +37,61 @@ export default class LineGraph extends Component {
                         data: data,
                         fill: false,
                         borderColor: "#6610f2"
-                    },
-                    {
-                        label: "National Average",
-                        data: average,
-                        fill: false,
-                        borderColor: "#E0E0E0"
                     }
                 ]
             },
             options: {
-                //Customize chart options
-            }
+              responsive: true,
+              labels: [],
+              tooltips: {
+              mode: 'label'
+              },
+              elements: {
+              line: {
+              fill: false
+              }
+              },
+              scales: {
+
+              xAxes: [
+                {
+                  display: true,
+                  gridLines: {
+                    display: false
+                  },
+
+                  labels: [],
+                }
+              ],
+              yAxes: [
+                {
+                  type: 'linear',
+                  display: true,
+                  position: 'left',
+                  id: 'y-axis-1',
+                  gridLines: {
+                    display: false
+                  },
+                  labels: {
+                    show: true
+                  }
+                },
+                {
+                  type: 'linear',
+                  display: true,
+                  position: 'right',
+                  id: 'y-axis-2',
+                  gridLines: {
+                    display: false
+                  },
+                  labels: {
+                    show: true
+                  }
+                }
+              ]
+
+              }
+              }
         });
 
     }
