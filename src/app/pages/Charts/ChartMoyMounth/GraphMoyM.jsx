@@ -15,7 +15,7 @@ import config from '../../../.././config1.js';
    };
 }
 
-      axiosResult(){
+      componentDidMount(){
        axios.get("http://localhost:8080/ETH/history/mounth/1559563778")
             .then(response=>{
               if (response.status === 200) {
@@ -42,11 +42,7 @@ import config from '../../../.././config1.js';
               throw error;
             });
       }
-      componentDidMount(){
-        this.axiosResult = this.axiosResult.bind(this);
-        this.axiosResult();
-        this.interval=setInterval(this.axiosResult, config.get("refreshIntervalGraph"))
-      }
+
 
 
     render(){
