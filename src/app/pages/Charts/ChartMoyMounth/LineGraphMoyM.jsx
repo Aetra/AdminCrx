@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import Chart from "chart.js";
 import {Line as LineChart} from 'chart.js';
-import classes from "../LineGraph.module.css";
+import classes from "../moduleGraph/LineGraph.module.css";
 let myLineChart;
 
 //--Chart Style Options--//
@@ -36,11 +36,14 @@ export default class LineGraphMoyM extends PureComponent {
                         label: "Moyenne hashrate",
                         data: data,
                         fill: false,
-                        borderColor: "#d28c6d"
+                        borderColor: "#6da6d2"
                     }
                 ]
             },
-            options: {}
+            options: {
+              responsive: true,
+
+            }
         });
     }
 

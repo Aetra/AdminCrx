@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import classes from "../Dashboard.module.css";
+import classes from "../moduleGraph/Dashboard.module.css";
 import LineGraphMoyM from "./LineGraphMoyM";
 import axios from 'axios';
 import {formatDate} from '../../../helpers/helpers';
@@ -16,7 +16,7 @@ import config from '../../../.././config1.js';
 }
 
       axiosResult(){
-       axios.get("http://localhost:3000/ETH/history/mounth/1559563778")
+       axios.get("http://localhost:8080/ETH/history/mounth/1559563778")
             .then(response=>{
               if (response.status === 200) {
                 if(response.data){
@@ -30,7 +30,6 @@ import config from '../../../.././config1.js';
                       return m;
               });
                 }
-              // Sort miners by hashrat
                 this.setState({posts:moyhr});
                 this.setState({labels:ts});
               }
@@ -56,7 +55,7 @@ import config from '../../../.././config1.js';
         return (
             <div className={classes.container}>
             <header>
-                <h1>Average Hashrate per mounth</h1>
+                <h1 className='font-weight-light'>Average Hashrate per mounth</h1>
             </header>
                 <LineGraphMoyM
                   data={data}

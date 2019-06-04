@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import Chart from "chart.js";
 import {Line as LineChart} from 'chart.js';
-import classes from "../moduleGraph/LineGraph.module.css";
+import classes from "../moduleGraph/LineGraph24h.module.css";
 let myLineChart;
 
 //--Chart Style Options--//
@@ -9,10 +9,10 @@ Chart.defaults.global.defaultFontFamily = "'PT Sans', sans-serif"
 Chart.defaults.global.legend.display = false;
 //--Chart Style Options--//
 
-export default class LineGraphAll extends PureComponent {
+export default class LineGraphMiWo24h extends PureComponent {
     chartRef = React.createRef();
 
-    componentDidMount() {
+    componentDidMount(){
         this.buildChart();
     }
 
@@ -22,7 +22,7 @@ export default class LineGraphAll extends PureComponent {
 
     buildChart = () => {
         const myChartRef = this.chartRef.current.getContext("2d");
-        const { data,dataM,dataW, average, labels } = this.props;
+        const { dataM,dataW, average, labels } = this.props;
 
         if (typeof myLineChart !== "undefined") myLineChart.destroy();
 
@@ -33,30 +33,22 @@ export default class LineGraphAll extends PureComponent {
                 labels: labels,
                 datasets: [
                     {
-                        label: "hashrate",
-                        data: data,
+                        label: "Workers",
+                        data: dataW,
                         fill: false,
-                        borderColor: "#6da6d2"
+                        borderColor: "#19c819"
                     },
                     {
-                      label:"Miners",
-                      data: dataM,
-                      fill: false,
-                      borderColor: "#ffb455"
-                    },
-                    {
-                      label:"Workers",
-                      data: dataW,
-                      fill: false,
-                      borderColor: "#19c819"
+                        label: "Miners",
+                        data: dataM,
+                        fill: false,
+                        borderColor: "#ffb455"
                     }
                 ]
             },
             options: {
-               responsive: true,
-               legend: {
-                 display:false,
-               },
+              responsive: true,
+
             }
         });
     }

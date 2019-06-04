@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import classes from "../moduleGraph/Dashboard24h.module.css";
-import LineGraphHr24h from "./LineGraphHr24h";
+import LineGraphMiWo24h from "./LineGraphMiWo24h";
 import axios from 'axios';
 import {formatDate} from '../../../helpers/helpers';
 import config from '../../../.././config1.js';
 
 
- class GraphHr24h extends Component {
+ class GraphMiWo24h extends Component {
   constructor(props) {
   super(props);
   this.state={
-     posts:[],
+     postsW:[],
+     postsM:[],
      labels:[]
    };
 }
@@ -21,17 +22,22 @@ import config from '../../../.././config1.js';
               if (response.status === 200) {
                 if(response.data){
                   //map
-                  var hr = Object.keys(response.data).map((value) => {
-                        let m = response.data[value].hashrate;
+                  var  workers = Object.keys(response.data).map((value) => {
+                        let m = response.data[value].workersT;
                         return m;
-                });
-                var ts = Object.keys(response.data).map((value) => {
-                      let m = response.data[value].timestamp;
-                      m=formatDate(m);
-                      return m;
-              });
+                  });
+                  var miners = Object.keys(response.data).map((value) => {
+                        let m = response.data[value].minersT;
+                        return m;
+                  });
+                  var ts = Object.keys(response.data).map((value) => {
+                        let m = response.data[value].timestamp;
+                        m=formatDate(m);
+                        return m;
+                  });
                 }
-                this.setState({posts:hr});
+                this.setState({postsW:workers});
+                this.setState({postsM:miners});
                 this.setState({labels:ts});
               }
               else {
@@ -50,18 +56,21 @@ import config from '../../../.././config1.js';
       }
 
     render(){
-      const data=this.state.posts;
+      const dataM=this.state.postsM;
+      console.log(dataM);
+      const dataW=this.state.postsW;
       const labels=this.state.labels;
         return (
             <div className={classes.container}>
             <header>
-                <h1 className='font-weight-light'>Hashrate of last 24 hours</h1>
+                <h1 className='font-weight-light'>Workers & Miners of last 24 hours</h1>
             </header>
-                <LineGraphHr24h
-                  data={data}
+                <LineGraphMiWo24h
+                  dataM={dataM}
+                  dataW={dataW}
                   labels={labels}/>
             </div>
         )
     }
 }
-export default GraphHr24h;
+export default GraphMiWo24h;

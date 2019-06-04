@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import classes from "../Dashboard.module.css";
+import classes from "../moduleGraph/Dashboard.module.css";
 import LineGraphAll from "./LineGraphAll";
 import axios from 'axios';
 import {formatDate} from '../../../helpers/helpers';
@@ -10,7 +10,6 @@ import config from '../../../.././config1.js';
   constructor(props) {
   super(props);
   this.state={
-     postsH:[],
      postsM:[],
      postsW:[],
      labels:[]
@@ -18,15 +17,10 @@ import config from '../../../.././config1.js';
 }
 
       axiosResult(){
-       axios.get("http://localhost:3000/ETH/history/totalLong")
+       axios.get("http://localhost:8080/ETH/history/totalLong")
             .then(response=>{
               if (response.status === 200) {
                 if(response.data){
-                  console.log("ui");
-                  var moyHr = Object.keys(response.data).map((value) => {
-                        let m = response.data[value].moyHrate;
-                        return m;
-                  });
                   var moyMiners = Object.keys(response.data).map((value) => {
                         let m = response.data[value].moyMiners;
                         return m;
@@ -41,8 +35,6 @@ import config from '../../../.././config1.js';
                         return m;
                   });
                 }
-              // Sort miners by hashrat
-                this.setState({postsH:moyHr});
                 this.setState({postsM:moyMiners});
                 this.setState({postsW:moyWorkers});
                 this.setState({labels:ts});
@@ -65,19 +57,16 @@ import config from '../../../.././config1.js';
 
 
     render(){
-      const data1=this.state.postsH;
       const data2=this.state.postsM;
       const data3=this.state.postsW;
 
       const labels=this.state.labels;
-      console.log(labels);
         return (
             <div className={classes.container}>
             <header>
-                <h1>Data of all time</h1>
+                <h1 className='font-weight-light'>Data of all time</h1>
             </header>
                 <LineGraphAll
-                  data={data1}
                   dataM={data2}
                   dataW={data3}
                   labels={labels}/>
