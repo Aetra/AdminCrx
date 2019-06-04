@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import classes from "../moduleGraph/Dashboard24h.module.css";
 import LineGraphMiWo24h from "./LineGraphMiWo24h";
 import axios from 'axios';
-import {formatDate} from '../../../helpers/helpers';
 import config from '../../../.././config1.js';
-
+import moment from "moment";
 
  class GraphMiWo24h extends Component {
   constructor(props) {
@@ -31,7 +30,7 @@ import config from '../../../.././config1.js';
                   });
                   var ts = Object.keys(response.data).map((value) => {
                         let m = response.data[value].timestamp;
-                        m=formatDate(m);
+                        m=moment(m*1000).format('h:mm:ss a');
                         return m;
                   });
                 }
@@ -50,8 +49,10 @@ import config from '../../../.././config1.js';
       }
 
     render(){
+      var d = '12/12/1955 12:00:00 AM';
+d = d.split(' ')[0];
+console.log(d);
       const dataM=this.state.postsM;
-      console.log(dataM);
       const dataW=this.state.postsW;
       const labels=this.state.labels;
         return (

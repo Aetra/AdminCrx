@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import classes from "../moduleGraph/Dashboard24h.module.css";
 import LineGraphHr24h from "./LineGraphHr24h";
 import axios from 'axios';
-import {formatDate} from '../../../helpers/helpers';
+import moment from "moment";
 import config from '../../../.././config1.js';
 
 
@@ -27,7 +27,7 @@ import config from '../../../.././config1.js';
                 });
                 var ts = Object.keys(response.data).map((value) => {
                       let m = response.data[value].timestamp;
-                      m=formatDate(m);
+                      m=moment(m*1000).format('h:mm:ss a');
                       return m;
               });
                 }

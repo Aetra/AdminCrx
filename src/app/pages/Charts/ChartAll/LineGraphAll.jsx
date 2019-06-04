@@ -33,19 +33,15 @@ export default class LineGraphAll extends PureComponent {
                 labels: labels,
                 datasets: [
                     {
-                        label: "hashrate",
-                        data: data,
-                        fill: false,
-                        borderColor: "#6da6d2"
-                    },
-                    {
-                      label:"Miners",
+                      label:"Average Miners",
+                      yAxisID: 'Miners',
                       data: dataM,
                       fill: false,
                       borderColor: "#ffb455"
                     },
                     {
-                      label:"Workers",
+                      label:"Average Workers",
+                      yAxisID: 'Workers',
                       data: dataW,
                       fill: false,
                       borderColor: "#19c819"
@@ -54,6 +50,18 @@ export default class LineGraphAll extends PureComponent {
             },
             options: {
                responsive: true,
+               scales: {
+                   yAxes: [{
+                     id: 'Workers',
+                     type: 'linear',
+                     position: 'left',
+                   }, {
+                     id: 'Miners',
+                     type: 'linear',
+                     position: 'right',
+
+                   }]
+                 }
             }
         });
     }

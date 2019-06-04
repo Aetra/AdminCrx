@@ -34,12 +34,14 @@ export default class LineGraphMiWo24h extends PureComponent {
                 datasets: [
                     {
                         label: "Workers",
+                        yAxisID: 'Workers',
                         data: dataW,
                         fill: false,
                         borderColor: "#19c819"
                     },
                     {
                         label: "Miners",
+                        yAxisID: 'Miners',
                         data: dataM,
                         fill: false,
                         borderColor: "#ffb455"
@@ -48,6 +50,18 @@ export default class LineGraphMiWo24h extends PureComponent {
             },
             options: {
               responsive: true,
+              scales: {
+                  yAxes: [{
+                    id: 'Workers',
+                    type: 'linear',
+                    position: 'left',
+                  }, {
+                    id: 'Miners',
+                    type: 'linear',
+                    position: 'right',
+
+                  }]
+                }
 
             }
         });

@@ -42,8 +42,18 @@ export default class LineGraphHr24h extends PureComponent {
             },
             options: {
               responsive: true,
+              scales: {
+                  yAxes: [{
+                    id: 'hashrate',
+                    type: 'linear',
+                    position: 'left',
+                    ticks: {
+                        //min & max
 
-            }
+                    }
+                  }]
+                }
+              }
         });
     }
 

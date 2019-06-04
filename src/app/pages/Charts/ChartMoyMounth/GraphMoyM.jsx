@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import classes from "../moduleGraph/Dashboard.module.css";
 import LineGraphMoyM from "./LineGraphMoyM";
 import axios from 'axios';
-import {formatDate} from '../../../helpers/helpers';
 import config from '../../../.././config1.js';
+import moment from "moment";
+import 'moment/locale/fr'  // without this line it didn't work
 
 
  class GraphMoyM extends Component {
@@ -26,7 +27,9 @@ import config from '../../../.././config1.js';
                 });
                 var ts = Object.keys(response.data).map((value) => {
                       let m = response.data[value].timestamp;
-                      m=formatDate(m);
+                      moment.locale('fr');
+
+                      m=moment(m*1000).format("dddd Do MMMM YY");
                       return m;
               });
                 }
@@ -46,6 +49,7 @@ import config from '../../../.././config1.js';
 
 
     render(){
+
       const data=this.state.posts;
       const labels=this.state.labels;
         return (

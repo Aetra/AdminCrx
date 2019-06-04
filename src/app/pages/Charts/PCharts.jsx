@@ -11,7 +11,7 @@ class PCharts extends React.Component{
 
  render(){
    return(
-    <div className="container-fluid charts">
+    <div className=" charts">
       <div className="row">
         <div className="col-6">
           <GraphHr24h/>
