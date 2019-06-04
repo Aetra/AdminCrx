@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import Chart from "chart.js";
 import {Line as LineChart} from 'chart.js';
-import classes from "../LineGraph.module.css";
+import classes from "../moduleGraph/LineGraph24h.module.css";
 let myLineChart;
 
 //--Chart Style Options--//
@@ -40,7 +40,10 @@ export default class LineGraphHr24h extends PureComponent {
                     }
                 ]
             },
-            options: {}
+            options: {
+              responsive: true,
+
+            }
         });
     }
 
