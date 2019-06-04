@@ -15,7 +15,6 @@ import config from '../../../.././config1.js';
      labels:[]
    };
 }
-
       componentDidMount(){
        axios.get("http://localhost:8080/ETH/history24h")
             .then(response=>{
