@@ -57,14 +57,6 @@ export default class LineGraphAll extends PureComponent {
                legend: {
                  display:false,
                },
-               scales: {
-                  xAxes: [{
-
-                  }],
-                  yAxes: [{
-
-                  }]
-              }
             }
         });
     }
