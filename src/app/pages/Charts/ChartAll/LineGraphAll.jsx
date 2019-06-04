@@ -54,9 +54,6 @@ export default class LineGraphAll extends PureComponent {
             },
             options: {
                responsive: true,
-               legend: {
-                 display:false,
-               },
             }
         });
     }
