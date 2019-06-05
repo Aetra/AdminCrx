@@ -35,6 +35,7 @@ import config from '../../../.././config1.js';
                       return m;
               });
                 }
+
                 this.setState({posts:hr});
                 this.setState({labels:ts});
               }

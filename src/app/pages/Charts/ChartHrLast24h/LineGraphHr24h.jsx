@@ -42,20 +42,7 @@ export default class LineGraphHr24h extends PureComponent {
             options: {
               responsive: true,
               scales: {
-                  yAxes: [{
-                    id: 'hashrate',
-                    type: 'linear',
-                    position: 'left',
-                    ticks: {
-                    //  this.chartMin = Math.round((this.chartMin*0.55)/Math.pow(10,Math.round(Math.log10(this.chartMin))-1))*Math.pow(10,Math.round(Math.log10(this.chartMin))-1);
-                      //this.chartMax = Math.round((this.chartMax*1.2)/Math.pow(10,Math.round(Math.log10(this.chartMax))-1))*Math.pow(10,Math.round(Math.log10(this.chartMax))-1);
-                        min:this.chartMin = Math.round((this.chartMin*0.55)/Math.pow(10,Math.round(Math.log10(this.chartMin))-1))*Math.pow(10,Math.round(Math.log10(this.chartMin))-1),
-
-                        max:this.chartMax = Math.round((this.chartMax*1.2)/Math.pow(10,Math.round(Math.log10(this.chartMax))-1))*Math.pow(10,Math.round(Math.log10(this.chartMax))-1),
-                        stepSize:50000
-
-                    }
-                  }]
+      
                 }
               }
         });
