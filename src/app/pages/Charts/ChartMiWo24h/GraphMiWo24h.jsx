@@ -15,7 +15,7 @@ import moment from "moment";
    };
 }
       componentDidMount(){
-       axios.get("http://localhost:8080/ETH/history24h")
+       axios.get(config.get("URLAPIGRAPH")+"24h")
             .then(response=>{
               if (response.status === 200) {
                 if(response.data){
@@ -49,9 +49,6 @@ import moment from "moment";
       }
 
     render(){
-      var d = '12/12/1955 12:00:00 AM';
-d = d.split(' ')[0];
-console.log(d);
       const dataM=this.state.postsM;
       const dataW=this.state.postsW;
       const labels=this.state.labels;

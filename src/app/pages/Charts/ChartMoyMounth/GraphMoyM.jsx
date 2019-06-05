@@ -17,7 +17,7 @@ import 'moment/locale/fr'  // without this line it didn't work
 }
 
       componentDidMount(){
-       axios.get("http://localhost:8080/ETH/history/mounth/1559563778")
+       axios.get(config.get("URLAPIMOUNTH"))
             .then(response=>{
               if (response.status === 200) {
                 if(response.data){

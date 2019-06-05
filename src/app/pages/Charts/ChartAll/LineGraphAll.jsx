@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react'
 import Chart from "chart.js";
-import {Line as LineChart} from 'chart.js';
 import classes from "../moduleGraph/LineGraph.module.css";
 let myLineChart;
 
@@ -22,7 +21,7 @@ export default class LineGraphAll extends PureComponent {
 
     buildChart = () => {
         const myChartRef = this.chartRef.current.getContext("2d");
-        const { data,dataM,dataW, average, labels } = this.props;
+        const {dataM,dataW, labels } = this.props;
 
         if (typeof myLineChart !== "undefined") myLineChart.destroy();
 

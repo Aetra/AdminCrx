@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react'
 import Chart from "chart.js";
-import {Line as LineChart} from 'chart.js';
 import classes from "../moduleGraph/LineGraph24h.module.css";
 let myLineChart;
 
@@ -22,7 +21,7 @@ export default class LineGraphHr24h extends PureComponent {
 
     buildChart = () => {
         const myChartRef = this.chartRef.current.getContext("2d");
-        const { data, average, labels } = this.props;
+        const { data,labels } = this.props;
 
         if (typeof myLineChart !== "undefined") myLineChart.destroy();
 
@@ -48,7 +47,12 @@ export default class LineGraphHr24h extends PureComponent {
                     type: 'linear',
                     position: 'left',
                     ticks: {
-                        //min & max
+                    //  this.chartMin = Math.round((this.chartMin*0.55)/Math.pow(10,Math.round(Math.log10(this.chartMin))-1))*Math.pow(10,Math.round(Math.log10(this.chartMin))-1);
+                      //this.chartMax = Math.round((this.chartMax*1.2)/Math.pow(10,Math.round(Math.log10(this.chartMax))-1))*Math.pow(10,Math.round(Math.log10(this.chartMax))-1);
+                        min:this.chartMin = Math.round((this.chartMin*0.55)/Math.pow(10,Math.round(Math.log10(this.chartMin))-1))*Math.pow(10,Math.round(Math.log10(this.chartMin))-1),
+
+                        max:this.chartMax = Math.round((this.chartMax*1.2)/Math.pow(10,Math.round(Math.log10(this.chartMax))-1))*Math.pow(10,Math.round(Math.log10(this.chartMax))-1),
+                        stepSize:50000
 
                     }
                   }]

@@ -3,7 +3,9 @@ import classes from "../moduleGraph/Dashboard24h.module.css";
 import LineGraphHr24h from "./LineGraphHr24h";
 import axios from 'axios';
 import moment from "moment";
+import {formatHashrate} from '../../../helpers/helpers';
 import config from '../../../.././config1.js';
+
 
 
  class GraphHr24h extends Component {
@@ -16,13 +18,15 @@ import config from '../../../.././config1.js';
 }
 
       componentDidMount(){
-       axios.get("http://localhost:8080/ETH/history24h")
+       axios.get(config.get("URLAPIGRAPH")+"24h")
             .then(response=>{
               if (response.status === 200) {
                 if(response.data){
                   //map
                   var hr = Object.keys(response.data).map((value) => {
                         let m = response.data[value].hashrate;
+                        //m=formatHashrate(m);
+                        //console.log(m);
                         return m;
                 });
                 var ts = Object.keys(response.data).map((value) => {

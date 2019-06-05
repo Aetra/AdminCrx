@@ -17,7 +17,7 @@ import config from '../../../.././config1.js';
 }
 
       componentDidMount(){
-       axios.get("http://localhost:8080/ETH/history/totalLong")
+       axios.get(config.get("URLAPIGRAPH")+"/totalLong")
             .then(response=>{
               if (response.status === 200) {
                 if(response.data){
