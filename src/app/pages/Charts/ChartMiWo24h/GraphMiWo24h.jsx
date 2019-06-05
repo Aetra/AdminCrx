@@ -14,38 +14,38 @@ import moment from "moment";
      labels:[]
    };
 }
-      componentDidMount(){
-       axios.get(config.get("URLAPIGRAPH")+"24h")
-            .then(response=>{
-              if (response.status === 200) {
-                if(response.data){
-                  //map
-                  var  workers = Object.keys(response.data).map((value) => {
-                        let m = response.data[value].workersT;
-                        return m;
-                  });
-                  var miners = Object.keys(response.data).map((value) => {
-                        let m = response.data[value].minersT;
-                        return m;
-                  });
-                  var ts = Object.keys(response.data).map((value) => {
-                        let m = response.data[value].timestamp;
-                        m=moment(m*1000).format('h:mm:ss a');
-                        return m;
-                  });
-                }
-                this.setState({postsW:workers});
-                this.setState({postsM:miners});
-                this.setState({labels:ts});
-              }
-              else {
-                throw new Error("Error");
-              }
-            })
-            .catch(error => {
-              console.log("api error:" + error);
-              throw error;
+  componentDidMount(){
+    axios.get(config.get("URLAPIGRAPH")+"24h")
+      .then(response=>{
+        if (response.status === 200) {
+          if(response.data){
+            //map
+            var  workers = Object.keys(response.data).map((value) => {
+              let m = response.data[value].workersT;
+                return m;
             });
+            var miners = Object.keys(response.data).map((value) => {
+              let m = response.data[value].minersT;
+              return m;
+            });
+            var ts = Object.keys(response.data).map((value) => {
+              let m = response.data[value].timestamp;
+              m=moment(m*1000).format('h:mm:ss a');
+              return m;
+            });
+        }
+        this.setState({postsW:workers});
+        this.setState({postsM:miners});
+        this.setState({labels:ts});
+        }
+        else {
+          throw new Error("Error");
+        }
+      })
+      .catch(error => {
+        console.log("api error:" + error);
+        throw error;
+      });
       }
 
     render(){

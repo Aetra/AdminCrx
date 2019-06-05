@@ -28,10 +28,9 @@ import 'moment/locale/fr'  // without this line it didn't work
                 var ts = Object.keys(response.data).map((value) => {
                       let m = response.data[value].timestamp;
                       moment.locale('fr');
-
                       m=moment(m*1000).format("dddd Do MMMM YY");
                       return m;
-              });
+                });
                 }
                 this.setState({posts:moyhr});
                 this.setState({labels:ts});
@@ -49,7 +48,6 @@ import 'moment/locale/fr'  // without this line it didn't work
 
 
     render(){
-
       const data=this.state.posts;
       const labels=this.state.labels;
         return (

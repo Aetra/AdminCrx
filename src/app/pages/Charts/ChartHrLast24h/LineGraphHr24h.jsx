@@ -41,9 +41,6 @@ export default class LineGraphHr24h extends PureComponent {
             },
             options: {
               responsive: true,
-              scales: {
-      
-                }
               }
         });
     }

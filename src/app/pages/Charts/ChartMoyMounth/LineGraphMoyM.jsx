@@ -41,7 +41,6 @@ export default class LineGraphMoyM extends PureComponent {
             },
             options: {
               responsive: true,
-
             }
         });
     }

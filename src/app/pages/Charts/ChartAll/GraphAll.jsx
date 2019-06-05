@@ -14,31 +14,30 @@ import config from '../../../.././config1.js';
      postsW:[],
      labels:[]
    };
-}
+ }
 
-      componentDidMount(){
-       axios.get(config.get("URLAPIGRAPH")+"/totalLong")
-            .then(response=>{
-              if (response.status === 200) {
-                if(response.data){
-                  var moyMiners = Object.keys(response.data).map((value) => {
-                        let m = response.data[value].moyMiners;
-                        return m;
+  componentDidMount(){
+    axios.get(config.get("URLAPIGRAPH")+"/totalLong")
+      .then(response=>{
+        if (response.status === 200) {
+          if(response.data){
+            var moyMiners = Object.keys(response.data).map((value) => {
+              let m = response.data[value].moyMiners;
+                return m;
+              });
+              var moyWorkers = Object.keys(response.data).map((value) => {
+                let m = response.data[value].moyWorkers;
+                return m;
+              });
+              var ts = Object.keys(response.data).map((value) => {
+                let m = response.data[value].timestamp;
+                m=formatDate(m);
+                return m;
                   });
-                  var moyWorkers = Object.keys(response.data).map((value) => {
-                        let m = response.data[value].moyWorkers;
-                        return m;
-                  });
-                  var ts = Object.keys(response.data).map((value) => {
-                        let m = response.data[value].timestamp;
-                        m=formatDate(m);
-                        return m;
-                  });
-                }
+              }
                 this.setState({postsM:moyMiners});
                 this.setState({postsW:moyWorkers});
                 this.setState({labels:ts});
-
               }
               else {
                 throw new Error("Error");
@@ -51,9 +50,8 @@ import config from '../../../.././config1.js';
       }
 
     render(){
-      const data2=this.state.postsM;
-      const data3=this.state.postsW;
-
+      const dataM=this.state.postsM;
+      const dataW=this.state.postsW;
       const labels=this.state.labels;
         return (
             <div className={classes.container}>
@@ -61,8 +59,8 @@ import config from '../../../.././config1.js';
                 <h1 className='font-weight-light'>Data of all time</h1>
             </header>
                 <LineGraphAll
-                  dataM={data2}
-                  dataW={data3}
+                  dataM={dataM}
+                  dataW={dataW}
                   labels={labels}/>
             </div>
         )
