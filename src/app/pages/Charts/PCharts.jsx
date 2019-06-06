@@ -30,6 +30,9 @@ class PCharts extends React.Component{
         <ChartAllWoMi/>
       </div>
 
+      <div className="mt-3">
+        <ChartAllHr/>
+      </div>
     </div>
 
 )}
