@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import Chart from "chart.js";
-import classes from "../moduleGraph/LineGraph24h.module.css";
+import classes from "../moduleGraph/LineChart.module.css";
 let myLineChart;
 
 //--Chart Style Options--//
@@ -8,7 +8,7 @@ Chart.defaults.global.defaultFontFamily = "'PT Sans', sans-serif"
 Chart.defaults.global.legend.display = false;
 //--Chart Style Options--//
 
-export default class LineGraphHr24h extends PureComponent {
+export default class LineChartMoyM extends PureComponent {
     chartRef = React.createRef();
 
     componentDidMount() {
@@ -32,7 +32,7 @@ export default class LineGraphHr24h extends PureComponent {
                 labels: labels,
                 datasets: [
                     {
-                        label: "hashrate",
+                        label: "Moyenne hashrate",
                         data: data,
                         fill: false,
                         borderColor: "#6da6d2"
@@ -41,7 +41,7 @@ export default class LineGraphHr24h extends PureComponent {
             },
             options: {
               responsive: true,
-              }
+            }
         });
     }
 

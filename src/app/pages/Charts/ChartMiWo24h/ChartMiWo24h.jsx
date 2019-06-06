@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import classes from "../moduleGraph/Dashboard24h.module.css";
-import LineGraphMiWo24h from "./LineGraphMiWo24h";
+import LineChartMiWo24h from "./LineChartMiWo24h";
 import axios from 'axios';
 import config from '../../../.././config1.js';
 import moment from "moment";
 
- class GraphMiWo24h extends Component {
+ class ChartMiWo24h extends Component {
   constructor(props) {
   super(props);
   this.state={
@@ -57,7 +57,7 @@ import moment from "moment";
             <header>
                 <h1 className='font-weight-light'>Workers & Miners of last 24 hours</h1>
             </header>
-                <LineGraphMiWo24h
+                <LineChartMiWo24h
                   dataM={dataM}
                   dataW={dataW}
                   labels={labels}/>
@@ -65,4 +65,4 @@ import moment from "moment";
         )
     }
 }
-export default GraphMiWo24h;
+export default ChartMiWo24h;

@@ -1,8 +1,8 @@
 import React from 'react';
-import GraphHr24h from "./ChartHrLast24h/GraphHr24h";
-import GraphMiWo24h from "./ChartMiWo24h/GraphMiWo24h";
-import GraphMoyM from "./ChartMoyMounth/GraphMoyM";
-import GraphAll from "./ChartAll/GraphAll";
+import ChartHr24h from "./ChartHrLast24h/ChartHr24h";
+import ChartMiWo24h from "./ChartMiWo24h/ChartMiWo24h";
+import ChartMoyM from "./ChartMoyMounth/ChartMoyM";
+import ChartAllWoMi from "./ChartAll/ChartAllWoMi";
 
 
 import "./style.css";
@@ -14,17 +14,17 @@ class PCharts extends React.Component{
     <div className=" charts">
       <div className="row">
         <div className="col-6">
-          <GraphHr24h/>
+          <ChartHr24h/>
         </div>
         <div className="col-6">
-          <GraphMiWo24h/>
+          <ChartMiWo24h/>
         </div>
       </div>
       <div className="mt-3">
-        <GraphMoyM/>
+        <ChartMoyM/>
       </div>
       <div className="mt-3">
-        <GraphAll/>
+        <ChartAllWoMi/>
       </div>
     </div>
 

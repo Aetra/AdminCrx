@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import Chart from "chart.js";
-import classes from "../moduleGraph/LineGraph.module.css";
+import classes from "../moduleGraph/LineChart.module.css";
 let myLineChart;
 
 //--Chart Style Options--//
@@ -8,7 +8,7 @@ Chart.defaults.global.defaultFontFamily = "'PT Sans', sans-serif"
 Chart.defaults.global.legend.display = false;
 //--Chart Style Options--//
 
-export default class LineGraphAll extends PureComponent {
+export default class LineChartAllWoMi extends PureComponent {
     chartRef = React.createRef();
 
     componentDidMount() {

@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import classes from "../moduleGraph/Dashboard.module.css";
-import LineGraphMoyM from "./LineGraphMoyM";
+import classes from "../moduleGraph/Dashboard24h.module.css";
+import LineChartHr24h from "./LineChartHr24h";
 import axios from 'axios';
-import config from '../../../.././config1.js';
 import moment from "moment";
+import {formatHashrate} from '../../../helpers/helpers';
+import config from '../../../.././config1.js';
 import 'moment/locale/fr'  // without this line it didn't work
 
 
- class GraphMoyM extends Component {
+
+ class ChartHr24h extends Component {
   constructor(props) {
   super(props);
   this.state={
@@ -17,22 +19,24 @@ import 'moment/locale/fr'  // without this line it didn't work
 }
 
       componentDidMount(){
-       axios.get(config.get("URLAPIMOUNTH"))
+       axios.get(config.get("URLAPIGRAPH")+"24h")
             .then(response=>{
               if (response.status === 200) {
                 if(response.data){
-                  var moyhr = Object.keys(response.data).map((value) => {
-                        let m = response.data[value].moyHrate;
+                  //map
+                  var hr = Object.keys(response.data).map((value) => {
+                        let m = response.data[value].hashrate;
                         return m;
+                      //  m=formatHashrate(m);
+                        //console.log(m);
                 });
                 var ts = Object.keys(response.data).map((value) => {
                       let m = response.data[value].timestamp;
-                      moment.locale('fr');
-                      m=moment(m*1000).format("dddd Do MMMM YY");
+                      m=moment(m*1000).format('LTS');
                       return m;
-                });
+              });
                 }
-                this.setState({posts:moyhr});
+                this.setState({posts:hr});
                 this.setState({labels:ts});
               }
               else {
@@ -45,21 +49,19 @@ import 'moment/locale/fr'  // without this line it didn't work
             });
       }
 
-
-
     render(){
       const data=this.state.posts;
       const labels=this.state.labels;
         return (
             <div className={classes.container}>
             <header>
-                <h1 className='font-weight-light'>Average Hashrate per mounth</h1>
+                <h1 className='font-weight-light'>Hashrate of last 24 hours</h1>
             </header>
-                <LineGraphMoyM
+                <LineChartHr24h
                   data={data}
                   labels={labels}/>
             </div>
         )
     }
 }
-export default GraphMoyM;
+export default ChartHr24h;

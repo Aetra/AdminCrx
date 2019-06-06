@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import classes from "../moduleGraph/Dashboard.module.css";
-import LineGraphAll from "./LineGraphAll";
+import LineChartAllWoMi from "./LineChartAllWoMi";
 import axios from 'axios';
 import {formatDate} from '../../../helpers/helpers';
 import config from '../../../.././config1.js';
 
 
- class GraphAll extends Component {
+ class ChartAllWoMi extends Component {
   constructor(props) {
   super(props);
   this.state={
@@ -58,7 +58,7 @@ import config from '../../../.././config1.js';
             <header>
                 <h1 className='font-weight-light'>Data of all time</h1>
             </header>
-                <LineGraphAll
+                <LineChartAllWoMi
                   dataM={dataM}
                   dataW={dataW}
                   labels={labels}/>
@@ -66,4 +66,4 @@ import config from '../../../.././config1.js';
         )
     }
 }
-export default GraphAll;
+export default ChartAllWoMi;
