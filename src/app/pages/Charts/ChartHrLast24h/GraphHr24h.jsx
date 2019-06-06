@@ -5,7 +5,7 @@ import axios from 'axios';
 import moment from "moment";
 import {formatHashrate} from '../../../helpers/helpers';
 import config from '../../../.././config1.js';
-
+import 'moment/locale/fr'  // without this line it didn't work
  class GraphHr24h extends Component {
   constructor(props) {
   super(props);
@@ -26,7 +26,7 @@ componentDidMount(){
           });
           var ts = Object.keys(response.data).map((value) => {
             let m = response.data[value].timestamp;
-              m=moment(m*1000).format('LTF');
+              m=moment(m*1000).format('LTS');
           return m;
           });
         }

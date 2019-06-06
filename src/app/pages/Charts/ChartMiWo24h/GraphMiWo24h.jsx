@@ -30,7 +30,7 @@ import moment from "moment";
             });
             var ts = Object.keys(response.data).map((value) => {
               let m = response.data[value].timestamp;
-              m=moment(m*1000).format('h:mm:ss a');
+              m=moment(m*1000).format('LTS');
               return m;
             });
         }
