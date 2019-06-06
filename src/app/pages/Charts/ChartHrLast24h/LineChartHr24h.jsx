@@ -51,6 +51,8 @@ export default class LineChartHr24h extends PureComponent {
                 ]
             },
             options: {
+              spanGaps:true,
+
               responsive: true,
               scales: {
                 yAxes: [{
@@ -58,8 +60,8 @@ export default class LineChartHr24h extends PureComponent {
                   type: 'linear',
                   position: 'left',
                   ticks:{
-                    min:0,
-                    max:100000,
+                    min:30,
+                    max:60,
                   }
                 }]
 

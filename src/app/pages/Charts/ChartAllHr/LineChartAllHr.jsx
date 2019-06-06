@@ -40,6 +40,8 @@ export default class LineChartAllHr extends PureComponent {
                 ]
             },
             options: {
+              spanGaps:true,
+
                responsive: true,
                scales: {
 

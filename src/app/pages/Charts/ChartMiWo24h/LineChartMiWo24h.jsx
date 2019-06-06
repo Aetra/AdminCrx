@@ -40,6 +40,7 @@ export default class LineChartMiWo24h extends PureComponent {
                     },
                     {
                         label: "Miners",
+
                         yAxisID: 'Miners',
                         data: dataM,
                         fill: false,
@@ -48,6 +49,7 @@ export default class LineChartMiWo24h extends PureComponent {
                 ]
             },
             options: {
+              spanGaps:true,
               responsive: true,
               scales: {
                   yAxes: [{
@@ -56,6 +58,9 @@ export default class LineChartMiWo24h extends PureComponent {
                     position: 'left',
                   }, {
                     id: 'Miners',
+                    gridLines: {
+                                   display:false,
+                               },
                     type: 'linear',
                     position: 'right',
 

@@ -40,6 +40,7 @@ export default class LineChartMoyM extends PureComponent {
                 ]
             },
             options: {
+              spanGaps:true,
               responsive: true,
             }
         });

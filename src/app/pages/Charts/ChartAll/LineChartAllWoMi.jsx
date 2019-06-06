@@ -48,12 +48,16 @@ export default class LineChartAllWoMi extends PureComponent {
                 ]
             },
             options: {
+              spanGaps:true,
                responsive: true,
                scales: {
                    yAxes: [{
                      id: 'Workers',
                      type: 'linear',
                      position: 'left',
+                     gridLines: {
+                                    display:false,
+                                },
                      ticks:{
                        maxTicksLimit:5,
                      }
