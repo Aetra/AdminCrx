@@ -25,7 +25,6 @@ export default class LineChartAllHr extends PureComponent {
         const {dataH, labels } = this.props;
 
         if (typeof myLineChart !== "undefined") myLineChart.destroy();
-
         myLineChart = new Chart(myChartRef, {
             type: "line",
             data: {

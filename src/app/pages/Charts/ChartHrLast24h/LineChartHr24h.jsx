@@ -63,7 +63,7 @@ export default class LineChartHr24h extends PureComponent {
                   type: 'linear',
                   position: 'left',
                   ticks: {
-                   min:Math.min.apply(this,data),
+                   min:Math.min.apply(this,data) +5,
                    max:Math.max.apply(this,data),
                  }
                 }]

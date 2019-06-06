@@ -33,8 +33,6 @@ import config from '../../../.././config1.js';
               }
                 const mins=findMax(moyHashrate);
                 const maxs=findMin(moyHashrate);
-                this.setState({postsmin:mins});
-                console.log(mins,maxs);
                 this.setState({postsH:moyHashrate});
                 this.setState({labels:ts});
               }
