@@ -54,10 +54,17 @@ export default class LineGraphAll extends PureComponent {
                      id: 'Workers',
                      type: 'linear',
                      position: 'left',
-                   }, {
+                     ticks:{
+                       maxTicksLimit:5,
+                     }
+                   },
+                    {
                      id: 'Miners',
                      type: 'linear',
                      position: 'right',
+                      ticks:{
+                        maxTicksLimit:20,
+                      }
 
                    }]
                  }
