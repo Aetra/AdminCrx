@@ -16,21 +16,21 @@ class PCharts extends React.Component{
    return(
     <div className="container-fluid charts">
       <div className="row">
-        <div className="col-6">
+        <div className="col-lg-6 col-12">
           <ChartHr24h/>
         </div>
-        <div className="col-6">
+        <div className="col-lg-6 col-12">
           <ChartMiWo24h/>
         </div>
       </div>
-      <div className="mt-3">
+      <div className="col-12 mt-3">
         <ChartMoyM/>
       </div>
-      <div className="mt-3">
+      <div className="col-12 mt-3">
         <ChartAllWoMi/>
       </div>
 
-      <div className="mt-3">
+      <div className="col-12 mt-3">
         <ChartAllHr/>
       </div>
     </div>

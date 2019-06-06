@@ -3,7 +3,7 @@ import classes from "../moduleGraph/Dashboard24h.module.css";
 import LineChartHr24h from "./LineChartHr24h";
 import axios from 'axios';
 import moment from "moment";
-import {formatHashrateApi} from '../../../helpers/helpers';
+import {findMax,findMin} from '../../../helpers/helpers';
 import config from '../../../.././config1.js';
 import 'moment/locale/fr'  // without this line it didn't work
 
@@ -17,7 +17,6 @@ import 'moment/locale/fr'  // without this line it didn't work
      labels:[]
    };
 }
-
       componentDidMount(){
        axios.get(config.get("URLAPIGRAPH")+"24h")
             .then(response=>{
@@ -26,8 +25,7 @@ import 'moment/locale/fr'  // without this line it didn't work
                   //map
                   var hr = Object.keys(response.data).map((value) => {
                         let m = response.data[value].hashrate;
-                        m=parseFloat(formatHashrateApi(m));
-                        console.log(m);
+                      //  m=parseFloat(formatHashrateApi(m));
                         return m;
                         //console.log(m);
                 });
@@ -37,6 +35,9 @@ import 'moment/locale/fr'  // without this line it didn't work
                       return m;
               });
                 }
+                const mins=findMax(hr);
+                const maxs=findMin(hr);
+                console.log(mins,maxs);
                 this.setState({posts:hr});
                 this.setState({labels:ts});
               }
@@ -49,6 +50,7 @@ import 'moment/locale/fr'  // without this line it didn't work
               throw error;
             });
       }
+
 
     render(){
       const data=this.state.posts;

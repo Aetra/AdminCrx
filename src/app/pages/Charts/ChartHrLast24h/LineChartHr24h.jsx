@@ -2,9 +2,7 @@ import React, { PureComponent } from 'react'
 import Chart from "chart.js";
 import classes from "../moduleGraph/LineChart24h.module.css";
 import 'moment/locale/fr'  // without this line it didn't work
-import moment from "moment";
 import {formatHashrateApi} from '../../../helpers/helpers';
-
 let myLineChart;
 
 
@@ -26,12 +24,7 @@ export default class LineChartHr24h extends PureComponent {
 
     buildChart = () => {
         const myChartRef = this.chartRef.current.getContext("2d");
-        const {chartMin, chartMax}="";
         const { data,labels } = this.props;
-
-        var now = moment();
-        var yesterday=moment()-((3600*24)*1000);
-
         if (typeof myLineChart !== "undefined") myLineChart.destroy();
 
         myLineChart = new Chart(myChartRef, {
@@ -43,8 +36,7 @@ export default class LineChartHr24h extends PureComponent {
                     {
                         label: "hashrate",
                         data: data,
-                        yAxisID: 'hashrate',
-
+                        yAxisID: 'hashrates',
                         fill: false,
                         borderColor: "#6da6d2"
                     }
@@ -52,17 +44,28 @@ export default class LineChartHr24h extends PureComponent {
             },
             options: {
               spanGaps:true,
-
               responsive: true,
+              tooltips: {
+                 displayColors: false,
+                 titleFontSize: 16,
+                 bodyFontSize: 14,
+                 xPadding: 10,
+                 yPadding: 10,
+                 callbacks: {
+                     label: (tooltipItem, data) => {
+                         return ` ${formatHashrateApi(tooltipItem.value)}`
+                     }
+                 }
+            },
               scales: {
                 yAxes: [{
-                  id: 'hashrate',
+                  id: 'hashrates',
                   type: 'linear',
                   position: 'left',
-                  ticks:{
-                    min:30,
-                    max:60,
-                  }
+                  ticks: {
+                   min:Math.min.apply(this,data),
+                   max:Math.max.apply(this,data),
+                 }
                 }]
 
                 }

@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react'
 import Chart from "chart.js";
 import classes from "../moduleGraph/LineChart.module.css";
+import {formatHashrateApi} from '../../../helpers/helpers';
+
 let myLineChart;
 
 //--Chart Style Options--//
@@ -42,6 +44,18 @@ export default class LineChartMoyM extends PureComponent {
             options: {
               spanGaps:true,
               responsive: true,
+              tooltips: {
+                 displayColors: false,
+                 titleFontSize: 16,
+                 bodyFontSize: 14,
+                 xPadding: 10,
+                 yPadding: 10,
+                 callbacks: {
+                     label: (tooltipItem, data) => {
+                         return ` ${formatHashrateApi(tooltipItem.value)}`
+                     }
+                 }
+            },
             }
         });
     }
