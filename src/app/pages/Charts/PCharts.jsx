@@ -3,6 +3,9 @@ import ChartHr24h from "./ChartHrLast24h/ChartHr24h";
 import ChartMiWo24h from "./ChartMiWo24h/ChartMiWo24h";
 import ChartMoyM from "./ChartMoyMounth/ChartMoyM";
 import ChartAllWoMi from "./ChartAll/ChartAllWoMi";
+import ChartAllHr from "./ChartAllHr/ChartAllHr";
+
+
 
 
 import "./style.css";
@@ -11,7 +14,7 @@ class PCharts extends React.Component{
 
  render(){
    return(
-    <div className=" charts">
+    <div className="charts">
       <div className="row">
         <div className="col-6">
           <ChartHr24h/>
@@ -26,6 +29,7 @@ class PCharts extends React.Component{
       <div className="mt-3">
         <ChartAllWoMi/>
       </div>
+
     </div>
 
 )}

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import classes from "../moduleGraph/Dashboard.module.css";
-import LineChartAllWoMi from "./LineChartAllWoMi";
+import LineChartAllHr from "./LineChartAllHr";
 import axios from 'axios';
 import {formatDate} from '../../../helpers/helpers';
 import config from '../../../.././config1.js';
 
 
- class ChartAllWoMi extends Component {
+ class ChartAllHr extends Component {
   constructor(props) {
   super(props);
   this.state={
@@ -56,9 +56,9 @@ import config from '../../../.././config1.js';
         return (
             <div className={classes.container}>
             <header>
-                <h1 className='font-weight-light'>Miners & Workers of all time</h1>
+                <h1 className='font-weight-light'>Hashrate of all time</h1>
             </header>
-                <LineChartAllWoMi
+                <LineChartAllHr
                   dataM={dataM}
                   dataW={dataW}
                   labels={labels}/>
@@ -66,4 +66,4 @@ import config from '../../../.././config1.js';
         )
     }
 }
-export default ChartAllWoMi;
+export default ChartAllHr;
