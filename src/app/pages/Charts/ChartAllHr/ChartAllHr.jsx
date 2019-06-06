@@ -10,8 +10,7 @@ import config from '../../../.././config1.js';
   constructor(props) {
   super(props);
   this.state={
-     postsM:[],
-     postsW:[],
+     postsH:[],
      labels:[]
    };
  }
@@ -21,22 +20,18 @@ import config from '../../../.././config1.js';
       .then(response=>{
         if (response.status === 200) {
           if(response.data){
-            var moyMiners = Object.keys(response.data).map((value) => {
-              let m = response.data[value].moyMiners;
+            var moyHashrate = Object.keys(response.data).map((value) => {
+              let m = response.data[value].moyHrate;
                 return m;
               });
-              var moyWorkers = Object.keys(response.data).map((value) => {
-                let m = response.data[value].moyWorkers;
-                return m;
-              });
+
               var ts = Object.keys(response.data).map((value) => {
                 let m = response.data[value].timestamp;
                 m=formatDate(m);
                 return m;
                   });
               }
-                this.setState({postsM:moyMiners});
-                this.setState({postsW:moyWorkers});
+                this.setState({postsH:moyHashrate});
                 this.setState({labels:ts});
               }
               else {
@@ -50,8 +45,7 @@ import config from '../../../.././config1.js';
       }
 
     render(){
-      const dataM=this.state.postsM;
-      const dataW=this.state.postsW;
+      const dataH=this.state.postsH;
       const labels=this.state.labels;
         return (
             <div className={classes.container}>
@@ -59,8 +53,7 @@ import config from '../../../.././config1.js';
                 <h1 className='font-weight-light'>Hashrate of all time</h1>
             </header>
                 <LineChartAllHr
-                  dataM={dataM}
-                  dataW={dataW}
+                  dataH={dataH}
                   labels={labels}/>
             </div>
         )

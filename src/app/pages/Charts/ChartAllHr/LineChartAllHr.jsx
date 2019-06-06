@@ -21,7 +21,7 @@ export default class LineChartAllHr extends PureComponent {
 
     buildChart = () => {
         const myChartRef = this.chartRef.current.getContext("2d");
-        const {dataM,dataW, labels } = this.props;
+        const {dataH, labels } = this.props;
 
         if (typeof myLineChart !== "undefined") myLineChart.destroy();
 
@@ -33,9 +33,9 @@ export default class LineChartAllHr extends PureComponent {
                 datasets: [
                     {
                       label:"Average Hashrate",
-                      data: dataM,
+                      data: dataH,
                       fill: false,
-                      borderColor: "#ffb455"
+                      borderColor: "#6da6d2"
                     },
                 ]
             },

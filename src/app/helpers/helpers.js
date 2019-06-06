@@ -26,6 +26,17 @@ export function formatHashrate(params, hash) {
   return hashrate.toFixed(3) + ' ' + units[i]+'/s';
 }
 
+export function formatHashrateApi(params, hash) {
+  var hashrate=params*1;
+  var i = 0;
+  var units = ['H', 'GH', 'TH', 'PH'];
+  while (hashrate > 1000) {
+    hashrate = hashrate / 1000;
+    i++;
+  }
+  return hashrate.toFixed(3) + ' ' + units[i]+'/s';
+}
+
 export function formatDifficulty(params, hash) {
   var difficulty=params*1;
   while (difficulty > 1000) {

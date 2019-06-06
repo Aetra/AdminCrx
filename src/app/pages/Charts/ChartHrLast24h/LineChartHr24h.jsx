@@ -3,6 +3,7 @@ import Chart from "chart.js";
 import classes from "../moduleGraph/LineChart24h.module.css";
 import 'moment/locale/fr'  // without this line it didn't work
 import moment from "moment";
+import {formatHashrateApi} from '../../../helpers/helpers';
 
 let myLineChart;
 
@@ -42,6 +43,8 @@ export default class LineChartHr24h extends PureComponent {
                     {
                         label: "hashrate",
                         data: data,
+                        yAxisID: 'hashrate',
+
                         fill: false,
                         borderColor: "#6da6d2"
                     }
@@ -51,11 +54,15 @@ export default class LineChartHr24h extends PureComponent {
               responsive: true,
               scales: {
                 yAxes: [{
-                  ticks: {
-                    max: 100000, //this.chartMax = Math.round((this.chartMax*1.2)/Math.pow(10,Math.round(Math.log10(this.chartMax))-1))*Math.pow(10,Math.round(Math.log10(this.chartMax))-1);
-                    min: 0, //this.chartMin = Math.round((this.chartMin*0.55)/Math.pow(10,Math.round(Math.log10(this.chartMin))-1))*Math.pow(10,Math.round(Math.log10(this.chartMin))-1);
+                  id: 'hashrate',
+                  type: 'linear',
+                  position: 'left',
+                  ticks:{
+                    min:0,
+                    max:100000,
                   }
-                }],
+                }]
+
                 }
               }
         });
