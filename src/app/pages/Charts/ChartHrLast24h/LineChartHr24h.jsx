@@ -5,19 +5,15 @@ import 'moment/locale/fr'  // without this line it didn't work
 import {formatHashrateApi} from '../../../helpers/helpers';
 let myLineChart;
 
-
 //--Chart Style Options--//
 Chart.defaults.global.defaultFontFamily = "'PT Sans', sans-serif"
 Chart.defaults.global.legend.display = false;
 //--Chart Style Options--//
-
 export default class LineChartHr24h extends PureComponent {
     chartRef = React.createRef();
-
     componentDidMount() {
         this.buildChart();
     }
-
     componentDidUpdate() {
         this.buildChart();
     }
@@ -25,6 +21,8 @@ export default class LineChartHr24h extends PureComponent {
     buildChart = () => {
         const myChartRef = this.chartRef.current.getContext("2d");
         const { data,labels } = this.props;
+        const min2=Math.min.apply(this,data);
+        const max2=Math.max.apply(this,data);
         if (typeof myLineChart !== "undefined") myLineChart.destroy();
 
         myLineChart = new Chart(myChartRef, {
@@ -63,13 +61,12 @@ export default class LineChartHr24h extends PureComponent {
                   type: 'linear',
                   position: 'left',
                   ticks: {
-                   min:Math.min.apply(this,data) +5,
-                   max:Math.max.apply(this,data),
+                    min:min2,
+                    max:max2,
                  }
                 }]
-
-                }
               }
+            }
         });
     }
 

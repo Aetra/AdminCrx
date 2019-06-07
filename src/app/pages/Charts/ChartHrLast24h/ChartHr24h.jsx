@@ -3,12 +3,8 @@ import classes from "../moduleGraph/Dashboard24h.module.css";
 import LineChartHr24h from "./LineChartHr24h";
 import axios from 'axios';
 import moment from "moment";
-import {findMax,findMin} from '../../../helpers/helpers';
 import config from '../../../.././config1.js';
-import 'moment/locale/fr'  // without this line it didn't work
-
-
-
+import 'moment/locale/fr';
  class ChartHr24h extends Component {
   constructor(props) {
   super(props);
@@ -22,22 +18,16 @@ import 'moment/locale/fr'  // without this line it didn't work
             .then(response=>{
               if (response.status === 200) {
                 if(response.data){
-                  //map
                   var hr = Object.keys(response.data).map((value) => {
                         let m = response.data[value].hashrate;
-                      //  m=parseFloat(formatHashrateApi(m));
                         return m;
-                        //console.log(m);
                 });
-                var ts = Object.keys(response.data).map((value) => {
-                      let m = response.data[value].timestamp;
-                      m=moment(m*1000).format('LTS');
-                      return m;
-              });
+                  var ts = Object.keys(response.data).map((value) => {
+                        let m = response.data[value].timestamp;
+                        m=moment(m*1000).format('LTS');
+                        return m;
+                  });
                 }
-                const mins=findMax(hr);
-                const maxs=findMin(hr);
-                console.log(mins,maxs);
                 this.setState({posts:hr});
                 this.setState({labels:ts});
               }
@@ -50,7 +40,6 @@ import 'moment/locale/fr'  // without this line it didn't work
               throw error;
             });
       }
-
 
     render(){
       const data=this.state.posts;

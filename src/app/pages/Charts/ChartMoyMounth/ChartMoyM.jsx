@@ -14,36 +14,35 @@ import 'moment/locale/fr'  // without this line it didn't work
      posts:[],
      labels:[]
    };
-}
-
-      componentDidMount(){
-       axios.get(config.get("URLAPIMOUNTH"))
-            .then(response=>{
-              if (response.status === 200) {
-                if(response.data){
-                  var moyhr = Object.keys(response.data).map((value) => {
-                        let m = response.data[value].moyHrate;
-                        return m;
-                });
-                var ts = Object.keys(response.data).map((value) => {
-                      let m = response.data[value].timestamp;
-                      moment.locale('fr');
-                      m=moment(m*1000).format("dddd Do MMMM YY");
-                      return m;
-                });
-                }
-                this.setState({posts:moyhr});
-                this.setState({labels:ts});
-              }
-              else {
-                throw new Error("Error");
-              }
-            })
-            .catch(error => {
-              console.log("api error:" + error);
-              throw error;
+  }
+  componentDidMount(){
+    axios.get(config.get("URLAPIMOUNTH"))
+      .then(response=>{
+        if (response.status === 200) {
+          if(response.data){
+            var moyhr = Object.keys(response.data).map((value) => {
+              let m = response.data[value].moyHrate;
+                return m;
             });
-      }
+            var ts = Object.keys(response.data).map((value) => {
+              let m = response.data[value].timestamp;
+              moment.locale('fr');
+              m=moment(m*1000).format("dddd Do MMMM YY");
+              return m;
+            });
+          }
+          this.setState({posts:moyhr});
+          this.setState({labels:ts});
+        }
+        else {
+          throw new Error("Error");
+        }
+      })
+        .catch(error => {
+          console.log("api error:" + error);
+          throw error;
+        });
+  }
 
 
 

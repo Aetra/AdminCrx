@@ -4,10 +4,6 @@ import ChartMiWo24h from "./ChartMiWo24h/ChartMiWo24h";
 import ChartMoyM from "./ChartMoyMounth/ChartMoyM";
 import ChartAllWoMi from "./ChartAll/ChartAllWoMi";
 import ChartAllHr from "./ChartAllHr/ChartAllHr";
-
-
-
-
 import "./style.css";
 
 class PCharts extends React.Component{

@@ -5,7 +5,6 @@ import axios from 'axios';
 import {formatDate} from '../../../helpers/helpers';
 import config from '../../../.././config1.js';
 
-
  class ChartAllWoMi extends Component {
   constructor(props) {
   super(props);

@@ -51,8 +51,6 @@ var ts=((Date.now()/1000)-900000).toFixed(0);
   }
 
  render(){
-   console.log(ts);
-
    const countUsers=this.state.posts.length;
    const columns = [{
    Header: 'Login',

@@ -22,7 +22,6 @@ export default class LineChartMiWo24h extends PureComponent {
     buildChart = () => {
         const myChartRef = this.chartRef.current.getContext("2d");
         const { dataM,dataW,labels } = this.props;
-
         if (typeof myLineChart !== "undefined") myLineChart.destroy();
 
         myLineChart = new Chart(myChartRef, {

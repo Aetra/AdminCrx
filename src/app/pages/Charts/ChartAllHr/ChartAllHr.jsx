@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import classes from "../moduleGraph/Dashboard.module.css";
 import LineChartAllHr from "./LineChartAllHr";
 import axios from 'axios';
-import {formatDate,findMax,findMin} from '../../../helpers/helpers';
+import {formatDate} from '../../../helpers/helpers';
 import config from '../../../.././config1.js';
 
 
@@ -31,8 +31,6 @@ import config from '../../../.././config1.js';
                 return m;
                   });
               }
-                const mins=findMax(moyHashrate);
-                const maxs=findMin(moyHashrate);
                 this.setState({postsH:moyHashrate});
                 this.setState({labels:ts});
               }

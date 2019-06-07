@@ -56,11 +56,8 @@ export default class LineChartAllWoMi extends PureComponent {
                      type: 'linear',
                      position: 'left',
                      gridLines: {
-                                    display:false,
-                                },
-                     ticks:{
-                       maxTicksLimit:5,
-                     }
+                       display:false,
+                    },
                    },
                     {
                      id: 'Miners',
@@ -69,7 +66,6 @@ export default class LineChartAllWoMi extends PureComponent {
                       ticks:{
                         maxTicksLimit:20,
                       }
-
                    }]
                  }
             }

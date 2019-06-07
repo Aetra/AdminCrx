@@ -11,11 +11,9 @@ Chart.defaults.global.legend.display = false;
 
 export default class LineChartAllHr extends PureComponent {
     chartRef = React.createRef();
-
     componentDidMount() {
         this.buildChart();
     }
-
     componentDidUpdate() {
         this.buildChart();
     }
@@ -57,16 +55,11 @@ export default class LineChartAllHr extends PureComponent {
                scales: {
                  xAxes: [{
                    position: 'left',
-                   ticks: {
-                    maxTicksLimit: 8.5,
-                  }
               }],
-
                  }
             }
         });
     }
-
     render() {
         return (
             <div className={classes.graphContainer}>
