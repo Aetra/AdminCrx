@@ -4,6 +4,7 @@ import Home from "./app/pages/Home/Home";
 import LiveMiners from "./app/pages/LiveMiners/LiveMiners";
 import Payments from "./app/pages/Payments/Payments";
 import ContainsLogIn2 from "./app/pages/Connect/ContainsLogIn2";
+import Charts from "./app/pages/Charts/PCharts";
 import Users from "./app/pages/Users/Users";
 import Finance from "./app/pages/Finance/Finance";
 import {authenticationService} from './app/_services';
@@ -51,6 +52,8 @@ class RootingTest extends React.Component {
       <PrivateRoute path='/users' component={Users}/>
       <PrivateRoute path='/liveMiners' component={LiveMiners}/>
       <PrivateRoute path='/finance' component={Finance}/>
+      <PrivateRoute path='/charts' component={Charts}/>
+
       </div>
 
       <Route path="/login" exact component={ContainsLogIn2}/>

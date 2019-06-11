@@ -6,10 +6,10 @@ import { authenticationService } from '../.././_services';
 import { history } from '../.././helpers';
   class Header extends React.Component{
 
-        logout() {
-            authenticationService.logout();
-            history.push('/login');
-        }
+  logout() {
+    authenticationService.logout();
+    history.push('/login');
+  }
 
   render(){
     return(
@@ -22,6 +22,9 @@ import { history } from '../.././helpers';
             <ul>
               <li>
                 <NavLink to= "/home"> Home </NavLink>
+              </li>
+              <li>
+                <NavLink to="/charts">Charts</NavLink>
               </li>
               <li>
                 <NavLink to="/blocks">Blocks</NavLink>
