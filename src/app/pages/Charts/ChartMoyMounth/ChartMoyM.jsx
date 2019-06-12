@@ -16,7 +16,9 @@ import 'moment/locale/fr'  // without this line it didn't work
    };
   }
   componentDidMount(){
-    axios.get(config.get("URLAPIMOUNTH"))
+    var now = moment();
+
+    axios.get(config.get("URLAPIMOUNTH")+now.unix())
       .then(response=>{
         if (response.status === 200) {
           if(response.data){
