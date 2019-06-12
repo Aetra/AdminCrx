@@ -13,9 +13,7 @@ import {formatDate,formatHashrate,workersLength} from '../../helpers/helpers';
      };
   }
 
-
   axiosResult(){
-
    axios.get(config.get("URL")+"admin/miners")
         .then(response=>{
           if (response.status === 200) {
@@ -98,6 +96,8 @@ import {formatDate,formatHashrate,workersLength} from '../../helpers/helpers';
       <div className="container-fluid midMiners">
       <h3 className="mt-3 font-weight-light"> Miners </h3>
       <ReactTable
+        defaultPageSize={50}
+        pageSizeOptions={[10,50,100, 200,300]}
         data={this.state.posts}
         columns={columns}
         NoDataText={"Please Wait"}/>

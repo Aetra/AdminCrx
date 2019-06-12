@@ -1,7 +1,23 @@
 import moment from "moment";
 import React from 'react';
 
+export function findMin(arr) {
+  let min = arr[0];
+  for (let i = 1, len=arr.length; i < len; i++) {
+    let v = arr[i];
+    min = (v < min) ? v : min;
+  }
+return min;
+}
 
+export function findMax(arr) {
+  let max = arr[0];
+  for (let i = 1, len=arr.length; i < len; i++) {
+    let v = arr[i];
+    max = (v > max) ? v : max;
+  }
+return max
+}
 export function offline(ts) {
   var date = moment.unix(ts);
 	var now = moment();
@@ -9,10 +25,27 @@ export function offline(ts) {
   var duration = moment.duration(now.diff(date));
   return duration.asSeconds()>900;
 }
+
+export function removeComa(params){
+  params=params.replace(',', '');
+  return params=params.replace(',', '');
+}
+
 export function formatHashrate(params, hash) {
   var hashrate=params*1;
   var i = 0;
   var units = ['H', 'KH', 'MH', 'GH', 'TH', 'PH'];
+  while (hashrate > 1000) {
+    hashrate = hashrate / 1000;
+    i++;
+  }
+  return hashrate.toFixed(3) + ' ' + units[i]+'/s';
+}
+
+export function formatHashrateApi(params, hash) {
+  var hashrate=params*1;
+  var i = 0;
+  var units = ['H', 'GH', 'TH', 'PH'];
   while (hashrate > 1000) {
     hashrate = hashrate / 1000;
     i++;

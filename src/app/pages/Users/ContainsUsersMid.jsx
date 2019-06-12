@@ -51,8 +51,6 @@ var ts=((Date.now()/1000)-900000).toFixed(0);
   }
 
  render(){
-   console.log(ts);
-
    const countUsers=this.state.posts.length;
    const columns = [{
    Header: 'Login',
@@ -220,6 +218,8 @@ var ts=((Date.now()/1000)-900000).toFixed(0);
       <ReactTable
         data={this.state.posts}
         columns={columns}
+        defaultPageSize={50}
+        pageSizeOptions={[10,50,100, 200,300]}
         defaultSorted={[
            {
              id: "block",
