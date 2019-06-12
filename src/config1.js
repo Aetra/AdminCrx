@@ -3,8 +3,8 @@ import config from 'react-global-configuration';
 config.set({
     URLAPI: "https://www.cruxpool.com/api",
     URL:"https://www.cruxpool.com/",
-    URLAPIGRAPH:"http://localhost:8080/ETH/history",
-    URLAPIMOUNTH:"http://localhost:8080/ETH/history/mounth/1559563778",
+    URLAPIGRAPH:"https://poolstats.cruxpool.com/ETH/history",
+    URLAPIMOUNTH:"https://poolstats.cruxpool.com/ETH/history/mounth/",
     POOL: "/pool/stats",
     refreshInterval:2000,
     refreshIntervalGraph:30000,
