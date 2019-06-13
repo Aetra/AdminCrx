@@ -33,6 +33,7 @@ import 'moment/locale/fr'  // without this line it didn't work
               return m;
             });
           }
+          ts=ts.reverse();
           this.setState({posts:moyhr});
           this.setState({labels:ts});
         }

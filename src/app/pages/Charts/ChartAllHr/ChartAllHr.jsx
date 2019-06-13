@@ -31,6 +31,7 @@ import config from '../../../.././config1.js';
                 return m;
                   });
               }
+                ts=ts.reverse();
                 this.setState({postsH:moyHashrate});
                 this.setState({labels:ts});
               }

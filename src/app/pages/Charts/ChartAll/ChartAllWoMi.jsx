@@ -34,6 +34,7 @@ import config from '../../../.././config1.js';
                 return m;
                   });
               }
+                ts=ts.reverse();
                 this.setState({postsM:moyMiners});
                 this.setState({postsW:moyWorkers});
                 this.setState({labels:ts});
